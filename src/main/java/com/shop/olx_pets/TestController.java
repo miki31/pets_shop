@@ -16,7 +16,7 @@ public class TestController {
     public String sayHello() {
         String datatime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd - MMMM - yyyy -- HH:mm:ss"));
         return "Rest Service is now available     " +
-                "IT`S WORKING. Now is : ___ " +
+                "IT`S WORKING. Now is : ___  " +
                 datatime;
     }
 
