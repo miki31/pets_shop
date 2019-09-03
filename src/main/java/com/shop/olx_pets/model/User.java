@@ -3,7 +3,9 @@ package com.shop.olx_pets.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -15,11 +17,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
     private String firstName;
     private String surName;
     private String nickName;
+
+    @NotBlank
     private String password;
     private String email;
+
+    @NotBlank
+    private String role;
 
 
     @ManyToMany

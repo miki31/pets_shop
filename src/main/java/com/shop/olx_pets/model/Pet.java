@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +22,8 @@ public class Pet {
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private Category category;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    // mappedBy = "pets" must be same as name in User class
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "pets")
     private List<User> users;
 
 }
