@@ -28,7 +28,7 @@ public class DemoController {
         return "Saved";
     }
 
-    
+
     @GetMapping(path="/all")
     public @ResponseBody Iterable<DemoUser> getAllUsers() {
         // This returns a JSON or XML with the users

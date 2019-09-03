@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "product")
+@Table(name = "pet")
 public class Pet {
 
     @Id
@@ -21,7 +21,7 @@ public class Pet {
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private Category category;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private List<User> users;
 
 }

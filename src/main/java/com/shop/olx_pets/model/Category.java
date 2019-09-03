@@ -18,6 +18,6 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "category")
-    private List<Pet> products;
+    private List<Pet> pets;
 
 }

@@ -23,10 +23,10 @@ public class User {
 
 
     @ManyToMany
-    @JoinTable(name = "product_user",
+    @JoinTable(name = "pet_user",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Pet> products;
+            inverseJoinColumns = @JoinColumn(name = "pet_id"))
+    private List<Pet> pets;
 
 
 }
