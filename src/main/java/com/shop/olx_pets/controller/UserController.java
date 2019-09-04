@@ -6,6 +6,7 @@ import com.shop.olx_pets.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("user")
@@ -42,17 +43,12 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    /*
-    TODO: error 500 ???
-    checking connections to pets ?
-     */
+    
     @DeleteMapping("{id}")
-    public User delete(@PathVariable Long id) {
-        User toDelete = userRepository.findById(id).orElse(null);
-        if (toDelete != null) {
-            userRepository.delete(toDelete);
+    public void delete(@PathVariable Long id) {
+        Optional<User> toDelete = userRepository.findById(id);
+        if (toDelete.isPresent()) {
+            userRepository.delete(toDelete.get());
         }
-        return toDelete;
     }
-
 }
