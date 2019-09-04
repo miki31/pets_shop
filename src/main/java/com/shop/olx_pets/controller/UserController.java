@@ -3,6 +3,8 @@ package com.shop.olx_pets.controller;
 import com.shop.olx_pets.model.Role;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.UserRepository;
+import com.shop.olx_pets.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,20 +14,25 @@ import java.util.Optional;
 @RequestMapping("user")
 public class UserController {
 
-    UserRepository userRepository;
+    @Autowired
+    UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("{id}")
     public User getOne(@PathVariable Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userService.getOne(id);
     }
 
     @GetMapping("all")
     public List<User> findAll() {
-        return userRepository.findAll();
+        return userService.findAll();
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        userService.delete(id);
     }
 
     @PostMapping()
@@ -43,12 +50,5 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id) {
-        Optional<User> toDelete = userRepository.findById(id);
-        if (toDelete.isPresent()) {
-            userRepository.delete(toDelete.get());
-        }
-    }
+
 }
