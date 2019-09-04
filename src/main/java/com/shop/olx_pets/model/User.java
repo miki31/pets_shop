@@ -4,30 +4,35 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
     private String firstName;
     private String surName;
     private String nickName;
+    private Date birthday;
 
     @NotBlank
     private String password;
     private String email;
 
-    @NotBlank
-    private String role;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.GUEST;
 
 
     @ManyToMany

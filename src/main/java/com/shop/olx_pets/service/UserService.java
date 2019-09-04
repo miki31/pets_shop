@@ -39,19 +39,9 @@ public class UserService {
         }
     }
 
-//    public User save(User user) {
-//        String r = Role.USER.getRole();
-//        if (user.getRole() != null) {
-//            for (Role role : Role.values()) {
-//                if (user.getRole().equals(role.name())) {
-//                    r = role.getRole();
-//                    break;
-//                }
-//            }
-//        }
-//        user.setRole(r);
-//        return userRepository.save(user);
-//    }
+    public User save(User user) {
+        return userRepository.save(user);
+    }
 
 
 }

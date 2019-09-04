@@ -17,9 +17,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    UserRepository userRepository;
-
     @GetMapping("{id}")
     public User getOne(@PathVariable Long id) {
         return userService.getOne(id);
@@ -37,17 +34,7 @@ public class UserController {
 
     @PostMapping()
     public User save(@RequestBody User user) {
-        String r = Role.USER.getRole();
-        if (user.getRole()!=null) {
-            for (Role role : Role.values()) {
-                if (user.getRole().equals(role.name())) {
-                    r = role.getRole();
-                    break;
-                }
-            }
-        }
-        user.setRole(r);
-        return userRepository.save(user);
+        return userService.save(user);
     }
 
 
