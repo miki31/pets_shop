@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/test")
 public class TestController {
 
     @GetMapping
