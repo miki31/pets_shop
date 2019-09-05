@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+</head>
+<body>
+    <div id="button">
+        <p>Наразі все. Повернутись?</p>
+    <input type="button" onclick="location.href='/';" value="Звісно повернутись, тут скучно..." />
+    </div>
+
+    <table border="2" cellpadding="5">
+        <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+<!--        <th>BIG list of pets</th>-->
+        <th>Change</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="category:${categories}">
+            <td th:text="${category.getId()}"></td>
+            <td th:text="${category.getName()}"></td>
+            <td th:text="${category.getDescription()}"></td>
+<!--            <td>Список тваринок (може бути надвеликим)</td>-->
+            <td>
+                <input type="button" value="пізніше мінятимемо (тут редагуватиметься опис тваринок ADMIN-MANAGER)" />
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

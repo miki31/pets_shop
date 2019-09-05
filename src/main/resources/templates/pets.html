@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets</title>
+</head>
+<body>
+    <div id="button">
+        <p>Наразі все. Повернутись?</p>
+        <input type="button" onclick="location.href='/';" value="Звісно повернутись, тут скучно..." />
+    </div>
+
+    <table border="2" cellpadding="5">
+        <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>
+            <table border="2" cellpadding="2">
+                <thead>
+                    <th>id_category</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </thead>
+            </table>
+        </th>
+
+
+        <th>Change</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="pet:${pets}">
+            <td th:text="${pet.getId()}"></td>
+            <td th:text="${pet.getName()}"></td>
+            <td th:text="${pet.getPrice()}"></td>
+            <td>
+                <table border="2" cellpadding="2">
+                    <tr>
+                        <td th:text="${pet.getCategory().getId()}"></td>
+                        <td th:text="${pet.getCategory().getName()}"></td>
+                        <td th:text="${pet.getCategory().getDescription()}"></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <input type="button" value="Якась магія" />
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.shop.olx_pets.controller;
+package com.shop.olx_pets.controller.ui_controller;
 
 import com.shop.olx_pets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,20 +9,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserUiController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
 
-    @GetMapping
-    public String home() {
-        return "home";
-    }
-
-    @GetMapping("/user/all")
-    public String homePage(Model model) {
+    @GetMapping("/all")
+    public String findAll(Model model) {
         model.addAttribute("users", userService.findAll());
         return "users";
     }

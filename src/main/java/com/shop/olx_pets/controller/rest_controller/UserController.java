@@ -1,4 +1,4 @@
-package com.shop.olx_pets.controller;
+package com.shop.olx_pets.controller.rest_controller;
 
 import com.shop.olx_pets.model.Role;
 import com.shop.olx_pets.model.User;
@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/rest/user")
+@RequestMapping("/rest/v1/user")
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("{id}")
     public User getOne(@PathVariable Long id) {

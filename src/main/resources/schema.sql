@@ -28,7 +28,7 @@ CREATE TABLE category
 (
     id BIGINT AUTO_INCREMENT,
     name VARCHAR(255),
-    description VARCHAR(255),
+    description TEXT,
     PRIMARY KEY (id)
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
@@ -37,7 +37,9 @@ CREATE TABLE pet
     id BIGINT AUTO_INCREMENT,
     name VARCHAR(255),
     price DOUBLE,
-    PRIMARY KEY (id)
+    category_id BIGINT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
 CREATE TABLE pet_user

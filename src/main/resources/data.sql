@@ -7,3 +7,13 @@ INSERT INTO user (id, first_name, sur_name, nick_name, birthday, password, email
 (4, 'Svitlana', 'Fedorchuk', 'Sveta', '1992-05-15', 'sveta', 'svetaF123@gmail.com', 'ADMIN'),
 (5, 'Misha', 'Shchepanskiy', 'mmm31', '1991-03-31', 'mmm31', 'mmm31@gmail.com', 'MANAGER' ),
 (6, 'Peter', 'Kolomya', 'Peterrr', '1966-06-09', 'petro', 'petre3@gmail.com', 'USER');
+
+INSERT INTO category (id, name, description) VALUES
+(1, 'котик', 'коротко про милих котиків'),
+(2, 'собачка', 'щось про собачок'),
+(3, 'папуга', 'говоряща пташкка, що не дає спати'),
+(4, 'рибка', 'плаває глибоко під водою, або в 3-літровому слоїку'),
+(5, 'мишка', 'гризе компютерні кабелі');
+
+INSERT INTO pet (id, name, price, category_id) VALUES
+(1, "Мурчик" , 1000, 1);

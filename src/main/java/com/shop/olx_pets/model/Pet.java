@@ -1,5 +1,7 @@
 package com.shop.olx_pets.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "pet")
+@JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pet {
 
     @Id
@@ -18,8 +22,8 @@ public class Pet {
     private String name;
     private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name="category_id", nullable=false)
     private Category category;
 
     // mappedBy = "pets" must be same as name in User class

@@ -15,13 +15,13 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    PetRepository petRepository;
+    private PetRepository petRepository;
 
 
     public User getOne(Long id) {
