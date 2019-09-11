@@ -10,7 +10,7 @@ CREATE TABLE user
     sur_name VARCHAR(50),
     nick_name VARCHAR(50),
     birthday DATE,
-    password VARCHAR(50),
+    password VARCHAR(255),
     email VARCHAR(50),
     role VARCHAR(10),
     PRIMARY KEY (id)

@@ -6,6 +6,7 @@ import com.shop.olx_pets.repository.CategoryRepository;
 import com.shop.olx_pets.repository.PetRepository;
 import com.shop.olx_pets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class UserService {
 
     @Autowired
     private PetRepository petRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     public User getOne(Long id) {
@@ -40,6 +44,7 @@ public class UserService {
     }
 
     public User save(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 

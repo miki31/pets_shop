@@ -50,10 +50,16 @@
             <scope>test</scope>
         </dependency>
 
-<!--        for create  VIEW-->
+        <!--        for create  VIEW-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!--        Security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 
