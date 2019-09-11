@@ -22,21 +22,33 @@
                 <h2>Registration Form</h2>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"
+                        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
                                class="validation-message"></label>
-                        <input type="text" th:field="*{firstname}" placeholder="Name"
+                        <input type="text" th:field="*{firstName}" placeholder="firstName"
                                class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"
+                        <label	th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}"
                                   class="validation-message"></label>
-                        <input type="text" th:field="*{lastname}"
-                               placeholder="Last Name" class="form-control" />
+                        <input type="text" th:field="*{surName}"
+                               placeholder="surName" class="form-control" />
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label	th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}"
+                                  class="validation-message"></label>
+                        <input type="text" th:field="*{nickName}"
+                               placeholder="nickName" class="form-control" />
+                    </div>
+                </div>
+
+                <!--    TODO: add in form field to put Date Birthday               -->
+
                 <div class="form-group">
                     <div class="col-sm-9">
                         <input type="text" th:field="*{email}" placeholder="Email"
@@ -48,10 +60,32 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" /> <label
-                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                            class="validation-message"></label>
+                               placeholder="Password" class="form-control" />
+                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                            class="validation-message">
+                        </label>
                     </div>
+                </div>
+
+
+<!--                <div class="form-group">-->
+<!--                    <select size="1"  th:field="*{role}"">-->
+<!--                        <option disabled>Виберіть роль</option>-->
+
+<!--                        <option th:each="role:${roles}"value="${role}" th:text="${role}"></option>-->
+
+<!--                    </select>-->
+<!--                </div>-->
+
+
+
+                <div class="form-group">
+                    <ul>
+                        <li th:each="role: ${roles}">
+                            <input type="radio" th:field="*{role}" th:value="${role}" />
+                            <label  th:text="${role}"></label>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="form-group">

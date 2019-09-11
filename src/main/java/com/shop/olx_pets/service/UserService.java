@@ -8,9 +8,13 @@ import com.shop.olx_pets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -46,6 +50,55 @@ public class UserService {
     public User save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    public Optional<User> findUserByEmail(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+
+        return user;
+    }
+
+    public User createUpdate(User user) {
+        User toSave = user.getId() == null ? createUser(user) : updateUser(user);
+        return userRepository.save(toSave);
+    }
+
+    private User createUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        return user;
+    }
+
+    private User updateUser(User user) {
+        User origin = userRepository.findById(user.getId()).get();
+        if (!StringUtils.isEmpty(user.getFirstName())) {
+            origin.setFirstName(user.getFirstName());
+        }
+        if (!StringUtils.isEmpty(user.getSurName())) {
+            origin.setSurName(user.getSurName());
+        }
+        if (!StringUtils.isEmpty(user.getNickName())) {
+            origin.setNickName(user.getNickName());
+        }
+        //TODO: check correct Date birthday
+
+        if (!StringUtils.isEmpty(user.getPassword())){
+            origin.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            origin.setEmail(user.getEmail());
+        }
+
+        /*
+        TODO: after adding photo in model User change it!!!
+        if (!StringUtils.isEmpty(user.getPhoto())) {
+            origin.setPhoto(user.getPhoto());
+        }
+
+         */
+
+        //TODO: check correct Role
+
+        return origin;
     }
 
 

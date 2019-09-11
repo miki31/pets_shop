@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 <head>
     <meta charset="UTF-8">
     <title>My home page</title>
@@ -11,9 +11,27 @@
     </div>
     <div id="button">
         <p>Наразі тут немає що робити.</p>
-        <input type="button" onclick="location.href='/user/all';" value="Глянути, а скільки ж нас?" />
-        <input type="button" onclick="location.href='/category/all';" value="Тут можна глянути список тваринок" />
-        <input type="button" onclick="location.href='/pet/all';" value="Ось такі тваринки в нас живуть" />
+
+        <div>
+            <p>Ви вожете залогінитись, зареєструватись, або відвідати цей неймовірний сайт як гість</p>
+            <div sec:authorize="isAnonymous()">
+                <a th:href="@{/login}">Sign in</a> | <a th:href="@{/registration}">Sign up</a>
+                <a th:href="@{/guest}">Guest</a>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}">Log out</a>
+            </div>
+        </div>
+
+        <div>
+
+            <p>Ці кнопки скоро звідси зникнуть</p>
+
+            <input type="button" onclick="location.href='/admin/user/all';" value="Глянути, а скільки ж нас?" />
+            <input type="button" onclick="location.href='/category/all';" value="Тут можна глянути список тваринок" />
+            <input type="button" onclick="location.href='/pet/all';" value="Ось такі тваринки в нас живуть" />
+
+        </div>
 
     </div>
 </body>

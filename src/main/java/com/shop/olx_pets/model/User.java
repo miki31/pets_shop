@@ -35,6 +35,9 @@ public class User implements Serializable {
     private Role role = Role.GUEST;
 
 
+    // TODO : Adding photo
+
+
     @ManyToMany
     @JoinTable(name = "pet_user",
             joinColumns = @JoinColumn(name = "user_id"),
