@@ -19,7 +19,4 @@ public class TestController {
                 "IT`S WORKING. Now is : ___  " +
                 datatime;
     }
-
-
-
 }
