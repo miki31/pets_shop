@@ -87,14 +87,10 @@ public class UserService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             origin.setEmail(user.getEmail());
         }
-
-        /*
-        TODO: after adding photo in model User change it!!!
         if (!StringUtils.isEmpty(user.getPhoto())) {
             origin.setPhoto(user.getPhoto());
         }
 
-         */
 
         //TODO: check correct Role
 

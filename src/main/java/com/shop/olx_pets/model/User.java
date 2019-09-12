@@ -34,8 +34,7 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Role role = Role.GUEST;
 
-
-    // TODO : Adding photo
+    private String photo;
 
 
     @ManyToMany

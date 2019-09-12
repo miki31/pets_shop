@@ -13,6 +13,7 @@ CREATE TABLE user
     password VARCHAR(255),
     email VARCHAR(50),
     role VARCHAR(10),
+    photo VARCHAR(255),
     PRIMARY KEY (id)
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
@@ -47,3 +48,8 @@ CREATE TABLE pet_user
     user_id BIGINT,
     pet_id BIGINT
 ) ENGINE=INNODB CHARACTER SET=utf8;
+
+CREATE TABLE hibernate_sequence
+(
+    next_val INT
+) ENGINE=INNODB;

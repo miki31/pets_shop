@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td rowspan="3">
+                <div th:if="${user.photo == null}"><img width="200" src="/images/220px-User_icon_2.svg.png"></div>
+                <div th:unless="${user.photo == null}"><img width="200" th:src="'/images/' + ${user.photo}"></div>
+                <form align="center" action="uploadPhoto" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="file" id="selectedFile" style="display: none;" onchange="form.submit()"/>
+                    <input type="button" value="Загрузити Фото" onclick="document.getElementById('selectedFile').click();" />
+                </form>
+            </td>
+            <td>Name</td>
+            <td><span th:text="${user.firstname}"></span> <span th:text="${user.lastname}"></span></td>
+        </tr>
+        <tr><td>Email</td><td><span th:text="${user.email}"></span></td></tr>
+        <tr><td>Birthday</td><td><span th:text="${user.dob}"></span></td></tr>
+
+        </tr>
+    </table>
+</body>
+</html>
