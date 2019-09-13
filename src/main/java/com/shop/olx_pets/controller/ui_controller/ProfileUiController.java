@@ -32,9 +32,9 @@ public class ProfileUiController {
     }
 
 
-    //TODO: create UI
+    //TODO: create UI for all users role
 
-    @GetMapping("/")
+    @GetMapping
     public String userProfile(Model model) {
         return "user-profile";
     }

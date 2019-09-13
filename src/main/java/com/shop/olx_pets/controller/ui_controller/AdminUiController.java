@@ -3,7 +3,6 @@ package com.shop.olx_pets.controller.ui_controller;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +20,9 @@ public class AdminUiController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = {"/adminHome"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/admin_home"}, method = RequestMethod.GET)
     public String home() {
-        return "adminHome";
+        return "admin/admin_home";
     }
 
     @GetMapping("/user/all")
@@ -42,7 +41,7 @@ public class AdminUiController {
     @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable Long id) {
         userService.delete(id);
-        return "adminHome";
+        return "admin/admin_home";
     }
 
     @RequestMapping(path = {"/changeUser/{id}"})
