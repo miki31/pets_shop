@@ -27,7 +27,7 @@ public class HomePageUiController {
         if (roles.contains("ADMIN"))
             return "redirect:/admin/admin_home";
         if (roles.contains("MANAGER"))
-            return "redirect:/manager/manager_home";
+            return "redirect:/admin/admin_home";
         if (roles.contains("USER"))
             return "redirect:/user/user_home";
         if (roles.contains("SELLER"))

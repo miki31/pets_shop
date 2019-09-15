@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Users</title>
+</head>
+<body>
+<div align="center">
+    <div id="header">
+        <h1>You can delete someone.</h1>
+    </div>
+
+    <form      th:action="@{/admin/deleteUser}"
+               th:object="${users}" method="DELETE">
+        <table border="2" cellpadding="5">
+            <thead>
+            <th>FirsName</th>
+            <th>SurName</th>
+            <th>NickName</th>
+            <th>Birthday</th>
+            <th>Delete</th>
+            <th>Edit</th>
+
+            </thead>
+            <tbody>
+            <tr th:if="${users.isEmpty()}">
+                <td colspan="2"> No users </td>
+            </tr>
+            <tr th:each="u : ${users}">
+                <td th:text="${u.firstName}"></td>
+                <td th:text="${u.surName}"></td>
+                <td th:text="${u.nickName}"></td>
+                <td th:text="${u.birthday}"></td>
+
+                <td >
+                    <a th:href="@{deleteUser/__${u.id}__}" class="btn btn-danger">Delete</a>
+                </td>
+                <td >
+                    <a th:href="@{changeUser/__${u.id}__}" class="btn btn-danger">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>Go home:</p>
+        <input type="button" onclick="location.href='/admin/adminHome';" value="GO HOME" />
+
+    </form>
+
+</div>

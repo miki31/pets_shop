@@ -48,7 +48,7 @@ public class LoginController {
         user = userService.createUpdate(user);
         model.addAttribute("successMessage", SUCCESSFULLY_REGISTERED_MESSAGE);
         model.addAttribute("user", user);
-        return "homepage";
+        return "home";
     }
 
 }
