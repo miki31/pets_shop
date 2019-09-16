@@ -22,7 +22,7 @@ public class AdminUiController {
 
     @RequestMapping(value = {"/admin_home"}, method = RequestMethod.GET)
     public String home() {
-        return "admin_home";
+        return "admin/admin_home";
     }
 
     @GetMapping("/user/all")

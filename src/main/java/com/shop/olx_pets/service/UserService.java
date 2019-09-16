@@ -4,6 +4,7 @@ import com.shop.olx_pets.model.Role;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.CategoryRepository;
 import com.shop.olx_pets.repository.PetRepository;
+import com.shop.olx_pets.repository.RoleRepository;
 import com.shop.olx_pets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,6 +31,9 @@ public class UserService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
 
     public User getOne(Long id) {
@@ -64,6 +68,9 @@ public class UserService {
     }
 
     private User createUser(User user) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleRepository.findByName("user"));
+        user.setRoles(roles);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return user;
     }
@@ -91,6 +98,9 @@ public class UserService {
             origin.setPhoto(user.getPhoto());
         }
 
+            Set<Role> roles = new HashSet<>();
+            roles.add(roleRepository.findByName("user"));
+            origin.setRoles(roles);
 
         //TODO: check correct Role
 

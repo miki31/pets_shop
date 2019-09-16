@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -30,9 +31,9 @@ public class User implements Serializable {
     private String password;
     private String email;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.GUEST;
+    @ManyToMany
+    @JoinTable(name = "user_role",  inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     private String photo;
 

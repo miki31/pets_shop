@@ -33,7 +33,7 @@ public class LoginController {
     public String registration(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        model.addAttribute("roles", Role.values());
+//        model.addAttribute("roles", Role.values());
         return "registration";
     }
 
