@@ -12,14 +12,27 @@ CREATE TABLE user
     birthday DATE,
     password VARCHAR(255),
     email VARCHAR(50),
-    role VARCHAR(10),
     photo VARCHAR(255),
     PRIMARY KEY (id)
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
+CREATE TABLE role(
+    id BIGINT AUTO_INCREMENT,
+    name VARCHAR(50)NOT NULL,
+    primary key (id)
+) ENGINE=INNODB CHARACTER SET=utf8;
+
+CREATE TABLE user_role
+(
+    user_id BIGINT NOT NULL,
+    role_id BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=INNODB;
+
 CREATE TABLE demo_user
 (
-    id INT AUTO_INCREMENT,
+    id BIGINT AUTO_INCREMENT,
     email VARCHAR(50),
     name VARCHAR(50),
     PRIMARY KEY (id)
@@ -46,7 +59,9 @@ CREATE TABLE pet
 CREATE TABLE pet_user
 (
     user_id BIGINT,
-    pet_id BIGINT
+    pet_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (pet_id) REFERENCES role (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
 CREATE TABLE hibernate_sequence
