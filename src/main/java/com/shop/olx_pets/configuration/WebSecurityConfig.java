@@ -32,15 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.
-                jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder());
-    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -50,6 +41,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/resources/**", "/static/**", "/templates/**", "/css/**", "/js/**", "/images/**");
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.
+                jdbcAuthentication()
+                .usersByUsernameQuery(usersQuery)
+                .authoritiesByUsernameQuery(rolesQuery)
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -68,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("/dashboard", false)
+                .defaultSuccessUrl("/dashboard", true)
                 .failureUrl("/login?error=True")
                 .usernameParameter("email")
                 .passwordParameter("password")
