@@ -21,7 +21,9 @@ public class AdminUiController {
     private UserService userService;
 
     @RequestMapping(value = {"/admin_home"}, method = RequestMethod.GET)
-    public String home() {
+    public String home(Model model) {
+        List<User> allUsers = userService.findAll();
+        model.addAttribute("users", allUsers);
         return "admin/admin_home";
     }
 
@@ -31,12 +33,12 @@ public class AdminUiController {
         return "users_list";
     }
 
-    @RequestMapping(value = {"/deleteUser"}, method = RequestMethod.GET)
-    public String pageAdminDeleteUser(Model model) {
-        List<User> allUsers = userService.findAll();
-        model.addAttribute("users", allUsers);
-        return "deleteUser";
-    }
+//    @RequestMapping(value = {"/deleteUser"}, method = RequestMethod.GET)
+//    public String pageAdminDeleteUser(Model model) {
+//        List<User> allUsers = userService.findAll();
+//        model.addAttribute("users", allUsers);
+//        return "deleteUser";
+//    }
 
     @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable Long id) {
