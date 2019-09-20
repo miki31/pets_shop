@@ -43,7 +43,7 @@ public class AdminUiController {
     @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable Long id) {
         userService.delete(id);
-        return "admin/admin_home";
+        return "redirect:/admin/admin_home";
     }
 
     @RequestMapping(path = {"/changeUser/{id}"})
@@ -54,8 +54,12 @@ public class AdminUiController {
         } else {
             model.addAttribute("user", new User());
         }
-        return "editUser";
+        return "admin/editUser";
     }
 
-
+    @RequestMapping(path = "/updateUser", method = RequestMethod.POST)
+    public String createOrUpdateUser(User user) {
+        userService.createUpdate(user);
+        return "adminHome";
+    }
 }
