@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete Users</title>
+<head th:replace="base-layout :: header">
+
 </head>
 <body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
 <div align="center">
     <div id="header">
         <h1>You can delete someone.</h1>
@@ -47,4 +49,9 @@
 
     </form>
 
+    <nav th:replace="base-layout :: footer"></nav>
+
 </div>
+
+</body>
+</html>

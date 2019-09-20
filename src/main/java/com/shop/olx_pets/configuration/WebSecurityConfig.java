@@ -40,7 +40,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    such as CSS, images and javascripts
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/templates/**", "/css/**", "/js/**", "/images/**");
+                .antMatchers(
+                        "/resources/**",
+                        "/static/**",
+                        "/templates/**",
+                        "/css/**",
+                        "/js/**",
+                        "/images/**",
+                        "/style_font/**",
+                        "/style_font/js/**"
+                );
     }
 
     @Override

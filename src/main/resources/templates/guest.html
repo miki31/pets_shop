@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Pets for guest</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="base-layout :: header">
+
 </head>
 <body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
 <div>
     <h1>Привіт гість.</h1>
     <p>
@@ -17,5 +19,9 @@
     <input type="button" onclick="location.href='/';" value="Повернутись..." />
 
 </div>
+
+<nav th:replace="base-layout :: footer"></nav>
+
+
 </body>
 </html>

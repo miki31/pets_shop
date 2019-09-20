@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Pets</title>
+<head th:replace="base-layout :: header">
+
 </head>
 <body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
     <div id="button">
         <p>Наразі все. Повернутись?</p>
         <input type="button" onclick="location.href='/';" value="Звісно повернутись, тут скучно..." />
@@ -49,6 +51,9 @@
         </tr>
         </tbody>
     </table>
+
+
+<nav th:replace="base-layout :: footer"></nav>
 
 </body>
 </html>
