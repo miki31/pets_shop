@@ -18,11 +18,11 @@
                     <input type="button" value="Загрузити Фото" onclick="document.getElementById('selectedFile').click();" />
                 </form>
             </td>
-            <td>Name</td>
+            <td>Name :  </td>
             <td><span th:text="${user.firstName}"></span> <span th:text="${user.surName}"></span></td>
         </tr>
-        <tr><td>Email</td><td><span th:text="${user.email}"></span></td></tr>
-        <tr><td>Birthday</td><td><span th:text="${user.birthday}"></span></td></tr>
+        <tr><td>Email :  </td><td><span th:text="${user.email}"></span></td></tr>
+        <tr><td>Birthday :  </td><td><span th:text="${#dates.format(user.birthday, 'dd MMMM yyyy')}"></span></td></tr>
 
         </tr>
     </table>
