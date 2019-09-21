@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -72,6 +72,10 @@ public class UserService {
         roles.add(roleRepository.findByName("user"));
         user.setRoles(roles);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+        //TODO: problem with save date
+        user.setBirthday(updateBirthday(user));
+
         return user;
     }
 
@@ -86,7 +90,16 @@ public class UserService {
         if (!StringUtils.isEmpty(user.getNickName())) {
             origin.setNickName(user.getNickName());
         }
-        //TODO: check correct Date birthday
+
+
+        /*TODO: check correct Date birthday
+          this is mistake.
+          when we save the date it is deducted 1 day
+        * */
+        if (!StringUtils.isEmpty(user.getBirthday())) {
+            origin.setBirthday(updateBirthday(user));
+        }
+
 
         if (!StringUtils.isEmpty(user.getPassword())){
             origin.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -105,6 +118,13 @@ public class UserService {
         //TODO: check correct Role
 
         return origin;
+    }
+
+    //TODO: WHY???  I can't find another solution to fix this problem
+    private LocalDate updateBirthday(User user){
+
+        LocalDate localDate = user.getBirthday();
+        return localDate.plusDays(1);
     }
 
 

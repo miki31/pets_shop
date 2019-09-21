@@ -33,8 +33,7 @@
                 <td th:text="${u.firstName}"></td>
                 <td th:text="${u.surName}"></td>
                 <td th:text="${u.nickName}"></td>
-                <td th:text="${#dates.format(u.birthday, 'dd MMMM yyyy')}"></td>
-
+                <td th:text="${u.birthday}"></td>
                 <td >
                     <a th:href="@{deleteUser/__${u.id}__}" class="btn btn-danger">Delete</a>
                 </td>
