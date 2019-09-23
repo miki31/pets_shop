@@ -17,10 +17,11 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class LoginController {
+public class LoginUiController {
 
     private static final String EMPTY_FIELD_MESSAGE = "This field can't be empty";
     private static final String EMAIL_ALREADY_USED_MESSAGE ="There is already a user registered with the email provided";
+    private static final String NICK_NAME_ALREADY_USED_MESSAGE ="There is already a user registered with the nick provided";
     private static final String SUCCESSFULLY_REGISTERED_MESSAGE = "User has been registered successfully";
 
 
@@ -59,10 +60,23 @@ public class LoginController {
         // todo: add form validation on empty fields, and use message String
         Optional<User> userExists = userService.findUserByEmail(user.getEmail());
 
+        boolean errReturn = false;
         if (userExists.isPresent()) {
             bindingResult.rejectValue("email", "error.user", EMAIL_ALREADY_USED_MESSAGE);
+            errReturn = true;
+        }
+
+        userExists = userService.findUserByNickName(user.getNickName());
+        if (userExists.isPresent()){
+            bindingResult.rejectValue("nickName", "error.user", NICK_NAME_ALREADY_USED_MESSAGE);
+            errReturn = true;
+        }
+
+        if (errReturn) {
             return "registration";
         }
+
+
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.findByName(r));
         user.setRoles(roles);

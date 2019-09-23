@@ -58,6 +58,12 @@ public class UserService {
         return user;
     }
 
+    public Optional<User> findUserByNickName(String nickName){
+        Optional<User> user = userRepository.findByNickName(nickName);
+
+        return user;
+    }
+
     public User createUpdate(User user) {
         User toSave = user.getId() == null ? createUser(user) : updateUser(user);
         System.out.println(user.getBirthday());
