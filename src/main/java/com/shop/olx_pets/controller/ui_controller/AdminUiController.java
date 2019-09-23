@@ -60,6 +60,6 @@ public class AdminUiController {
     @RequestMapping(path = "/updateUser", method = RequestMethod.POST)
     public String createOrUpdateUser(User user) {
         userService.createUpdate(user);
-        return "adminHome";
+        return "redirect:/admin/admin_home";
     }
 }

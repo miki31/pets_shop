@@ -77,13 +77,15 @@ public class UserService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         //TODO: problem with save date
-        user.setBirthday(updateBirthday(user));
+//        user.setBirthday(updateBirthday(user));
 
-        return user;
+        return userRepository.save(user);
     }
+
 
     private User updateUser(User user) {
         User origin = userRepository.findById(user.getId()).get();
+
         if (!StringUtils.isEmpty(user.getFirstName())) {
             origin.setFirstName(user.getFirstName());
         }
@@ -99,17 +101,19 @@ public class UserService {
           this is mistake.
           when we save the date it is deducted 1 day
         * */
-        if (!StringUtils.isEmpty(user.getBirthday())) {
-            origin.setBirthday(updateBirthday(user));
-        }
+//        if (!StringUtils.isEmpty(user.getBirthday())) {
+//            origin.setBirthday(updateBirthday(user));
+//        }
 
 
         if (!StringUtils.isEmpty(user.getPassword())){
             origin.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         }
+
         if (!StringUtils.isEmpty(user.getEmail())) {
             origin.setEmail(user.getEmail());
         }
+
         if (!StringUtils.isEmpty(user.getPhoto())) {
             origin.setPhoto(user.getPhoto());
         }
@@ -121,6 +125,7 @@ public class UserService {
 //            roles.add(roleService.findByName("user"));
 //            origin.setRoles(roles);
 
+            origin = userRepository.save(origin);
         //TODO: check correct Role
 
         return origin;
@@ -132,6 +137,5 @@ public class UserService {
         LocalDate localDate = user.getBirthday();
         return localDate.plusDays(1);
     }
-
 
 }
