@@ -23,6 +23,12 @@ public class AdminUiController {
     @RequestMapping(value = {"/admin_home"}, method = RequestMethod.GET)
     public String home(Model model) {
         List<User> allUsers = userService.findAll();
+        for (int k  = 0; k < allUsers.size(); k++){
+            if (allUsers.get(k).getRoles().removeIf(role -> role.getName().equals("ADMIN")) == true){
+                allUsers.remove(k);
+            }
+        }
+
         model.addAttribute("users", allUsers);
         return "admin/admin_home";
     }
