@@ -4,17 +4,13 @@ import com.shop.olx_pets.model.Role;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.CategoryRepository;
 import com.shop.olx_pets.repository.PetRepository;
-import com.shop.olx_pets.repository.RoleRepository;
 import com.shop.olx_pets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -33,7 +29,7 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleService roleService;
 
 
     public User getOne(Long id) {
@@ -64,13 +60,14 @@ public class UserService {
 
     public User createUpdate(User user) {
         User toSave = user.getId() == null ? createUser(user) : updateUser(user);
+        System.out.println(user.getBirthday());
         return userRepository.save(toSave);
     }
 
     private User createUser(User user) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByName("user"));
-        user.setRoles(roles);
+//        Set<Role> roles = new HashSet<>();
+//        roles.add(roleService.findByName("USER"));
+//        user.setRoles(roles);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         //TODO: problem with save date
@@ -110,10 +107,13 @@ public class UserService {
         if (!StringUtils.isEmpty(user.getPhoto())) {
             origin.setPhoto(user.getPhoto());
         }
+        if (!StringUtils.isEmpty(user.getRoles())){
+            origin.setRoles(user.getRoles());
+        }
 
-            Set<Role> roles = new HashSet<>();
-            roles.add(roleRepository.findByName("user"));
-            origin.setRoles(roles);
+//            Set<Role> roles = new HashSet<>();
+//            roles.add(roleService.findByName("user"));
+//            origin.setRoles(roles);
 
         //TODO: check correct Role
 
