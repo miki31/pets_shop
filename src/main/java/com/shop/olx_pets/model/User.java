@@ -34,6 +34,7 @@ public class User implements Serializable {
     private String nickName;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Must not be blank")
     @Past(message = "You are not yet born))")
     private LocalDate birthday;
 
