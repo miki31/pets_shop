@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -25,16 +23,26 @@ public class User implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Must not be blank")
     private String firstName;
+
+    @NotBlank(message = "Must not be blank")
     private String surName;
+
+    @NotBlank(message = "Must not be blank")
+//    @Min(message = "Password must be at least 3 characters long", value = 3)
     private String nickName;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past(message = "You are not yet born))")
     private LocalDate birthday;
 
-    @NotBlank
+    @NotBlank(message = "Must not be blank")
+//    @Min(message = "Password must be at least 6 characters long", value = 6)
     private String password;
+
+    @NotBlank(message = "Must not be blank")
+    @Email(message = "Must be a valid email address")
     private String email;
 
     @ManyToMany
