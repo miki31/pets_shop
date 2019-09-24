@@ -5,6 +5,27 @@
 
 </head>
 <body>
+<script type="application/javascript">
+    // var el =document.getElementById("reg_form");
+
+    function fBtn(element) {
+        element.action = "/registration/user";
+    }
+
+    function fBtn2(element) {
+        element.action = "/registration/seller";
+    }
+</script>
+
+<style>
+    li {
+        list-style-type: none; /* Убираем маркеры */
+    }
+    ul {
+        margin-left: 0; /* Отступ слева в браузере IE и Opera */
+        padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+    }
+</style>
 
 <nav th:replace="base-layout :: top_navbar"></nav>
 
@@ -15,7 +36,8 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-6" align="center">
-            <form autocomplete="off" action="#" th:action="@{/registration}"
+            <form id="reg_form"
+                    autocomplete="off" action="#" th:action="@{/registration/user}"
                   th:object="${user}" method="post" class="form-horizontal"
                   role="form">
                 <h2>Registration Form</h2>
@@ -76,7 +98,7 @@
 
 <!--                <div class="form-group">-->
 <!--                    <select size="1"  th:field="*{role}"">-->
-<!--                        <option disabled>Виберіть роль</option>-->
+<!--                        <option disabled>Виберіть роль (Для чого ви реєструєтесь на нашому сайті)</option>-->
 
 <!--                        <option th:each="role:${roles}"value="${role}" th:text="${role}"></option>-->
 
@@ -84,21 +106,65 @@
 <!--                </div>-->
 
 
+<!--                <div class="form-group">-->
+<!--                    <div class="col-sm-9">-->
+<!--                        <ul>-->
+<!--                            <li th:each="r : ${roles}">-->
+<!--                                <input type="radio" th:field="*{roles}" th:value="${roles}" />-->
+<!--                                <label th:for="${#ids.prev('roles')}"-->
+<!--                                       th:text="${r.name +' '+r.id}">Heating</label>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                        <button id="b1"></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <ul>
+                            <li >
+                                <input type="radio" name="rrr" onclick="fBtn(reg_form);" checked/>
+                                <label>User</label>
+                            </li>
+                            <li >
+                                <input type="radio" name="rrr" onclick="fBtn2(reg_form);"/>
+                                <label>Seller</label>
+                            </li>
+                        </ul>
+<!--                        <button id="b1"></button>-->
+                    </div>
+                </div>
+
+
 
 <!--                <div class="form-group">-->
-<!--                    <ul>-->
+<!--                    <div class="col-sm-9">-->
+<!--                        <input type="radio" id="">-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--                <div class="form-group">-->
+<!--                    <ul th:field="*{role}">-->
 <!--                        <li th:each="role: ${roles}">-->
-<!--                            <input type="radio" th:field="*{role}" th:value="${role}" />-->
-<!--                            <label  th:text="${role}"></label>-->
+<!--                            <input type="radio"  th:value="${role.name}" />-->
+<!--                            <label  th:text="${role.name}"></label>-->
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </div>-->
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                        <button id="btn_user"
+                                type="submit"
+                                class="btn btn-primary btn-block">Register User</button>
+<!--                        <button id="btn_seller"-->
+<!--                                ype="submit" c-->
+<!--                                lass="btn btn-primary btn-block">Register User</button>-->
                     </div>
                 </div>
+
+
 
                 <span th:utext="${successMessage}"></span>
 
