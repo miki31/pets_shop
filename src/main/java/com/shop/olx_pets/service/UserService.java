@@ -131,7 +131,7 @@ public class UserService {
 //            roles.add(roleService.findByName("user"));
 //            origin.setRoles(roles);
 
-            origin = userRepository.save(origin);
+//            origin = userRepository.save(origin);
         //TODO: check correct Role ?? If rearly need that
 
         return origin;
