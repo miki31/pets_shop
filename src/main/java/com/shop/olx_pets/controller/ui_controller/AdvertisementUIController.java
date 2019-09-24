@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/ad")
-public class AdvertisementController {
+public class AdvertisementUIController {
     @Autowired
     private AdvertisementService advertisementService;
 
