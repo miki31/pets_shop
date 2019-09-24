@@ -15,9 +15,9 @@ INSERT INTO user (id, first_name, sur_name, nick_name, birthday, password, email
 (11, 'Peter', 'Kolomya', 'Peterrr', '1966-06-09', '$2a$10$.xysUEZxutiwXaduiJJ8oeWpXU9FbU5W7ow9.0KdjBepM0w86ZAT.', 'petre3@gmail.com');
 
 INSERT INTO role (id, name) VALUES
-(1, "ADMIN"),
-(2, "SELLER"),
-(3, "USER");
+(1, 'ADMIN'),
+(2, 'SELLER'),
+(3, 'USER');
 
 INSERT INTO user_role (user_id, role_id) VALUES
 (1, 1),
@@ -33,17 +33,24 @@ INSERT INTO user_role (user_id, role_id) VALUES
 (11, 3);
 
 
-INSERT INTO category (id, name, description) VALUES
-(1, 'котик', 'коротко про милих котиків'),
-(2, 'собачка', 'щось про собачок'),
-(3, 'папуга', 'говоряща пташкка, що не дає спати'),
-(4, 'рибка', 'плаває глибоко під водою, або в 3-літровому слоїку'),
-(5, 'мишка', 'гризе компютерні кабелі');
+INSERT INTO category (id, name) VALUES
+(1, 'Коти' ),
+(2, 'Собаки'),
+(3, 'Птахи'),
+(4, 'Рибки'),
+(5, 'Гризуни'),
+(6, 'Рептилії'),
+(7, 'Комахи'),
+(8,'Свійські тварини');
 
 INSERT INTO pet (id, name, price, category_id) VALUES
-(1, "Мурчик" , 1000, 1);
+(1, 'Мурчик' , 1000, 1);
 
-
+INSERT INTO advertisement (id, category_id, description, photo, price) VALUES
+(1, 1, 'Віддам в добрі руки кошеня, 2 місяці, хлопчик. Окрас чорно-білий, дуже-дуже лагідний. Привчений до лотка', 'photo', 1),
+(2, 3, 'продам папугу, сидить в клітці і радіє життю', 'photo', 500),
+(3, 6, 'Продається черепаха, червоновуха. Вік 3 місяці, кличка Флеш', 'photo', 400),
+(4, 2, 'Продам цуцика порода Бернський Зенненхунд, хлопчик вік 2,5 місяці. Всі щеплення проведені, Документи КСУ, паспорт', 'photo', 10000);
 
 
 
