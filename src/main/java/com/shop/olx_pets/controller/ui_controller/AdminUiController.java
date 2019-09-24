@@ -64,7 +64,7 @@ public class AdminUiController {
     }
 
     @RequestMapping(path = "/updateUser", method = RequestMethod.POST)
-    public String createOrUpdateUser(User user) {
+    public String UpdateUser(User user) {
         userService.createUpdate(user);
         return "redirect:/admin/admin_home";
     }

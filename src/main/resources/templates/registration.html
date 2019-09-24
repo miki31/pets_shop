@@ -144,10 +144,10 @@
 
     function confirmationPass() {
         if (password.value == password_confirmation.value){
-            mess_pass.hidden = false;
-        } else {
             btn_submit.type = "submit";
             btn_submit.click();
+        } else {
+            mess_pass.hidden = false;
         }
     }
 </script>
