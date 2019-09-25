@@ -4,7 +4,6 @@ import com.shop.olx_pets.model.Role;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.CategoryRepository;
 import com.shop.olx_pets.repository.PetRepository;
-import com.shop.olx_pets.repository.RoleRepository;
 import com.shop.olx_pets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +29,7 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleService roleService;
 
 
     public User getOne(Long id) {
@@ -59,21 +58,32 @@ public class UserService {
         return user;
     }
 
+    public Optional<User> findUserByNickName(String nickName){
+        Optional<User> user = userRepository.findByNickName(nickName);
+
+        return user;
+    }
+
     public User createUpdate(User user) {
         User toSave = user.getId() == null ? createUser(user) : updateUser(user);
+
+        System.out.println(user.getBirthday());
+
         return userRepository.save(toSave);
     }
 
     private User createUser(User user) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByName("user"));
-        user.setRoles(roles);
+//        Set<Role> roles = new HashSet<>();
+//        roles.add(roleService.findByName("USER"));
+//        user.setRoles(roles);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         //TODO: problem with save date
-//        user.setBirthday(updateBirthday(user));
+        user.setBirthday(updateBirthday(user));
 
-        return userRepository.save(user);
+        return user;
+
+//        return userRepository.save(user);
     }
 
 
@@ -95,9 +105,11 @@ public class UserService {
           this is mistake.
           when we save the date it is deducted 1 day
         * */
-//        if (!StringUtils.isEmpty(user.getBirthday())) {
-//            origin.setBirthday(updateBirthday(user));
-//        }
+        if (!StringUtils.isEmpty(user.getBirthday())) {
+            origin.setBirthday(updateBirthday(user));
+        } else {
+            origin.setBirthday(updateBirthday(origin));
+        }
 
 
         if (!StringUtils.isEmpty(user.getPassword())){
@@ -111,20 +123,22 @@ public class UserService {
         if (!StringUtils.isEmpty(user.getPhoto())) {
             origin.setPhoto(user.getPhoto());
         }
+        if (!StringUtils.isEmpty(user.getRoles())){
+            origin.setRoles(user.getRoles());
+        }
 
-            Set<Role> roles = new HashSet<>();
-            roles.add(roleRepository.findByName("user"));
-            origin.setRoles(roles);
+//            Set<Role> roles = new HashSet<>();
+//            roles.add(roleService.findByName("user"));
+//            origin.setRoles(roles);
 
-            origin = userRepository.save(origin);
-        //TODO: check correct Role
+//            origin = userRepository.save(origin);
+        //TODO: check correct Role ?? If rearly need that
 
         return origin;
     }
 
     //TODO: WHY???  I can't find another solution to fix this problem
     private LocalDate updateBirthday(User user){
-
         LocalDate localDate = user.getBirthday();
         return localDate.plusDays(1);
     }

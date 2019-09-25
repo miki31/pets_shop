@@ -6,6 +6,16 @@
 </head>
 <body>
 
+<style>
+    li {
+        list-style-type: none; /* Убираем маркеры */
+    }
+    ul {
+        margin-left: 0; /* Отступ слева в браузере IE и Opera */
+        padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+    }
+</style>
+
 <nav th:replace="base-layout :: top_navbar"></nav>
 
 <form th:action="@{/login}" method="get">
@@ -15,7 +25,8 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-6" align="center">
-            <form autocomplete="off" action="#" th:action="@{/registration}"
+            <form id="reg_form"
+                    autocomplete="off" action="#" th:action="@{/registration}"
                   th:object="${user}" method="post" class="form-horizontal"
                   role="form">
                 <h2>Registration Form</h2>
@@ -64,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="password" th:field="*{password}"
+                        <input id="pass" type="password" th:field="*{password}"
                                placeholder="Password" class="form-control" />
                         <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                             class="validation-message">
@@ -72,31 +83,36 @@
                     </div>
                 </div>
 
-                <!--  TODO: user have to registration as seller, not only as user              -->
-
-<!--                <div class="form-group">-->
-<!--                    <select size="1"  th:field="*{role}"">-->
-<!--                        <option disabled>Виберіть роль</option>-->
-
-<!--                        <option th:each="role:${roles}"value="${role}" th:text="${role}"></option>-->
-
-<!--                    </select>-->
-<!--                </div>-->
-
-
-
-<!--                <div class="form-group">-->
-<!--                    <ul>-->
-<!--                        <li th:each="role: ${roles}">-->
-<!--                            <input type="radio" th:field="*{role}" th:value="${role}" />-->
-<!--                            <label  th:text="${role}"></label>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input id="pass_confirmation" type="password"
+                               placeholder="Confirmation Password " class="form-control" />
+                        <label id="mess_pass" hidden class="validation-message">The password is incorrect</label>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                        <ul>
+                            <li >
+                                <input type="radio" name="rrr" onclick="fBtn(reg_form);"/>
+                                <label>User</label>
+                            </li>
+                            <li >
+                                <input type="radio" name="rrr" onclick="fBtn2(reg_form);"/>
+                                <label>Seller</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button id="btn_submit"
+                                hidden
+                                type="button"
+                                class="btn btn-primary btn-block"
+                                onclick="confirmationPass();">Register User</button>
                     </div>
                 </div>
 
@@ -109,6 +125,32 @@
 
 
 <nav th:replace="base-layout :: footer"></nav>
+
+<script type="application/javascript">
+    var btn_submit = document.getElementById("btn_submit");
+    var password = document.getElementById("pass");
+    var password_confirmation = document.getElementById("pass_confirmation");
+    var mess_pass = document.getElementById("mess_pass");
+
+    function fBtn(element) {
+        element.action = "/registration/user";
+        btn_submit.hidden = false;
+    }
+
+    function fBtn2(element) {
+        element.action = "/registration/seller";
+        btn_submit.hidden = false;
+    }
+
+    function confirmationPass() {
+        if (password.value == password_confirmation.value){
+            btn_submit.type = "submit";
+            btn_submit.click();
+        } else {
+            mess_pass.hidden = false;
+        }
+    }
+</script>
 
 </body>
 </html>
