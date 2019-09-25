@@ -48,19 +48,52 @@
 
             <li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')">
                 <a class="nav-link dropdown-toggle"
-                   href="#" id="navbarDropdown" role="button"
+                   href="#" id="navbarDropdownAdmin" role="button"
                    data-toggle="dropdown"
                    aria-haspopup="true"
                    aria-expanded="false">
                     ADMIN
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                     <a class="dropdown-item" href="#">TODO Action</a>
                     <a class="dropdown-item" href="#">TODO Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">TODO Something else here</a>
                 </div>
             </li>
+
+            <li class="nav-item dropdown" sec:authorize="hasAuthority('SELLER')">
+                <a class="nav-link dropdown-toggle"
+                   href="#" id="navbarDropdownSeller" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    SELLER
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownSeller">
+                    <a class="dropdown-item" href="#">TODO Action</a>
+                    <a class="dropdown-item" href="#">TODO Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">TODO Something else here</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown" sec:authorize="hasAuthority('USER')">
+                <a class="nav-link dropdown-toggle"
+                   href="#" id="navbarDropdownUser" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    USER
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                    <a class="dropdown-item" href="#">TODO Action</a>
+                    <a class="dropdown-item" href="#">TODO Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">TODO Something else here</a>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
             </li>
