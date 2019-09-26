@@ -72,7 +72,7 @@ CREATE TABLE advertisement
     description TEXT,
     photo VARCHAR(255),
     price DOUBLE,
-    postedOn DATE,
+    posted_on DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
     ) ENGINE=INNODB CHARACTER SET=utf8;

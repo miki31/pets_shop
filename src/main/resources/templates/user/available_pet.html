@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<div align="center">
+    <form      th:action="@{/user/available_pet}"
+               th:object="${pets}" method="Get">
+        <table border="2" cellpadding="5">
+            <thead>
+            <th>Photo</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Posted On</th>
+            <th>Choose</th>
+
+            </thead>
+            <tbody>
+            <tr th:if="${pets.isEmpty()}">
+                <td colspan="2"> No pets </td>
+            </tr>
+            <tr th:each="p : ${pets}">
+                <td th:text="${p.photo}"></td>
+                <td th:text="${p.category.name}"></td>
+                <td th:text="${p.price}"></td>
+                <td th:text="${p.description}"></td>
+                <td th:text="${p.postedOn}"></td>
+                <td >
+                    <a th:href="@{takePet/__${p.id}__}" class="btn btn-danger">Choose</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+</div>
+<nav th:replace="base-layout :: footer"></nav>
+
+
+</body>
+</html>
