@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base-layout :: header">
 
 </head>
@@ -24,7 +24,6 @@
         <tr><td>Email :  </td><td><span th:text="${user.email}"></span></td></tr>
         <tr><td>Birthday :  </td><td>
         <span th:text="${user.birthday}"></span></td></tr>
-
         </tr>
     </table>
 

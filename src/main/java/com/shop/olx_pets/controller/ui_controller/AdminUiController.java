@@ -60,7 +60,7 @@ public class AdminUiController {
         } else {
             model.addAttribute("user", new User());
         }
-        return "admin/editUser";
+        return "edit_user";
     }
 
     @RequestMapping(path = "/updateUser", method = RequestMethod.POST)

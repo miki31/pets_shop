@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<div align="center">
+<div>
+    <h1>Hello BUYER!!!</h1>
+    <p>
+        Find your pet and don't be alone in the cold autumn evenings.
+    </p>
+</div>
+
+    
+<div>
+
+    <p>A list of available products:</p>
+    <input type="button" onclick="location.href='/buyer/available_products';" value="AVAILABLE PRODUCTS" />
+
+
+    <p>Your products:</p>
+    <input type="button" onclick="location.href='/buyer/available_products';" value="YOUR PRODUCTS" />
+
+
+</div>
+</div>
+<nav th:replace="base-layout :: footer"></nav>
+
+
+</body>
+</html>
