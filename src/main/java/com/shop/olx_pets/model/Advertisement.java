@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "advertisement")
-@JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
+@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer"})
 public class Advertisement {
 
     @Id
@@ -21,10 +21,11 @@ public class Advertisement {
     private String description;
     private Double price;
     private String photo;
+    @Column(name = "posted_on")
     private LocalDate postedOn;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name="category_id", nullable=false)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "advertisements")

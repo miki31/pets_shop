@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+
+
+<!--TODO: Change header to fragment (LOOK DOWN)-->
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pets_olx home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo_olx.png">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <script defer src="/style_font/js/all.js"></script>
+
+</head>
+
+<!--<head th:replace="base-layout :: header">-->
+
+
+
+<body>
+
+
+<div class="card bg-light border-info mb-3" style="max-width: 18rem;" th:fragment="card_advert">
+    <div class="card-header">
+        <h5 class="card-title">Название карточки</h5>
+    </div>
+    <div class="card bg-dark text-white">
+        <img th:src="@{/images/cat.jpg}" class="card-img" alt="альтернативний текст">
+        <div class="card-img-overlay">
+            <div class="d-flex align-items-end"
+                     style="max-height: 20rem;
+                     background: red;
+                     background: rgba(255, 0, 0, 0.5);
+                     position: absolute; /* Абсолютное позиционирование */
+                     bottom: 1rem; /* Положение от нижнего края */
+                     right: 1rem;
+                     width: 16rem;">
+                <p class="card-text text-truncate">
+                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer bg-transparent border-success">
+        <p class="card-text">Price : 333 $</p>
+        <div class="d-flex align-items-end"
+                style="max-height: 20rem;
+                /*background: red;*/
+                /*background: rgba(255, 0, 0, 0.5);*/
+                position: absolute; /* Абсолютное позиционирование */
+                bottom: 1rem; /* Положение от нижнего края */
+                right: 1rem;">
+
+<!--            button : go to description and more functions-->
+            <a href="/dashboard" th:href="@{/dashboard}" class="btn btn-outline-success" role="button" aria-pressed="true"><i class="fas fa-receipt"></i></a>
+
+        </div>
+<!--        <button th:href="@{/dashboard}" type="button" class="btn btn-outline-success"><i class="fas fa-receipt"></i>Успех</button>-->
+<!--        <a href="#" class="card-link"><i class="fas fa-receipt"></i>Переход куда-нибудь</a>-->
+<!--        <a href="#" class="btn btn-primary"><i class="fas fa-receipt"></i>Переход куда-нибудь</a>-->
+<!--        <a  href="/dashboard" th:href="@{/dashboard}"><i class="fas fa-receipt"></i><span class="sr-only">(current)</span></a>-->
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
