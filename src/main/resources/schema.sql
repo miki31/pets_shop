@@ -44,7 +44,6 @@ CREATE TABLE category
 (
     id BIGINT AUTO_INCREMENT,
     name VARCHAR(255),
-    description TEXT,
     PRIMARY KEY (id)
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
@@ -65,6 +64,18 @@ CREATE TABLE pet_user
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (pet_id) REFERENCES role (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
+
+CREATE TABLE advertisement
+(
+    id BIGINT AUTO_INCREMENT,
+    category_id BIGINT,
+    description TEXT,
+    photo VARCHAR(255),
+    price DOUBLE,
+    postedOn DATE,
+    PRIMARY KEY (id),
+    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    ) ENGINE=INNODB CHARACTER SET=utf8;
 
 CREATE TABLE hibernate_sequence
 (

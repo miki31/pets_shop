@@ -17,8 +17,8 @@ public class Category {
     @GeneratedValue
     private Long id;
     private String name;
-    @Column(columnDefinition = "TEXT")
-    private String description;
+    //@Column(columnDefinition = "TEXT")
+    //private String description;
 
 //    @OneToMany(mappedBy = "category")
 //    private List<Pet> pets;

@@ -25,8 +25,7 @@
         <tr th:each="category:${categories}">
             <td th:text="${category.getId()}"></td>
             <td th:text="${category.getName()}"></td>
-            <td th:text="${category.getDescription()}"></td>
-<!--            <td>Список тваринок (може бути надвеликим)</td>-->
+            <!--            <td>Список тваринок (може бути надвеликим)</td>-->
             <td>
                 <input type="button" value="пізніше мінятимемо (тут редагуватиметься опис тваринок ADMIN-MANAGER)" />
             </td>
