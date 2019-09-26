@@ -61,4 +61,10 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "pet_id"))
     private List<Pet> pets;
 
+    @ManyToMany
+    @JoinTable(name = "advertisement_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "advertisement_id"))
+    private List<Advertisement> advertisements;
+
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,9 +27,8 @@ public class Advertisement {
     @JoinColumn(name="category_id", nullable=false)
     private Category category;
 
-
-
-
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "advertisements")
+    private List<User> users;
 
 
 }

@@ -8,7 +8,7 @@
 <nav th:replace="base-layout :: top_navbar"></nav>
 
 <div align="center">
-    <form      th:action="@{/user/available_pet}"
+    <form      th:action="@{/user/all_pet}"
                th:object="${pets}" method="Get">
         <table border="2" cellpadding="5">
             <thead>
@@ -31,13 +31,19 @@
                 <td th:text="${p.description}"></td>
                 <td th:text="${p.postedOn}"></td>
                 <td >
-                    <a th:href="@{takePet/__${p.id}__}" class="btn btn-danger">Choose</a>
+                    <a th:href="@{user/takePet/__${p.id}__}" class="btn btn-danger">Choose</a>
                 </td>
             </tr>
             </tbody>
         </table>
 
     </form>
+
+
+    <input type="button" onclick="location.href='/user/available';"
+           th:value="PetsAvailable" value="The list available advertisements"/>
+    <input type="button" onclick="location.href='/user/taken';"
+           th:value="PetsTaken" value="The list taken advertisements"/>
 
 </div>
 <nav th:replace="base-layout :: footer"></nav>

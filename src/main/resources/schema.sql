@@ -77,6 +77,14 @@ CREATE TABLE advertisement
     FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
     ) ENGINE=INNODB CHARACTER SET=utf8;
 
+CREATE TABLE advertisement_user
+(
+    user_id BIGINT,
+    advertisement_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=INNODB CHARACTER SET=utf8;
+
 CREATE TABLE hibernate_sequence
 (
     next_val INT
