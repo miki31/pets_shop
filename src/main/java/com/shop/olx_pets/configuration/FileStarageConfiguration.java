@@ -12,11 +12,21 @@ public class FileStarageConfiguration {
 
     @Bean(name = "basePath")
     public String basePath() {
-        File baseDir = new File("uploads");
+        File baseDir = new File("uploads/user");
         if (!baseDir.exists()) {
             baseDir.mkdir();
         }
         log.info("BasePath created: ", baseDir.getAbsolutePath());
+        return baseDir.getAbsolutePath();
+    }
+
+    @Bean(name = "advertisementPhotoPath")
+    public String advertisementPhotoPath() {
+        File baseDir = new File("uploads/advertisement");
+        if (!baseDir.exists()) {
+            baseDir.mkdir();
+        }
+        log.info("advertisementPhotoPath created: ", baseDir.getAbsolutePath());
         return baseDir.getAbsolutePath();
     }
 }

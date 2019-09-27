@@ -12,7 +12,7 @@
         <tr>
             <td rowspan="3">
                 <div th:if="${user.photo == null}"><img width="200" src="/images/220px-User_icon_2.svg.png"></div>
-                <div th:unless="${user.photo == null}"><img width="200" th:src="'/resources/uploads/' + ${user.photo}"></div>
+                <div th:unless="${user.photo == null}"><img width="200" th:src="'/resources/uploads/user/' + ${user.photo}"></div>
                 <form align="center" action="/profile/uploadPhoto" method="POST" enctype="multipart/form-data">
                     <input type="file" name="file" id="selectedFile" style="display: none;" onchange="form.submit()"/>
                     <input type="button" value="Загрузити Фото" onclick="document.getElementById('selectedFile').click();" />

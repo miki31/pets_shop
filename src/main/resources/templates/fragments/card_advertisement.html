@@ -33,14 +33,20 @@
 
 
 <body>
-
+<!--TODO put all cards in next teg-->
+<!--<div class="row">-->
 
 <div class="card bg-light border-info mb-3" style="max-width: 18rem;" th:fragment="card_advert">
     <div class="card-header">
-        <h5 class="card-title">Название карточки</h5>
+        <h5 class="card-title" th:if="${advert.title == null}">Your title may be here</h5>
+        <h5 class="card-title" th:unless="${advert.title == null}" th:text="${advert.title}"></h5>
+
     </div>
     <div class="card bg-dark text-white">
-        <img th:src="@{/images/cat.jpg}" class="card-img" alt="альтернативний текст">
+        <img th:if="${advert.photo == null}" th:src="@{/images/cat.jpg}" class="card-img" alt="this is a photo of the post">
+
+<!--                TODO: change folder? where we save photo -->
+        <img th:unless="${advert.photo == null}" th:src="'/resources/uploads/advertisement/' + ${advert.photo}" class="card-img" alt="this is a photo of the post">
         <div class="card-img-overlay">
             <div class="d-flex align-items-end"
                      style="max-height: 20rem;
@@ -50,18 +56,17 @@
                      bottom: 1rem; /* Положение от нижнего края */
                      right: 1rem;
                      width: 16rem;">
-                <p class="card-text text-truncate">
-                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                </p>
+                <p th:if="${advert.description == null}" class="card-text text-truncate">Some description</p>
+                <p th:unless="${advert.description == null}" class="card-text text-truncate" th:text="${advert.description}"></p>
             </div>
 
         </div>
     </div>
     <div class="card-footer bg-transparent border-success">
-        <p class="card-text">Price : 333 $</p>
+        <p class="card-text">Price :
+            <span th:if="${advert.price == null}" style="color: #273bff; font-size: 2em"> free </span>
+            <span th:unless="${advert.price == null}" th:text="' ' + ${advert.price} + ' '" style="color: red; font-size: 2em"></span>
+            $</p>
         <div class="d-flex align-items-end"
                 style="max-height: 20rem;
                 /*background: red;*/

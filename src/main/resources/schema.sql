@@ -68,6 +68,7 @@ CREATE TABLE pet_user
 CREATE TABLE advertisement
 (
     id BIGINT AUTO_INCREMENT,
+    title VARCHAR(50),
     category_id BIGINT,
     description TEXT,
     photo VARCHAR(255),
@@ -75,7 +76,7 @@ CREATE TABLE advertisement
     posted_on DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
-    ) ENGINE=INNODB CHARACTER SET=utf8;
+) ENGINE=INNODB CHARACTER SET=utf8;
 
 CREATE TABLE advertisement_user
 (
