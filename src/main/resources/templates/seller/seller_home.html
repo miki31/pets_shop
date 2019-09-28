@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<div align="center">
+    <div class="pb-5" id="header">
+        <h1>Hello SELLER!!!</h1>
+        <h1>Create your ad. Sell ​​ads. Make the world a better place.</h1>
+    </div>
+    <div class="pb-5">
+        <div  class="row">
+            <div class="col">
+                <input type="button" class="btn btn-primary btn-lg btn-block"
+                       onclick="location.href='/advertisement/create';" value="Create my advertisement"/>
+            </div>
+            <div class="col">
+                <input type="button" class="btn btn-primary btn-lg btn-block"
+                       onclick="location.href='/advertisement/myAll';" value="View my advertisements"/>
+            </div>
+            <div class="col">
+                <input type="button" class="btn btn-primary btn-lg btn-block"
+                       onclick="location.href='/advertisement/all';" value="View all advertisements"/>
+            </div>
+        </div>
+</div>
+
+</div>
+
+<nav th:replace="base-layout :: footer"></nav>
+
+</body>
+</html>
