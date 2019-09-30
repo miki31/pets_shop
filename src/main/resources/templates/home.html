@@ -37,6 +37,8 @@
 
             <input type="button" onclick="location.href='/advertisement/card';" value="Тест фрагмента для оголошення" />
 
+            <input sec:authorize="hasAuthority('SELLER')"
+                    type="button" th:method="get" onclick="location.href='/advertisement/create';" value="Тест додавання оголошення" />
         </div>
 
     </div>

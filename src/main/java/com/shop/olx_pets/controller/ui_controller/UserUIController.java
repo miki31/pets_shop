@@ -29,18 +29,18 @@ public class UserUIController {
         return "user/all_pet";
     }
 
-    @GetMapping("/available")
-    public String getAvailable(Model model) {
-        model.addAttribute("advertisements", advertisementService.getAvailable());
-        return "pets";
-    }
+//    @GetMapping("/available")
+//    public String getAvailable(Model model) {
+//        model.addAttribute("advertisements", advertisementService.getAvailable());
+//        return "pets";
+//    }
 
-
-    @GetMapping("/taken")
-    public String getTaken(@ModelAttribute("user") User user,
-                           Model model) {
-//        model.addAttribute("advertisement", advertisementService.findByUserIdAndByReturnedIsNull(user.getId()));
-        return "taken";
-    }
+//
+//    @GetMapping("/taken")
+//    public String getTaken(@ModelAttribute("user") User user,
+//                           Model model) {
+////        model.addAttribute("advertisement", advertisementService.findByUserIdAndByReturnedIsNull(user.getId()));
+//        return "taken";
+//    }
 
 }

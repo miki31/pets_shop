@@ -12,21 +12,55 @@ public class FileStarageConfiguration {
 
     @Bean(name = "basePath")
     public String basePath() {
-        File baseDir = new File("uploads/user");
-        if (!baseDir.exists()) {
-            baseDir.mkdir();
-        }
-        log.info("BasePath created: ", baseDir.getAbsolutePath());
-        return baseDir.getAbsolutePath();
+//        File baseDir = new File("uploads/user");//?????????????????
+
+//        if (!baseDir.exists()) {
+//            log.info("uploads is created: {}", baseDir.mkdir());
+//        }
+        String[] strings = {
+                "uploads",
+                "user"
+        };
+
+        return createDir(strings);
+
     }
 
     @Bean(name = "advertisementPhotoPath")
     public String advertisementPhotoPath() {
-        File baseDir = new File("uploads/advertisement");
-        if (!baseDir.exists()) {
-            baseDir.mkdir();
+//        File baseDir = new File("uploads/advertisement");
+//        if (!baseDir.exists()) {
+//            baseDir.mkdir();
+//        }
+//        log.info("advertisementPhotoPath created: ", baseDir.getAbsolutePath());
+//        return baseDir.getAbsolutePath();
+
+        String[] strings = {
+                "uploads",
+                "advertisement"
+        };
+
+        return createDir(strings);
+    }
+
+    private String createDir(String[] strings){
+        log.info("Creating dir");
+
+        File baseDir = null;
+        String s = "";
+        for (int i = 0; i < strings.length; i++) {
+            if (i == 0){
+                s = s + strings[i];
+            } else {
+                s = s + "/" + strings[i];
+            }
+            baseDir = new File(s);
+            if (!baseDir.exists()){
+                log.info("dir is created: {}", baseDir.mkdir());
+            }
         }
-        log.info("advertisementPhotoPath created: ", baseDir.getAbsolutePath());
+
+        log.info("Path created: ", baseDir.getAbsolutePath());
         return baseDir.getAbsolutePath();
     }
 }

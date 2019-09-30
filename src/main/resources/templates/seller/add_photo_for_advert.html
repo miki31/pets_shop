@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6" align="center">
+            <form th:action="@{/advertisement/uploadPhoto/__${advertisement.id}__}"
+                        method="POST"
+                        enctype="multipart/form-data">
+                <div class="alert alert-success" role="alert">
+                    <h2>GOOD JOB!!!</h2>
+                    <p>You have successfully created your advertisement</p>
+                </div>
+                <div class="alert alert-info" role="alert">
+                    Here you can put photo of your advertisement
+                </div>
+                <input type="file"
+                            name="advertPhoto"
+                            id="selectedFile"
+                            style="display: none;"
+                            onchange="form.submit()"/>
+                <button class="btn btn-outline-danger btn-lg btn-block"
+                            type="button"
+                            onclick="document.getElementById('selectedFile').click();" >
+                    <i class="far fa-image"></i> Upload photo</button>
+            <!--    <input class="btn btn-outline-danger btn-lg btn-block"-->
+            <!--                type="button"-->
+            <!--                value="Upload photo"-->
+            <!--                onclick="document.getElementById('selectedFile').click();" >-->
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<nav th:replace="base-layout :: footer"></nav>
+
+</body>
+</html>

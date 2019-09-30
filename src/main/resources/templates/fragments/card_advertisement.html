@@ -4,52 +4,27 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 
-
-<!--TODO: Change header to fragment (LOOK DOWN)-->
-<head th:fragment="header">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Pets_olx home</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="shortcut icon" type="image/png" href="/images/logo_olx.png">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-
-    <script defer src="/style_font/js/all.js"></script>
-
-</head>
-
-<!--<head th:replace="base-layout :: header">-->
-
-
+<head th:replace="base-layout :: header">
 
 <body>
 <!--TODO put all cards in next teg-->
 <!--<div class="row">-->
 
-<div class="card bg-light border-info mb-3" style="max-width: 18rem;" th:fragment="card_advert">
+<div class="card bg-light border-info mb-3" style="width: 18rem;" th:fragment="card_advert">
     <div class="card-header">
         <h5 class="card-title" th:if="${advert.title == null}">Your title may be here</h5>
         <h5 class="card-title" th:unless="${advert.title == null}" th:text="${advert.title}"></h5>
 
     </div>
-    <div class="card bg-dark text-white">
-        <img th:if="${advert.photo == null}" th:src="@{/images/cat.jpg}" class="card-img" alt="this is a photo of the post">
+    <div class="card bg-dark text-white" >
+        <img style="height: 12rem;" th:if="${advert.photo == null}" th:src="@{/images/cat.jpg}" class="card-img" alt="this is a photo of the post">
 
 <!--                TODO: change folder? where we save photo -->
-        <img th:unless="${advert.photo == null}" th:src="'/resources/uploads/advertisement/' + ${advert.photo}" class="card-img" alt="this is a photo of the post">
+        <img style="height: 12rem;" th:unless="${advert.photo == null}" th:src="'/resources/uploads/advertisement/' + ${advert.photo}" class="card-img" alt="this is a photo of the post">
         <div class="card-img-overlay">
             <div class="d-flex align-items-end"
-                     style="max-height: 20rem;
+                     style="
+                     /*max-height: 20rem;*/
                      background: red;
                      background: rgba(255, 0, 0, 0.5);
                      position: absolute; /* Абсолютное позиционирование */
