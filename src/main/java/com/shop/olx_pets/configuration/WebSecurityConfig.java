@@ -66,8 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                //TODO: delete from next method "/advertisement/**"
-                .antMatchers("/", "/registration/**", "/guest/**", "/advertisement/**")
+                .antMatchers("/", "/registration/**", "/guest/**")
                     .permitAll()
                 .antMatchers("/admin/**")
                     .hasAnyAuthority("ADMIN", "MANAGER")

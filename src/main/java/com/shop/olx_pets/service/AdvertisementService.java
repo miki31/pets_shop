@@ -4,7 +4,9 @@ import com.shop.olx_pets.model.Advertisement;
 import com.shop.olx_pets.repository.AdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -39,4 +41,65 @@ public class AdvertisementService {
 //    public List<Advertisement> findByUserIdAndByReturnedIsNull(Long id) {
 //        return advertisementRepository.findByUsersIdAndReturnedIsNull(id);
 //    }
+
+    public Advertisement createUpdate(Advertisement advertisement){
+        Advertisement toSave =
+                advertisement.getId() == null ?
+                        createAdvertisement(advertisement) :
+                        updateAdvertisement(advertisement);
+
+        return advertisementRepository.save(toSave);
+    }
+
+    private Advertisement updateAdvertisement(Advertisement advertisement) {
+        Advertisement origin = advertisementRepository.findById(advertisement.getId()).get();
+
+
+        if (!StringUtils.isEmpty(advertisement.getTitle())){
+            origin.setTitle(advertisement.getTitle());
+        }
+
+        if (!StringUtils.isEmpty(advertisement.getDescription())){
+            origin.setDescription(advertisement.getDescription());
+        }
+
+        if (!StringUtils.isEmpty(advertisement.getPrice())){
+            origin.setPrice(advertisement.getPrice());
+        }
+
+        if (!StringUtils.isEmpty(advertisement.getPhoto())){
+            origin.setPhoto(advertisement.getPhoto());
+        }
+
+        //TODO: update creating Date or not ???
+//        if (!StringUtils.isEmpty(advertisement.getPostedOn())) {
+//            origin.setPostedOn(updateDay(advertisement));
+//        } else {
+//            origin.setPostedOn(updateDay(origin));
+//        }
+        origin.setPostedOn(updateDay(origin));
+
+        if (!StringUtils.isEmpty(advertisement.getCategory())){
+            origin.setCategory(advertisement.getCategory());
+        }
+
+        return origin;
+    }
+
+    private Advertisement createAdvertisement(Advertisement advertisement) {
+        advertisement.setPostedOn(LocalDate.now());
+
+        advertisement.setPostedOn(updateDay(advertisement));
+
+        return advertisement;
+    }
+
+
+    //TODO: WHY???  I can't find another solution to fix this problem
+    private LocalDate updateDay(Advertisement advertisement){
+        LocalDate localDate = advertisement.getPostedOn();
+        return localDate.plusDays(1);
+    }
+
+
 }

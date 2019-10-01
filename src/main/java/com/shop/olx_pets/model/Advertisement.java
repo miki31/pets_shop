@@ -19,6 +19,11 @@ public class Advertisement {
     @Id
     @GeneratedValue
     private Long id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "seller_id", nullable = false, referencedColumnName = "id")
+    private User seller;
+
     private String title;   // name
     private String description;
     private Double price;

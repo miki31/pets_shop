@@ -18,6 +18,10 @@
 
 <nav th:replace="base-layout :: top_navbar"></nav>
 
+<!--TODO: DELETE!!!!! this button "Go To Login Page"-->
+<form th:action="@{/login}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+</form>
 <!--<form th:action="@{/login}" method="get">-->
 <!--    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>-->
 <!--</form>-->
