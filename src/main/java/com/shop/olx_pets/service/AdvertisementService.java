@@ -32,7 +32,7 @@ public class AdvertisementService {
     }
 
     public Advertisement randomAd() {
-        List<Advertisement> advertisements = advertisementRepository.findAll();
+        List<Advertisement> advertisements = findAll();
         Random r = new Random();
         Advertisement advertisement = advertisements.get(r.nextInt(advertisements.size()));
         return advertisement;

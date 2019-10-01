@@ -110,11 +110,13 @@ public class AdvertisementUIController {
         return "home";
     }
 
+    // TODO: this method only for testing
     @GetMapping("/card")
     public String getCard(Model model){
-        List<Advertisement> advertisements = advertisementService.findAll();
-        Random r = new Random();
-        Advertisement advert = advertisements.get(r.nextInt(advertisements.size()));
+//        List<Advertisement> advertisements = advertisementService.findAll();
+//        Random r = new Random();
+//        Advertisement advert = advertisements.get(r.nextInt(advertisements.size()));
+        Advertisement advert = advertisementService.randomAd();
         model.addAttribute("advert", advert);
         return "fragments/card_advertisement";
     }
