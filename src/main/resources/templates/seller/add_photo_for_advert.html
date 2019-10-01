@@ -26,7 +26,7 @@
                         th:if="${advertisement.photo == null}"
                         th:src="@{/images/default_cat.jpg}"
                         alt="this is a photo of the post">
-                <img style="height: 16rem;
+                <img style="height: 16rem;"
                         th:unless="${advertisement.photo == null}"
                         th:src="'/resources/uploads/advertisement/' + ${advertisement.photo}"
                         alt="this is a photo of the post">
@@ -37,6 +37,9 @@
                 <div th:unless="${advertisement.photo == null}" class="alert alert-info" role="alert">
                     Here you can edit photo of your advertisement
                 </div>
+
+                <!--  TODO: create button "delete" photo              -->
+
                 <input type="file"
                             name="advertPhoto"
                             id="selectedFile"
