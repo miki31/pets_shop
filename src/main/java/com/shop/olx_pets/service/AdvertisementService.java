@@ -1,13 +1,13 @@
 package com.shop.olx_pets.service;
 
 import com.shop.olx_pets.model.Advertisement;
-import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.AdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class AdvertisementService {
@@ -29,6 +29,12 @@ public class AdvertisementService {
         return advertisementList;
     }
 
+    public Advertisement randomAd() {
+        List<Advertisement> advertisements = advertisementRepository.findAll();
+        Random r = new Random();
+        Advertisement advertisement = advertisements.get(r.nextInt(advertisements.size()));
+        return advertisement;
+    }
 
 //    public List<Advertisement> findByUserIdAndByReturnedIsNull(Long id) {
 //        return advertisementRepository.findByUsersIdAndReturnedIsNull(id);
