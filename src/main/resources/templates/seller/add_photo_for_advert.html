@@ -19,10 +19,23 @@
                         enctype="multipart/form-data">
                 <div class="alert alert-success" role="alert">
                     <h2>GOOD JOB!!!</h2>
-                    <p>You have successfully created your advertisement</p>
+                    <p>You have successfully created (or edited) your advertisement</p>
                 </div>
-                <div class="alert alert-info" role="alert">
+
+                <img style="height: 10rem;"
+                        th:if="${advertisement.photo == null}"
+                        th:src="@{/images/default_cat.jpg}"
+                        alt="this is a photo of the post">
+                <img style="height: 16rem;
+                        th:unless="${advertisement.photo == null}"
+                        th:src="'/resources/uploads/advertisement/' + ${advertisement.photo}"
+                        alt="this is a photo of the post">
+
+                <div th:if="${advertisement.photo == null}" class="alert alert-info" role="alert">
                     Here you can put photo of your advertisement
+                </div>
+                <div th:unless="${advertisement.photo == null}" class="alert alert-info" role="alert">
+                    Here you can edit photo of your advertisement
                 </div>
                 <input type="file"
                             name="advertPhoto"

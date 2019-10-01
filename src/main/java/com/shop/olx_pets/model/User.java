@@ -54,8 +54,8 @@ public class User implements Serializable {
 
     private String photo;
 
-    @OneToMany(mappedBy="seller")
-    private List<Advertisement> adsForSale;
+//    @OneToMany(mappedBy="seller", fetch = FetchType.LAZY)
+//    private List<Advertisement> adsForSale;
 
     @ManyToMany
     @JoinTable(name = "pet_user",

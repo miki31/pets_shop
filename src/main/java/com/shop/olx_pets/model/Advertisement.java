@@ -20,7 +20,7 @@ public class Advertisement {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "seller_id", nullable = false, referencedColumnName = "id")
     private User seller;
 
