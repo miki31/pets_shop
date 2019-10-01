@@ -118,4 +118,10 @@ public class AdvertisementUIController {
         model.addAttribute("advert", advert);
         return "fragments/card_advertisement";
     }
+
+
+    @GetMapping("description")
+    public String getDescription(Model model){
+        return "description_card";
+    }
 }
