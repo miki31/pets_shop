@@ -123,6 +123,12 @@ public class AdvertisementUIController {
         return "seller/edit_advertisement";
     }
 
+    @GetMapping("/deleteAdvert/{id}")
+    public String deleteAdvertisement(@PathVariable("id") Long id,
+            Model model){
+       advertisementService.delete(id);
+        return "redirect:/seller/seller_home";
+    }
 
     // TODO: this method only for testing
     @GetMapping("/card")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="base-layout :: header">
 
 </head>
@@ -7,7 +7,7 @@
 
 <nav th:replace="base-layout :: top_navbar"></nav>
 
-<form th:action="@{/advertisement/description}"
+<form
       th:object="${advertisement}" method="GET">
     <div align="center">
         <div class="card bg-light border-info mb-3" style="width: 50rem;">
@@ -24,6 +24,31 @@
                 <p><td>Posted on : </td><td><span th:text="${advertisement.postedOn}">Posted On</p></span></td></p>
 
             </div>
+
+            <div sec:authorize="hasAuthority('ADMIN')">
+                <td >
+                    <a th:href="@{advertisement/deleteAdvert/__${advertisement.id}__}" class="btn btn-danger">Delete</a>
+                </td>
+            </div>
+
+            <div sec:authorize="hasAuthority('USER')">
+                <td >
+                    <a th:href="@{advertisement/order/__${advertisement.id}__}" class="btn btn-danger">Order</a>
+                </td>
+                <td >
+                    <a th:href="@{advertisement/response/__${advertisement.id}__}" class="btn btn-danger">Response</a>
+                </td>
+            </div>
+
+            <div sec:authorize="hasAuthority('SELLER')">
+                <td >
+                    <a th:href="@{advertisement/deleteAdvert/__${advertisement.id}__}" class="btn btn-danger">Delete</a>
+                </td>
+                <td >
+                    <a th:href="@{advertisement/editAdvert/__${advertisement.id}__}" class="btn btn-danger">Edit</a>
+                </td>
+            </div>
+
 
         </div>
     </div>

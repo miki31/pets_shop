@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -109,6 +110,13 @@ public class AdvertisementService {
     private LocalDate updateDay(Advertisement advertisement){
         LocalDate localDate = advertisement.getPostedOn();
         return localDate.plusDays(1);
+    }
+
+    public void delete(Long id) {
+        Optional<Advertisement> toDelete = advertisementRepository.findById(id);
+        if (toDelete.isPresent()) {
+            advertisementRepository.delete(toDelete.get());
+        }
     }
 
 
