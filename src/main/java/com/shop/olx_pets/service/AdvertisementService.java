@@ -20,8 +20,8 @@ public class AdvertisementService {
         return advertisementRepository.findAll();
     }
 
-    public Optional<Advertisement> getOne(Long id) {
-        return advertisementRepository.findById(id);
+    public Advertisement getOne(Long id) {
+        return advertisementRepository.findById(id).orElse(null);
     }
 
     public List<Advertisement> getAvailable() {

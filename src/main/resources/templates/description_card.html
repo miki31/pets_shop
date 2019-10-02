@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base-layout :: header">
+
 </head>
 <body>
 
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<form th:action="@{/advertisement/description}"
+      th:object="${advertisement}" method="GET">
+    <div align="center">
+        <div class="card bg-light border-info mb-3" style="width: 50rem;">
+            <img style="height: 25rem;" th:if="${advertisement.photo == null}" th:src="@{/images/cat.jpg}"
+                 class="mx-auto d-block" alt="this is a photo of the post">
+
+
+            <h1 class="h2" th:text="${advertisement.title}">Name</h1>
+            <div class="text-left">
+
+                <p th:text="${advertisement.description}">Description</p>
+                <p><td>Category : </td><td><span th:text="${advertisement.category.name}">Category</span></td></p>
+                <p><td>Price : </td><td><span th:text="${advertisement.price}">Price</p></span></td></p>
+                <p><td>Posted on : </td><td><span th:text="${advertisement.postedOn}">Posted On</p></span></td></p>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+</form>
+
+
+<nav th:replace="base-layout :: footer"></nav>
+
+</div>
 </body>
 </html>

@@ -120,8 +120,10 @@ public class AdvertisementUIController {
     }
 
 
-    @GetMapping("description")
-    public String getDescription(Model model){
+    @GetMapping("description/{id}")
+    public String getDescription(@PathVariable Long id, Model model){
+        Advertisement advertisement = advertisementService.getOne(id);
+        model.addAttribute("advertisement", advertisement);
         return "description_card";
     }
 }
