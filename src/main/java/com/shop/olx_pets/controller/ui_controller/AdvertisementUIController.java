@@ -67,7 +67,7 @@ public class AdvertisementUIController {
             Model model){
 
 
-        //TODO : binding to the seller
+        // Binding the advert to the seller
         advertisement.setSeller(seller);
 
         // check data similarly as in registration form
@@ -83,7 +83,7 @@ public class AdvertisementUIController {
     }
 
     @PostMapping("/uploadPhoto/{id}")
-    public String createAdvertisement(
+    public String createAdvertisementPhoto(
             @PathVariable("id") Optional<Long> id,
             @RequestParam("advertPhoto") MultipartFile file,
             @Valid Advertisement advertisement
@@ -110,11 +110,27 @@ public class AdvertisementUIController {
         return "home";
     }
 
+    @GetMapping("/editAdvert/{id}")
+    public String editAdvertisement(
+            @PathVariable("id") Long id,
+            Model model
+    ){
+        Advertisement advertisement = advertisementService.getOne(id);
+
+        model.addAttribute("advertisement", advertisement);
+        model.addAttribute("categories", categoryService.findAll());
+
+        return "seller/edit_advertisement";
+    }
+
+
+    // TODO: this method only for testing
     @GetMapping("/card")
     public String getCard(Model model){
-        List<Advertisement> advertisements = advertisementService.findAll();
-        Random r = new Random();
-        Advertisement advert = advertisements.get(r.nextInt(advertisements.size()));
+//        List<Advertisement> advertisements = advertisementService.findAll();
+//        Random r = new Random();
+//        Advertisement advert = advertisements.get(r.nextInt(advertisements.size()));
+        Advertisement advert = advertisementService.randomAd();
         model.addAttribute("advert", advert);
         return "fragments/card_advertisement";
     }

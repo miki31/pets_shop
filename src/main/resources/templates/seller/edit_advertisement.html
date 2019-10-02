@@ -6,7 +6,6 @@
 
 </head>
 <body>
-
 <nav th:replace="base-layout :: top_navbar"></nav>
 
 
@@ -14,10 +13,10 @@
     <div class="row justify-content-md-center">
         <div class="col-md-6" align="center">
             <form id="create_advert_form"
-                    autocomplete="off" action="#" th:action="@{/advertisement/create}"
-                    th:object="${advertisement}" method="post" class="form-horizontal"
-                    role="form">
-                <h2>Form for creating a new advertisement</h2>
+                  autocomplete="off" action="#" th:action="@{/advertisement/create}"
+                  th:object="${advertisement}" method="post" class="form-horizontal"
+                  role="form">
+                <h2>Form for EDIT your advertisement</h2>
 
 
                 <div th:replace="fragments/form_advertisement :: form_edit_advert"></div>
@@ -27,7 +26,7 @@
                     <div class="col-sm-9">
                         <button id="btn_submit"
                                 type="submit"
-                                class="btn btn-primary btn-block">Create ADVERTISEMENT</button>
+                                class="btn btn-primary btn-block">Edit ADVERTISEMENT</button>
                     </div>
                 </div>
             </form>

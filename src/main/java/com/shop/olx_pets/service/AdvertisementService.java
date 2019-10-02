@@ -8,7 +8,6 @@ import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -23,6 +22,14 @@ public class AdvertisementService {
     public Advertisement getOne(Long id) {
         return advertisementRepository.findById(id).orElse(null);
     }
+//      TODO: change methot getOne like next method. User custom Exception
+//    public Book getOne(Long id) {
+//        return bookRepository.findById(id).orElseThrow(() -> {
+//            BookNotFoundException e = new BookNotFoundException(id);
+//            log.error("Book Not Found", e);
+//            return e;
+//        });
+//    }
 
     public List<Advertisement> getAvailable() {
         List<Advertisement> advertisementList = advertisementRepository.findAll();
@@ -32,7 +39,7 @@ public class AdvertisementService {
     }
 
     public Advertisement randomAd() {
-        List<Advertisement> advertisements = advertisementRepository.findAll();
+        List<Advertisement> advertisements = findAll();
         Random r = new Random();
         Advertisement advertisement = advertisements.get(r.nextInt(advertisements.size()));
         return advertisement;
@@ -54,6 +61,9 @@ public class AdvertisementService {
     private Advertisement updateAdvertisement(Advertisement advertisement) {
         Advertisement origin = advertisementRepository.findById(advertisement.getId()).get();
 
+        /* TODO: The check here should be whether the fields are even.
+         *  For example, the ability to cancel a price for a product
+         */
 
         if (!StringUtils.isEmpty(advertisement.getTitle())){
             origin.setTitle(advertisement.getTitle());

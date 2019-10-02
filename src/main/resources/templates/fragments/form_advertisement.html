@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+
+<head th:replace="base-layout :: header">
+
+<body>
+
+<div th:fragment="form_edit_advert">
+    <input th:if="${id} != null"
+            hidden type="text"
+            class="form-control"
+            th:field="*{id}"/>
+
+    <div class="form-group">
+        <div class="col-sm-9">
+            <!--                        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"-->
+            <!--                               class="validation-message"></label>-->
+            <input type="text" th:field="*{title}" placeholder="The title of the advertisement"
+                   class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-9">
+            <label for="advertDescription">Description of Advertisement</label>
+            <textarea class="form-control" id="advertDescription" rows="3"
+                      th:field="*{description}"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-9">
+            <!--                        TODO: entering decimal numbers, not integers-->
+            <input type="number" th:field="*{price}" placeholder="Price"
+                   class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-9" >
+            <label for="advertCategory">Category</label>
+            <select th:field="*{category}" class="form-control" id="advertCategory">
+                <option th:each="category : ${categories}"
+                        th:text="${category.name}"
+                        th:value="${category.id}"></option>
+            </select>
+        </div>
+    </div>
+
+
+    <!--  TODO: create subcategory and put it here -->
+    <div class="form-group">
+        <div class="col-sm-9">
+            You will can check subcategory in future :)
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+

@@ -17,9 +17,7 @@
 
     </div>
     <div class="card bg-dark text-white" >
-        <img style="height: 12rem;" th:if="${advert.photo == null}" th:src="@{/images/cat.jpg}" class="card-img" alt="this is a photo of the post">
-
-<!--                TODO: change folder? where we save photo -->
+        <img style="height: 12rem;" th:if="${advert.photo == null}" th:src="@{/images/default_cat.jpg}" class="card-img" alt="this is a photo of the post">
         <img style="height: 12rem;" th:unless="${advert.photo == null}" th:src="'/resources/uploads/advertisement/' + ${advert.photo}" class="card-img" alt="this is a photo of the post">
         <div class="card-img-overlay">
             <div class="d-flex align-items-end"
