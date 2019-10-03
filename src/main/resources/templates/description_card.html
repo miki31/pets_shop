@@ -50,7 +50,7 @@
             <div sec:authorize="hasAuthority('SELLER')">
                 <td >
                     <span th:if="${advertisement.seller.id == seller.id}">
-                    <a th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}"
+                    <a th:href="@{/advertisement/deleteAdvert/(adId=${advertisement.id})}"
                        class="btn btn-danger">Delete</a></span>
                 </td>
                 <td >

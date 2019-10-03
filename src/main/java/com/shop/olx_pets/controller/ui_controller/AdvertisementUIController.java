@@ -4,7 +4,6 @@ import com.shop.olx_pets.model.Advertisement;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.service.AdvertisementService;
 import com.shop.olx_pets.service.CategoryService;
-import com.shop.olx_pets.service.LogAdvertisementService;
 import com.shop.olx_pets.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +50,7 @@ public class AdvertisementUIController {
     }
 
     @GetMapping("/create")
-    public String createAdvertisement(Model model){
+    public String createAdvertisement(Model model) {
         Advertisement advertisement = new Advertisement();
         model.addAttribute("advertisement", advertisement);
         model.addAttribute("categories", categoryService.findAll());
@@ -63,14 +62,14 @@ public class AdvertisementUIController {
             @Valid Advertisement advertisement,
             @ModelAttribute("seller") User seller,
             BindingResult bindingResult,
-            Model model){
+            Model model) {
 
 
         // Binding the advert to the seller
         advertisement.setSeller(seller);
 
         // check data similarly as in registration form
-        if (bindingResult.hasErrors())  {
+        if (bindingResult.hasErrors()) {
             return "seller/create_advertisement";
         }
 
@@ -90,7 +89,7 @@ public class AdvertisementUIController {
 //            @ModelAttribute("seller") User seller,
 //            BindingResult bindingResult,
 //            Model model
-    ){
+    ) {
 
         //TODO: create a unique name for advert photo
         String uploadPhotoName = file.getOriginalFilename();
@@ -113,7 +112,7 @@ public class AdvertisementUIController {
     public String editAdvertisement(
             @RequestParam Long adId,
             Model model
-    ){
+    ) {
         Advertisement advertisement = advertisementService.getOne(adId);
 
         model.addAttribute("advertisement", advertisement);
@@ -121,16 +120,16 @@ public class AdvertisementUIController {
 
         return "seller/edit_advertisement";
     }
-    
-    @GetMapping("/deleteAdvert/{id}")
-    public String deleteAdvertisement(@PathVariable("id") Long id){
-       advertisementService.delete(id);
+
+    @GetMapping("/deleteAdvert")
+    public String deleteAdvertisement(@RequestParam Long adId) {
+        advertisementService.delete(adId);
         return "redirect:/";
     }
 
     // TODO: this method only for testing
     @GetMapping("/card")
-    public String getCard(Model model){
+    public String getCard(Model model) {
 //        List<Advertisement> advertisements = advertisementService.findAll();
 //        Random r = new Random();
 //        Advertisement advert = advertisements.get(r.nextInt(advertisements.size()));
@@ -141,7 +140,7 @@ public class AdvertisementUIController {
 
 
     @GetMapping("description/{id}")
-    public String getDescription(@PathVariable Long id, Model model){
+    public String getDescription(@PathVariable Long id, Model model) {
         Advertisement advertisement = advertisementService.getOne(id);
         model.addAttribute("advertisement", advertisement);
         return "description_card";
