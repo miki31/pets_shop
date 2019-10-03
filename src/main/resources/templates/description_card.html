@@ -11,9 +11,10 @@
       th:object="${advertisement}" method="GET">
     <div align="center">
         <div class="card bg-light border-info mb-3" style="width: 50rem;">
-            <img style="height: 25rem;" th:if="${advertisement.photo == null}" th:src="@{/images/cat.jpg}"
+            <img style="height: 15rem;" th:if="${advertisement.photo == null}" th:src="@{/images/default_cat.jpg}"
                  class="mx-auto d-block" alt="this is a photo of the post">
-
+            <img style="height: 25rem;" th:unless="${advertisement.photo == null}" th:src="'/resources/uploads/advertisement/' + ${advert.photo}"
+                 class="mx-auto d-block" alt="this is a photo of the post">
 
             <h1 class="h2" th:text="${advertisement.title}">Name</h1>
             <div class="text-left">
@@ -27,25 +28,25 @@
 
             <div sec:authorize="hasAuthority('ADMIN')">
                 <td >
-                    <a th:href="@{advertisement/deleteAdvert/__${advertisement.id}__}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}" class="btn btn-danger">Delete</a>
                 </td>
             </div>
 
             <div sec:authorize="hasAuthority('USER')">
                 <td >
-                    <a th:href="@{advertisement/order/__${advertisement.id}__}" class="btn btn-danger">Order</a>
+                    <a th:href="@{/advertisement/order/__${advertisement.id}__}" class="btn btn-danger">Order</a>
                 </td>
                 <td >
-                    <a th:href="@{advertisement/response/__${advertisement.id}__}" class="btn btn-danger">Response</a>
+                    <a th:href="@{/advertisement/response/__${advertisement.id}__}" class="btn btn-danger">Response</a>
                 </td>
             </div>
 
             <div sec:authorize="hasAuthority('SELLER')">
                 <td >
-                    <a th:href="@{advertisement/deleteAdvert/__${advertisement.id}__}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}" class="btn btn-danger">Delete</a>
                 </td>
                 <td >
-                    <a th:href="@{advertisement/editAdvert/__${advertisement.id}__}" class="btn btn-danger">Edit</a>
+                    <a th:href="@{/advertisement/editAdvert/__${advertisement.id}__}" class="btn btn-danger">Edit</a>
                 </td>
             </div>
 
