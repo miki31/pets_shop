@@ -20,7 +20,7 @@
 
                 <p th:text="${advertisement.description}">Description</p>
                 <p><td>Category : </td><td><span th:text="${advertisement.category.name}">Category</span></td></p>
-                <p><td>Price : </td><td><span th:text="${advertisement.price}">Price</p></span></td></p>
+                <p><td>Price : </td><td><span th:if="${advertisement.price == null}"> free </span><span th:text="${advertisement.price}">Price</p></span></td></p>
                 <p><td>Posted on : </td><td><span th:text="${advertisement.postedOn}">Posted On</p></span></td></p>
 
             </div>

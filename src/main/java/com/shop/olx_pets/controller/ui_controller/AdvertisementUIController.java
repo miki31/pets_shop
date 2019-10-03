@@ -4,6 +4,7 @@ import com.shop.olx_pets.model.Advertisement;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.service.AdvertisementService;
 import com.shop.olx_pets.service.CategoryService;
+import com.shop.olx_pets.service.LogAdvertisementService;
 import com.shop.olx_pets.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class AdvertisementUIController {
     @Autowired
     @Qualifier("advertisementPhotoPath")
     private String advertPhotoPath;
+
+    @Autowired
+    private LogAdvertisementService logAdvertisementService;
 
     @ModelAttribute("seller")
     public User activeUser(Authentication authentication) {
@@ -148,4 +152,12 @@ public class AdvertisementUIController {
         model.addAttribute("advertisement", advertisement);
         return "description_card";
     }
+
+    @GetMapping("order/{id}")
+    public String order(@PathVariable Long id, Model model,
+                        @ModelAttribute("user") User user){
+        logAdvertisementService.order(user, advertisementService.getOne(id));
+        return "redirect:/description_card";
+    }
+
 }

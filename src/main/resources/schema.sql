@@ -80,6 +80,33 @@ CREATE TABLE advertisement
     FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
+CREATE TABLE logadvertisement
+(
+    id BIGINT AUTO_INCREMENT,
+    user_id BIGINT,
+    advertisement_id BIGINT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=INNODB CHARACTER SET=utf8;
+
+CREATE TABLE logadvertisement_user
+(
+    user_id BIGINT,
+    logadvertisement_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (logadvertisement_id) REFERENCES logadvertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=INNODB CHARACTER SET=utf8;
+
+CREATE TABLE logadvertisement_advertisement
+(
+    advertisement_id BIGINT,
+    logadvertisement_id BIGINT,
+    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (logadvertisement_id) REFERENCES logadvertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=INNODB CHARACTER SET=utf8;
+
+
 CREATE TABLE advertisement_user
 (
     user_id BIGINT,
