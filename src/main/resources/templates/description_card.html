@@ -13,7 +13,8 @@
         <div class="card bg-light border-info mb-3" style="width: 50rem;">
             <img style="height: 15rem;" th:if="${advertisement.photo == null}" th:src="@{/images/default_cat.jpg}"
                  class="mx-auto d-block" alt="this is a photo of the post">
-            <img style="height: 25rem;" th:unless="${advertisement.photo == null}" th:src="'/resources/uploads/advertisement/' + ${advert.photo}"
+            <img style="height: 25rem;" th:unless="${advertisement.photo == null}"
+                 th:src="'/resources/uploads/advertisement/' + ${advertisement.photo}"
                  class="mx-auto d-block" alt="this is a photo of the post">
 
             <h1 class="h2" th:text="${advertisement.title}">Name</h1>
@@ -21,32 +22,41 @@
 
                 <p th:text="${advertisement.description}">Description</p>
                 <p><td>Category : </td><td><span th:text="${advertisement.category.name}">Category</span></td></p>
-                <p><td>Price : </td><td><span th:if="${advertisement.price == null}"> free </span><span th:text="${advertisement.price}">Price</p></span></td></p>
-                <p><td>Posted on : </td><td><span th:text="${advertisement.postedOn}">Posted On</p></span></td></p>
+                <p><td>Price : </td><td><span th:if="${advertisement.price == null}"> free </span>
+                <span th:text="${advertisement.price}">Price</p></span></td></p>
+                <p><td>Posted on : </td><td><span th:text="${advertisement.postedOn}">Posted On</p>
+            </span></td></p>
 
             </div>
 
             <div sec:authorize="hasAuthority('ADMIN')">
                 <td >
-                    <a th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}"
+                       class="btn btn-danger">Delete</a>
                 </td>
             </div>
 
             <div sec:authorize="hasAuthority('USER')">
                 <td >
-                    <a th:href="@{/advertisement/order/__${advertisement.id}__}" class="btn btn-danger">Order</a>
+                    <a th:href="@{/advertisement/order/__${advertisement.id}__}"
+                       class="btn btn-danger">Order</a>
                 </td>
                 <td >
-                    <a th:href="@{/advertisement/response/__${advertisement.id}__}" class="btn btn-danger">Response</a>
+                    <a th:href="@{/advertisement/response/__${advertisement.id}__}"
+                       class="btn btn-danger">Response</a>
                 </td>
             </div>
 
             <div sec:authorize="hasAuthority('SELLER')">
                 <td >
-                    <a th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}" class="btn btn-danger">Delete</a>
+                    <span th:if="${advertisement.seller.id == seller.id}"
+                          th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}"
+                       class="btn btn-danger">Delete</span>
                 </td>
                 <td >
-                    <a th:href="@{/advertisement/editAdvert/__${advertisement.id}__}" class="btn btn-danger">Edit</a>
+                    <span th:if="${advertisement.seller.id == seller.id}"
+                          th:href="@{/advertisement/editAdvert/__${advertisement.id}__}"
+                       class="btn btn-danger">Edit</span>
                 </td>
             </div>
 
