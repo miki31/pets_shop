@@ -38,7 +38,7 @@
 
             <div sec:authorize="hasAuthority('USER')">
                 <td >
-                    <a th:href="@{/advertisement/order/__${advertisement.id}__}"
+                    <a th:href="@{/user/order/(adId=${advertisement.id})}"
                        class="btn btn-danger">Order</a>
                 </td>
                 <td >

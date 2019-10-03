@@ -19,9 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Controller
 @RequestMapping("/advertisement")
@@ -40,9 +38,6 @@ public class AdvertisementUIController {
     @Autowired
     @Qualifier("advertisementPhotoPath")
     private String advertPhotoPath;
-
-    @Autowired
-    private LogAdvertisementService logAdvertisementService;
 
     @ModelAttribute("seller")
     public User activeUser(Authentication authentication) {
@@ -151,13 +146,6 @@ public class AdvertisementUIController {
         Advertisement advertisement = advertisementService.getOne(id);
         model.addAttribute("advertisement", advertisement);
         return "description_card";
-    }
-
-    @GetMapping("order/{id}")
-    public String order(@PathVariable Long id, Model model,
-                        @ModelAttribute("user") User user){
-        logAdvertisementService.order(user, advertisementService.getOne(id));
-        return "redirect:/description_card";
     }
 
 }

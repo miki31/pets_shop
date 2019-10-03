@@ -69,6 +69,7 @@ CREATE TABLE advertisement
 (
     id BIGINT AUTO_INCREMENT,
     seller_id BIGINT,
+    buyer_id BIGINT,
     title VARCHAR(50),
     category_id BIGINT,
     description TEXT,
@@ -77,24 +78,25 @@ CREATE TABLE advertisement
     posted_on DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (seller_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
 CREATE TABLE logadvertisement
 (
     id BIGINT AUTO_INCREMENT,
-    user_id BIGINT,
+    buyer_id BIGINT,
     advertisement_id BIGINT,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
 CREATE TABLE logadvertisement_user
 (
-    user_id BIGINT,
+    buyer_id BIGINT,
     logadvertisement_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (logadvertisement_id) REFERENCES logadvertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
 

@@ -12,7 +12,7 @@ public class Logadvertisement {
     @GeneratedValue
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    private User user;
+    private User buyer;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Advertisement advertisement;
 }

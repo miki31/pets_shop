@@ -24,6 +24,10 @@ public class Advertisement {
     @JoinColumn(name = "seller_id", nullable = false, referencedColumnName = "id")
     private User seller;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "buyer_id", nullable = false, referencedColumnName = "id")
+    private User buyer;
+
     private String title;   // name
     private String description;
     private Double price;

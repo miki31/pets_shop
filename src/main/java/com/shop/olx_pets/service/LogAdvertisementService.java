@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class LogAdvertisementService {
@@ -17,9 +18,9 @@ public class LogAdvertisementService {
     private LogAdvertisementRepository logAdvertisementRepository;
 
 
-    public Logadvertisement order(User user, Advertisement advertisement) {
+    public Logadvertisement order(User buyer, Advertisement advertisement) {
         Logadvertisement logAdvertisement = new Logadvertisement();
-        logAdvertisement.setUser(user);
+        logAdvertisement.setBuyer(buyer);
         logAdvertisement.setAdvertisement(advertisement);
         return logAdvertisementRepository.save(logAdvertisement);
     }
