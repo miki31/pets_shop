@@ -123,10 +123,9 @@ public class AdvertisementUIController {
     }
 
     @GetMapping("/deleteAdvert/{id}")
-    public String deleteAdvertisement(@PathVariable("id") Long id,
-            Model model){
+    public String deleteAdvertisement(@PathVariable("id") Long id){
        advertisementService.delete(id);
-        return "redirect:/seller/seller_home";
+        return "redirect:/";
     }
 
     // TODO: this method only for testing

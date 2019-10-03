@@ -49,14 +49,14 @@
 
             <div sec:authorize="hasAuthority('SELLER')">
                 <td >
-                    <span th:if="${advertisement.seller.id == seller.id}"
-                          th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}"
-                       class="btn btn-danger">Delete</span>
+                    <span th:if="${advertisement.seller.id == seller.id}">
+                    <a th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}"
+                       class="btn btn-danger">Delete</a></span>
                 </td>
                 <td >
-                    <span th:if="${advertisement.seller.id == seller.id}"
-                          th:href="@{/advertisement/editAdvert/__${advertisement.id}__}"
-                       class="btn btn-danger">Edit</span>
+                    <span th:if="${advertisement.seller.id == seller.id}">
+                          <a th:href="@{/advertisement/editAdvert/__${advertisement.id}__}"
+                             class="btn btn-danger">Edit</a></span>
                 </td>
             </div>
 
