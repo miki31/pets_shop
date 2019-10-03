@@ -109,19 +109,19 @@ public class AdvertisementUIController {
         return "home";
     }
 
-    @GetMapping("/editAdvert/{id}")
+    @GetMapping("/editAdvert")
     public String editAdvertisement(
-            @PathVariable("id") Long id,
+            @RequestParam Long adId,
             Model model
     ){
-        Advertisement advertisement = advertisementService.getOne(id);
+        Advertisement advertisement = advertisementService.getOne(adId);
 
         model.addAttribute("advertisement", advertisement);
         model.addAttribute("categories", categoryService.findAll());
 
         return "seller/edit_advertisement";
     }
-
+    
     @GetMapping("/deleteAdvert/{id}")
     public String deleteAdvertisement(@PathVariable("id") Long id){
        advertisementService.delete(id);

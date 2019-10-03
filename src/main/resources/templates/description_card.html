@@ -55,7 +55,7 @@
                 </td>
                 <td >
                     <span th:if="${advertisement.seller.id == seller.id}">
-                          <a th:href="@{/advertisement/editAdvert/__${advertisement.id}__}"
+                          <a th:href="@{/advertisement/editAdvert/(adId=${advertisement.id})}"
                              class="btn btn-danger">Edit</a></span>
                 </td>
             </div>
