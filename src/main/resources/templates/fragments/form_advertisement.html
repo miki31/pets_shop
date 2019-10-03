@@ -9,7 +9,7 @@
 <body>
 
 <div th:fragment="form_edit_advert">
-    <input th:if="${id} != null"
+    <input th:if="*{id} != null"
             hidden type="text"
             class="form-control"
             th:field="*{id}"/>
