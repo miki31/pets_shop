@@ -3,6 +3,7 @@ package com.shop.olx_pets.service;
 import com.shop.olx_pets.model.Advertisement;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.AdvertisementRepository;
+import com.shop.olx_pets.repository.LogAdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -16,6 +17,9 @@ import java.util.Random;
 public class AdvertisementService {
     @Autowired
     private AdvertisementRepository advertisementRepository;
+
+    @Autowired
+    private LogAdvertisementRepository logAdvertisementRepository;
 
     public List<Advertisement> findAll(){
         return advertisementRepository.findAll();
@@ -38,6 +42,11 @@ public class AdvertisementService {
 //        List<Advertisement> allTaken = advertisementRepository.findNotReturned();
 //        advertisementList.removeAll(allTaken);
         return advertisementList;
+    }
+
+    public List<Advertisement> getOrderByUser(Long buyerId) {
+        List<Advertisement> advertisements= logAdvertisementRepository.findOrderByUser(buyerId);
+        return advertisements;
     }
 
     public Advertisement randomAd() {

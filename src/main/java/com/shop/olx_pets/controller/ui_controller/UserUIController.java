@@ -62,4 +62,15 @@ public class UserUIController {
         logAdvertisementService.order(buyer, advertisementService.getOne(adId));
         return "redirect:/user/user_home";
     }
+
+    @GetMapping("/myOrders")
+    public String getTaken(@ModelAttribute("buyer") User buyer,
+                           Model model
+    ) {
+//        model.addAttribute("adlogs", logAdvertisementService.
+//                findByBuyerId(buyer.getId()));
+        model.addAttribute("adlogs", advertisementService.getOrderByUser(buyer.getId()));
+
+        return "user/my_orders";
+    }
 }

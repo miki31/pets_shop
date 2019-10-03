@@ -92,7 +92,7 @@ CREATE TABLE logadvertisement
     FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
-CREATE TABLE logadvertisement_user
+CREATE TABLE logadvertisement_buyer
 (
     buyer_id BIGINT,
     logadvertisement_id BIGINT,

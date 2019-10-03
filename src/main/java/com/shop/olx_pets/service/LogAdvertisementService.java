@@ -25,4 +25,7 @@ public class LogAdvertisementService {
         return logAdvertisementRepository.save(logAdvertisement);
     }
 
+    public List<Logadvertisement> findByBuyerId(Long id) {
+        return logAdvertisementRepository.findByBuyer(id);
+    }
 }

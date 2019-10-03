@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<div align="center">
+
+    <form      th:action="@{/user/myOrders}"
+               th:object="${adlogs}" method="GET">
+        <table border="2" cellpadding="5">
+            <thead>
+            <th>Title</th>
+            <th>Seller</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>PostedOn</th>
+
+            </thead>
+            <tbody>
+            <tr th:if="${adlogs.isEmpty()}">
+                <td colspan="2"> No orders </td>
+            </tr>
+            <tr th:each="a : ${adlogs}">
+                <td th:text="${a.title}"></td>
+                <td th:text="${a.seller.firstName}"></td>
+                <td th:text="${a.category.name}"></td>
+                <td th:text="${a.price}"></td>
+                <td th:text="${a.postedOn}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+</div>
+
+</div>
+
+<nav th:replace="base-layout :: footer"></nav>
+
+</body>
+</html>
