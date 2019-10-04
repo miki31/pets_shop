@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -23,6 +24,40 @@ public class AdvertisementService {
 
     public List<Advertisement> findAll(){
         return advertisementRepository.findAll();
+    }
+
+    public List<Advertisement> findAll(User seller){
+        return advertisementRepository.findBySeller(seller);
+    }
+
+    public List<Advertisement> littleList(int sizeList){
+        List<Advertisement> advertisements = findAll();
+        return littleList(sizeList, advertisements);
+    }
+
+    public List<Advertisement> littleList(int sizeList, User seller){
+        List<Advertisement> advertisements = findAll(seller);
+        return littleList(sizeList, advertisements);
+    }
+
+    private List<Advertisement> littleList(int sizeList, List<Advertisement> advertisements){
+        List<Advertisement> returnAdvertisements = new ArrayList<>();
+
+        if (advertisements.size() == 0){
+            return null;
+        }
+
+        Random r = new Random();
+        for (int i = 0; i < sizeList; i++) {
+            int j = r.nextInt(advertisements.size());
+            Advertisement advertisement = advertisements.get(j);
+            advertisements.remove(j);
+            returnAdvertisements.add(advertisement);
+            if (advertisements.size() == 0){
+                break;
+            }
+        }
+        return returnAdvertisements;
     }
 
     public Advertisement getOne(Long id) {

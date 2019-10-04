@@ -8,16 +8,14 @@
 
 <body>
 
-<!--TODO put all cards in next teg-->
-<div >
 
-    <div class="row"  th:fragment="list_of_adverts">
-    <!--    <tr th:each="p : ${pets}">-->
-        <div th:each="advert : ${advertisements}" style="margin: 3px">
+<div class="row"  th:fragment="list_of_adverts">
+<!--    <tr th:each="p : ${pets}">-->
+    <div th:each="advert : ${advertisements}" style="margin: 3px">
         <nav th:replace="fragments/card_advertisement :: card_advert"></nav>
     </div>
-    </div>
 </div>
+
 
 
 </body>
