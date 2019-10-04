@@ -46,8 +46,8 @@ public class AdvertisementUIController {
 
     @GetMapping("/all")
     public String findAll(Model model) {
-        model.addAttribute("ads", advertisementService.findAll());
-        return "ads";
+        model.addAttribute("advertisements", advertisementService.findAll());
+        return "fragments/list_advertisements";
     }
 
     @GetMapping("/create")
