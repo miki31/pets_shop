@@ -19,4 +19,7 @@ public interface LogAdvertisementRepository extends JpaRepository<Logadvertiseme
     @Query("SELECT l.advertisement from Logadvertisement l where l.buyer.id = :buyerId")
     List<Advertisement> findOrderByUser(Long buyerId);
 
+    @Query("SELECT l.advertisement from Logadvertisement l where l.advertisement.id = :advertisementId")
+    List<Advertisement> findOrderByAdvertisement();
+
 }

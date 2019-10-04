@@ -1,7 +1,7 @@
 package com.shop.olx_pets.service;
 
 import com.shop.olx_pets.model.Advertisement;
-import com.shop.olx_pets.model.User;
+import com.shop.olx_pets.model.Logadvertisement;
 import com.shop.olx_pets.repository.AdvertisementRepository;
 import com.shop.olx_pets.repository.LogAdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -21,7 +22,7 @@ public class AdvertisementService {
     @Autowired
     private LogAdvertisementRepository logAdvertisementRepository;
 
-    public List<Advertisement> findAll(){
+    public List<Advertisement> findAll() {
         return advertisementRepository.findAll();
     }
 
@@ -45,8 +46,49 @@ public class AdvertisementService {
     }
 
     public List<Advertisement> getOrderByUser(Long buyerId) {
-        List<Advertisement> advertisements= logAdvertisementRepository.findOrderByUser(buyerId);
+        List<Advertisement> advertisements = logAdvertisementRepository.findOrderByUser(buyerId);
         return advertisements;
+    }
+
+
+    public List<Advertisement> getOrders() {
+        List<Advertisement> advertisements = logAdvertisementRepository.findOrderByAdvertisement();
+        return advertisements;
+    }
+
+    public List<Logadvertisement> ordersFromUsers(Long sellerId) {
+        List<Advertisement> advertisements = advertisementRepository.findAll();
+        List<Advertisement> advertisementsMy = new ArrayList<>();
+        for (int i = 0; i < advertisements.size(); i++) {
+            if (advertisements.get(i).getSeller().getId() == sellerId) {
+                advertisementsMy.add(advertisements.get(i));
+            }
+        }
+
+        List<Advertisement> advertisements1 = new ArrayList<>();
+        List<Logadvertisement> logadvertisements = logAdvertisementRepository.findAll();
+        for (int y = 0; y < logadvertisements.size(); y++) {
+            advertisements1.add(logadvertisements.get(y).getAdvertisement());
+        }
+        List<Advertisement> last = new ArrayList<>(advertisements1);
+        last.retainAll(advertisementsMy);
+
+//        logadvertisements.removeIf(logadvertisement -> (!logadvertisement.getAdvertisement().equals(last)));
+
+//        List<Logadvertisement> orderMy = new ArrayList<>(logadvertisements);
+//        orderMy.stream().filter(logadvertisement -> logadvertisement.getAdvertisement().getId().equals(last));
+
+        List<Logadvertisement> orderMy = new ArrayList<>();
+
+        for (int p = 0; p < last.size(); p++) {
+            for (int j = 0; j < logadvertisements.size(); j++) {
+                if (logadvertisements.get(j).getAdvertisement() == last.get(p)) {
+                    orderMy.add(logadvertisements.get(j));
+                }
+            }
+        }
+
+        return orderMy;
     }
 
     public Advertisement randomAd() {
@@ -60,7 +102,7 @@ public class AdvertisementService {
 //        return advertisementRepository.findByUsersIdAndReturnedIsNull(id);
 //    }
 
-    public Advertisement createUpdate(Advertisement advertisement){
+    public Advertisement createUpdate(Advertisement advertisement) {
         Advertisement toSave =
                 advertisement.getId() == null ?
                         createAdvertisement(advertisement) :
@@ -76,19 +118,19 @@ public class AdvertisementService {
          *  For example, the ability to cancel a price for a product
          */
 
-        if (!StringUtils.isEmpty(advertisement.getTitle())){
+        if (!StringUtils.isEmpty(advertisement.getTitle())) {
             origin.setTitle(advertisement.getTitle());
         }
 
-        if (!StringUtils.isEmpty(advertisement.getDescription())){
+        if (!StringUtils.isEmpty(advertisement.getDescription())) {
             origin.setDescription(advertisement.getDescription());
         }
 
-        if (!StringUtils.isEmpty(advertisement.getPrice())){
+        if (!StringUtils.isEmpty(advertisement.getPrice())) {
             origin.setPrice(advertisement.getPrice());
         }
 
-        if (!StringUtils.isEmpty(advertisement.getPhoto())){
+        if (!StringUtils.isEmpty(advertisement.getPhoto())) {
             origin.setPhoto(advertisement.getPhoto());
         }
 
@@ -100,7 +142,7 @@ public class AdvertisementService {
 //        }
         origin.setPostedOn(updateDay(origin));
 
-        if (!StringUtils.isEmpty(advertisement.getCategory())){
+        if (!StringUtils.isEmpty(advertisement.getCategory())) {
             origin.setCategory(advertisement.getCategory());
         }
 
@@ -117,7 +159,7 @@ public class AdvertisementService {
 
 
     //TODO: WHY???  I can't find another solution to fix this problem
-    private LocalDate updateDay(Advertisement advertisement){
+    private LocalDate updateDay(Advertisement advertisement) {
         LocalDate localDate = advertisement.getPostedOn();
         return localDate.plusDays(1);
     }

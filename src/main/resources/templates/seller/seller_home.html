@@ -13,11 +13,18 @@
         <h1>Create your ad. Sell ​​ads. Make the world a better place.</h1>
     </div>
     <div class="pb-5">
-        <div  class="row">
+        <div class="row">
             <div class="col">
                 <input type="button" class="btn btn-primary btn-lg btn-block"
                        onclick="location.href='/advertisement/create';" value="Create my advertisement"/>
             </div>
+            <div class="col">
+                <input type="button" class="btn btn-primary btn-lg btn-block"
+                       onclick="location.href='/seller/ordersFromUsers';" value="View purchase requests"/>
+            </div>
+        </div>
+        <h1></h1>
+        <div class="row">
             <div class="col">
                 <input type="button" class="btn btn-primary btn-lg btn-block"
                        onclick="location.href='/advertisement/myAll';" value="View my advertisements"/>
@@ -27,11 +34,12 @@
                        onclick="location.href='/advertisement/all';" value="View all advertisements"/>
             </div>
         </div>
-</div>
+    </div>
+
 
 <!--TODO create more advertisements (2-3)-->
 <nav th:replace="fragments/card_advertisement :: card_advert"></nav>
-
+</div>
 <nav th:replace="base-layout :: footer"></nav>
 
 </div>
