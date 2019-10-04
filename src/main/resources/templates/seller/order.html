@@ -1,11 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base-layout :: header">
 
 </head>
 <body>
 
 <nav th:replace="base-layout :: top_navbar"></nav>
+
+<div align="center">
+    <h1>Hello SELLER!!!</h1>
+    <h1>Please, choose someone who will receive a pet</h1>
+    <form th:action="@{/seller/ordersFromUsers}"
+          th:object="${adlogs}" method="GET">
+        <table border="2" cellpadding="5">
+            <thead>
+            <th>Title</th>
+            <th>Buyer</th>
+            <th>Buyer`s email</th>
+            <th>YES</th>
+            <th>NO</th>
+
+            <!--TODO create confirmed or not-->
+            </thead>
+            <tbody>
+            <tr th:if="${adlogs.isEmpty()}">
+                <td colspan="2"> No request</td>
+            </tr>
+            <tr th:each="a : ${adlogs}">
+                <td th:text="${a.getAdvertisement().title}"></td>
+                <td th:text="${a.getBuyer().firstName}"></td>
+                <td th:text="${a.getBuyer().email}"></td>
+                <td >
+                    <a th:href="@{seller/request/__${a.id}__}" class="btn btn-danger">Yes</a>
+                </td>
+                <td >
+                    <a th:href="@{seller/request/__${a.id}__}" class="btn btn-danger">No</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+</div>
+
+</div>
 
 <nav th:replace="base-layout :: footer"></nav>
 
