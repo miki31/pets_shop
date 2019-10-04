@@ -38,4 +38,6 @@ public class SellerUIController {
         model.addAttribute("myAdvert", advertisementService.littleList(33, seller));
         return "seller/seller_home";
     }
+
+//    @GetMapping("/all")
 }

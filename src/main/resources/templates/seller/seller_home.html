@@ -24,17 +24,20 @@
             </div>
 <!--            <tr th:each="p : ${pets}">-->
 <!--            th:with="advertisements=${myAdvert}"-->
-            <div th:with="advertisements=${allAdvert}" style="margin: 5px">
+            <div th:with="advertisements=${myAdvert}" style="margin: 5px">
                 <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
             </div>
 
 
             <div style="margin: 5px">
-                <input type="button" class="btn btn-primary btn-lg btn-block"
-                       onclick="location.href='/advertisement/all';" value="View all advertisements"/>
+                <a class="btn btn-primary btn-lg btn-block"
+                       th:href="@{/advertisement/all/(page=1,sizeList=10)}"
+                        role="button">View all advertisements</a>
+<!--                       onclick="location.href='/advertisement/all';" -->
+
             </div>
 
-            <div th:with="advertisements=${myAdvert}" style="margin: 5px">
+            <div th:with="advertisements=${allAdvert}" style="margin: 5px">
                 <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
             </div>
 

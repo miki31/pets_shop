@@ -44,7 +44,7 @@ public class AdvertisementService {
         List<Advertisement> returnAdvertisements = new ArrayList<>();
 
         if (advertisements.size() == 0){
-            return null;
+            return returnAdvertisements;
         }
 
         Random r = new Random();
@@ -59,6 +59,34 @@ public class AdvertisementService {
         }
         return returnAdvertisements;
     }
+
+    public List<Advertisement> bigList(int page, int sizeList){
+        List<Advertisement> advertisements = findAll();
+        return bigList(page, sizeList, advertisements);
+    }
+
+    public List<Advertisement> bigList(int page, int sizeList, User seller){
+        List<Advertisement> advertisements = findAll(seller);
+        return bigList(page, sizeList, advertisements);
+    }
+
+    private List<Advertisement> bigList(int page, int sizeList, List<Advertisement> advertisements){
+        List<Advertisement> returnAdvertisements = new ArrayList<>();
+
+        if (advertisements.size() == 0){
+            return returnAdvertisements;
+        }
+
+        for (int i = (page - 1)*sizeList; i < page * sizeList; i++) {
+            if (i >= advertisements.size()){
+                break;
+            }
+            returnAdvertisements.add(advertisements.get(i));
+        }
+        return returnAdvertisements;
+    }
+
+
 
     public Advertisement getOne(Long id) {
         return advertisementRepository.findById(id).orElse(null);

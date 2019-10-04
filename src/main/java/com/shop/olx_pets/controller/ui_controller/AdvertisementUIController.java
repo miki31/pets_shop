@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Id;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
@@ -45,9 +46,12 @@ public class AdvertisementUIController {
     }
 
     @GetMapping("/all")
-    public String findAll(Model model) {
-        model.addAttribute("advertisements", advertisementService.findAll());
-        return "fragments/list_advertisements";
+    public String findAll(Model model,
+                          @RequestParam Integer page,
+                          @RequestParam Integer sizeList
+                          ) {
+        model.addAttribute("advertisements", advertisementService.bigList(page,sizeList));
+        return "seller/seller_list_all_advertisements";
     }
 
     @GetMapping("/create")

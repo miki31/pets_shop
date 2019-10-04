@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<h2>All ADVERTISEMENTS</h2>
+
+<div th:replace="fragments/list_advertisements_pages :: list_of_adverts_pages">
+
+
+<nav th:replace="base-layout :: footer"></nav>
+
+</div>
+</body>
+</html>
