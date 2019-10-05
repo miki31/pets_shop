@@ -31,7 +31,8 @@
                 <td th:text="${p.description}"></td>
                 <td th:text="${p.postedOn}"></td>
                 <td >
-                    <a th:href="@{user/takePet/__${p.id}__}" class="btn btn-danger">Choose</a>
+                    <a th:href="@{/user/order/(adId=${p.id})}"
+                       class="btn btn-danger">Choose</a>
                 </td>
             </tr>
             </tbody>
@@ -42,7 +43,7 @@
 
     <input type="button" onclick="location.href='/user/available';"
            th:value="PetsAvailable" value="The list available advertisements"/>
-    <input type="button" onclick="location.href='/user/taken';"
+    <input type="button" onclick="location.href='/user/myOrders';"
            th:value="PetsTaken" value="The list taken advertisements"/>
 
 </div>

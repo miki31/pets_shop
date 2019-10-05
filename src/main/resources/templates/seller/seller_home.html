@@ -29,11 +29,17 @@
                 <input type="button" class="btn btn-primary btn-lg btn-block"
                        onclick="location.href='/advertisement/myAll';" value="View my advertisements"/>
             </div>
+            <h1></h1>
+            <div class="col">
+                <input type="button" class="btn btn-primary btn-lg btn-block"
+                       onclick="location.href='/seller/myGoodShopping';" value="View all that you sold"/>
+            </div>
+
 <!--            <tr th:each="p : ${pets}">-->
 <!--            th:with="advertisements=${myAdvert}"-->
-            <div th:with="advertisements=${myAdvert}" style="margin: 5px">
-                <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
-            </div>
+<!--            <div th:with="advertisements=${myAdvert}" style="margin: 5px">-->
+<!--                <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>-->
+<!--            </div>-->
 
 
             <div style="margin: 5px">
@@ -48,11 +54,7 @@
                 <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
             </div>
         </div>
-        <h1></h1>
-        <div class="col">
-            <input type="button" class="btn btn-primary btn-lg btn-block"
-                   onclick="location.href='/seller/myGoodShopping';" value="View all that you sold"/>
-        </div>
+
     </div>
 
 
