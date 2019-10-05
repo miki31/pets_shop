@@ -2,6 +2,7 @@ package com.shop.olx_pets.controller.ui_controller;
 
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.service.AdvertisementService;
+import com.shop.olx_pets.service.GoodShoppingService;
 import com.shop.olx_pets.service.LogAdvertisementService;
 import com.shop.olx_pets.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class UserUIController {
 
     @Autowired
     private LogAdvertisementService logAdvertisementService;
+
+    @Autowired
+    private GoodShoppingService goodShoppingService;
 
     @ModelAttribute("buyer")
     public User activeUser(Authentication authentication) {
@@ -70,6 +74,15 @@ public class UserUIController {
 //        model.addAttribute("adlogs", logAdvertisementService.
 //                findByBuyerId(buyer.getId()));
         model.addAttribute("adlogs", advertisementService.getOrderByUser(buyer.getId()));
+
+        return "user/my_orders";
+    }
+
+    @GetMapping(value = "/myGoodShopping")
+    public String goodShopping(@ModelAttribute("buyer") User buyer,
+                               Model model
+    ) {
+        model.addAttribute("adlogs", goodShoppingService.getOrderByBuyer(buyer.getId()));
 
         return "user/my_orders";
     }

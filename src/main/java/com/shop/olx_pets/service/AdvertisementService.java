@@ -2,6 +2,7 @@ package com.shop.olx_pets.service;
 
 import com.shop.olx_pets.model.Advertisement;
 import com.shop.olx_pets.model.Logadvertisement;
+import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.AdvertisementRepository;
 import com.shop.olx_pets.repository.LogAdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class AdvertisementService {
         return advertisements;
     }
 
-    public List<Logadvertisement> ordersFromUsers(Long sellerId) {
+    public List<Advertisement> findSellerById(Long sellerId) {
         List<Advertisement> advertisements = advertisementRepository.findAll();
         List<Advertisement> advertisementsMy = new ArrayList<>();
         for (int i = 0; i < advertisements.size(); i++) {
@@ -64,6 +65,11 @@ public class AdvertisementService {
                 advertisementsMy.add(advertisements.get(i));
             }
         }
+        return advertisementsMy;
+    }
+
+    public List<Logadvertisement> ordersFromUsers(Long sellerId) {
+       List<Advertisement> advertisements = findSellerById(sellerId);
 
         List<Advertisement> advertisements1 = new ArrayList<>();
         List<Logadvertisement> logadvertisements = logAdvertisementRepository.findAll();
@@ -71,12 +77,7 @@ public class AdvertisementService {
             advertisements1.add(logadvertisements.get(y).getAdvertisement());
         }
         List<Advertisement> last = new ArrayList<>(advertisements1);
-        last.retainAll(advertisementsMy);
-
-//        logadvertisements.removeIf(logadvertisement -> (!logadvertisement.getAdvertisement().equals(last)));
-
-//        List<Logadvertisement> orderMy = new ArrayList<>(logadvertisements);
-//        orderMy.stream().filter(logadvertisement -> logadvertisement.getAdvertisement().getId().equals(last));
+        last.retainAll(advertisements);
 
         List<Logadvertisement> orderMy = new ArrayList<>();
 

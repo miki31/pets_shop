@@ -18,7 +18,7 @@
             <th>Buyer</th>
             <th>Buyer`s email</th>
             <th>YES</th>
-            <th>NO</th>
+<!--            <th>NO</th>-->
 
             <!--TODO create confirmed or not-->
             </thead>
@@ -31,11 +31,12 @@
                 <td th:text="${a.getBuyer().firstName}"></td>
                 <td th:text="${a.getBuyer().email}"></td>
                 <td >
-                    <a th:href="@{seller/request/__${a.id}__}" class="btn btn-danger">Yes</a>
+                    <a th:href="@{/seller/request/(id=${a.id})}" class="btn btn-danger">Yes</a>
                 </td>
-                <td >
-                    <a th:href="@{seller/request/__${a.id}__}" class="btn btn-danger">No</a>
-                </td>
+                <!--  TODO: create confirmation -->
+<!--                <td >-->
+<!--                    <a th:href="@{seller/request/__${a.id}__}" class="btn btn-danger">No</a>-->
+<!--                </td>-->
             </tr>
             </tbody>
         </table>
