@@ -6,8 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import java.util.List;
+
 @Repository
 public interface AdvertisementRepository extends JpaRepository <Advertisement, Long> {
+    List<Advertisement> findBySeller(User seller);
 
     List<Advertisement> findBySeller(Long sellerId);
 

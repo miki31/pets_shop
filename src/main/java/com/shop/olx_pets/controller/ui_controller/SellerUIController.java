@@ -5,6 +5,7 @@ import com.shop.olx_pets.service.AdvertisementService;
 import com.shop.olx_pets.service.GoodShoppingService;
 import com.shop.olx_pets.service.LogAdvertisementService;
 import com.shop.olx_pets.service.UserService;
+import com.shop.olx_pets.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -43,12 +44,14 @@ public class SellerUIController {
 
     @GetMapping(value = {"/seller_home"})
     public String home(Model model) {
-//        List<Advertisement> advertisements = new ArrayList<>();
-//        advertisements.add(advertisementService.randomAd());
+        model.addAttribute("allAdvert", advertisementService.littleList(33));
 
-        model.addAttribute("advert", advertisementService.randomAd());
+        User seller = activeUser(SecurityContextHolder.getContext().getAuthentication());
+        model.addAttribute("myAdvert", advertisementService.littleList(33, seller));
         return "seller/seller_home";
     }
+
+//    @GetMapping("/all")
 
     @GetMapping("/ordersFromUsers")
     public String getTaken(@ModelAttribute("seller") User seller,

@@ -27,6 +27,68 @@ public class AdvertisementService {
         return advertisementRepository.findAll();
     }
 
+    public List<Advertisement> findAll(User seller){
+        return advertisementRepository.findBySeller(seller);
+    }
+
+    public List<Advertisement> littleList(int sizeList){
+        List<Advertisement> advertisements = findAll();
+        return littleList(sizeList, advertisements);
+    }
+
+    public List<Advertisement> littleList(int sizeList, User seller){
+        List<Advertisement> advertisements = findAll(seller);
+        return littleList(sizeList, advertisements);
+    }
+
+    private List<Advertisement> littleList(int sizeList, List<Advertisement> advertisements){
+        List<Advertisement> returnAdvertisements = new ArrayList<>();
+
+        if (advertisements.size() == 0){
+            return returnAdvertisements;
+        }
+
+        Random r = new Random();
+        for (int i = 0; i < sizeList; i++) {
+            int j = r.nextInt(advertisements.size());
+            Advertisement advertisement = advertisements.get(j);
+            advertisements.remove(j);
+            returnAdvertisements.add(advertisement);
+            if (advertisements.size() == 0){
+                break;
+            }
+        }
+        return returnAdvertisements;
+    }
+
+    public List<Advertisement> bigList(int page, int sizeList){
+        List<Advertisement> advertisements = findAll();
+        return bigList(page, sizeList, advertisements);
+    }
+
+    public List<Advertisement> bigList(int page, int sizeList, User seller){
+        List<Advertisement> advertisements = findAll(seller);
+        return bigList(page, sizeList, advertisements);
+    }
+
+    private List<Advertisement> bigList(int page, int sizeList, List<Advertisement> advertisements){
+        List<Advertisement> returnAdvertisements = new ArrayList<>();
+
+        if (advertisements.size() == 0){
+            return returnAdvertisements;
+        }
+
+        for (int i = (page - 1)*sizeList; i < page * sizeList; i++) {
+            if (i >= advertisements.size()){
+                break;
+            }
+            returnAdvertisements.add(advertisements.get(i));
+        }
+        return returnAdvertisements;
+    }
+
+
+
     public Advertisement getOne(Long id) {
         return advertisementRepository.findById(id).orElse(null);
     }
