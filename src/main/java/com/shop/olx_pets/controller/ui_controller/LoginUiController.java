@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -54,33 +55,26 @@ public class LoginUiController implements WebMvcConfigurer {
     @GetMapping("/registration")
     public String registration(Model model) {
         User user = new User();
+        HashSet<Role> roles = new HashSet<>();
+        roles.add(roleService.findByName("USER"));
+
+        user.setRoles(roles);
         model.addAttribute("user", user);
-        model.addAttribute("roles", roleService.findAll());
+        List<Role> allRoles = roleService.findAll();
+        allRoles.remove(roleService.findByName("ADMIN"));
+        model.addAttribute("rolesList", allRoles);
         return "registration";
     }
 
-    @PostMapping("/registration/user")
-    public String createNewUser(@Valid User user, BindingResult bindingResult, Model model) {
-
-        System.out.println(user.getBirthday());
-        return createNewPerson(user, bindingResult, model, "USER");
-    }
-
-    @PostMapping("/registration/seller")
-    public String createNewSeller(@Valid User user, BindingResult bindingResult, Model model) {
-        return createNewPerson(user, bindingResult, model, "SELLER");
-    }
-
-    public String createNewPerson(@Valid User user, BindingResult bindingResult, Model model, String role) {
-        // todo: add form validation on empty fields, and use message String
+    @PostMapping("/registration")
+    public String createUser(Model model,
+                             @Valid User user,
+                             BindingResult bindingResult){
 
         if (bindingResult.hasErrors() || userExists(user, bindingResult))  {
             return "registration";
         }
 
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleService.findByName(role));
-        user.setRoles(roles);
         user = userService.createUpdate(user);
 
         model.addAttribute("successMessage", SUCCESSFULLY_REGISTERED_MESSAGE);
