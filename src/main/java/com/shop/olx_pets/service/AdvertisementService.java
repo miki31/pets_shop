@@ -61,17 +61,15 @@ public class AdvertisementService {
         return returnAdvertisements;
     }
 
-    public List<Advertisement> bigList(int page, int sizeList){
-        List<Advertisement> advertisements = findAll();
+    public List<Advertisement> bigList(int page, int sizeList, List<Advertisement> advertisements){
+        return partOfBigList(page, sizeList, advertisements);
+    }
+
+    public List<Advertisement> bigList(int page, int sizeList, User seller, List<Advertisement> advertisements){
         return bigList(page, sizeList, advertisements);
     }
 
-    public List<Advertisement> bigList(int page, int sizeList, User seller){
-        List<Advertisement> advertisements = findAll(seller);
-        return bigList(page, sizeList, advertisements);
-    }
-
-    private List<Advertisement> bigList(int page, int sizeList, List<Advertisement> advertisements){
+    private List<Advertisement> partOfBigList(int page, int sizeList, List<Advertisement> advertisements){
         List<Advertisement> returnAdvertisements = new ArrayList<>();
 
         if (advertisements.size() == 0){

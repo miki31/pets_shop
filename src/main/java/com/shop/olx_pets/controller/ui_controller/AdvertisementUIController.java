@@ -20,6 +20,8 @@ import javax.persistence.Id;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -50,7 +52,31 @@ public class AdvertisementUIController {
                           @RequestParam Integer page,
                           @RequestParam Integer sizeList
                           ) {
-        model.addAttribute("advertisements", advertisementService.bigList(page,sizeList));
+        List<Advertisement> advertisements = advertisementService.findAll();
+        model.addAttribute("advertisements", advertisementService.bigList(page,sizeList, advertisements));
+
+        Integer pages = advertisements.size()%sizeList == 0 ?
+                advertisements.size()/sizeList :
+                advertisements.size()/sizeList + 1;
+
+        List<Integer> pagesList = new ArrayList<>();
+
+        // CODE for "Previous" page
+        pagesList.add(0);
+
+        for (int i = 1; i <= pages; i++) {
+            // # for page with some advertisements
+            pagesList.add(i);
+        }
+
+        // CODE for "Next" page
+        pagesList.add(-1);
+
+        model.addAttribute("pagesList", pagesList);
+        model.addAttribute("pages", pages);
+        model.addAttribute("sizeList", sizeList);
+        model.addAttribute("page", page);
+
         return "seller/seller_list_all_advertisements";
     }
 
