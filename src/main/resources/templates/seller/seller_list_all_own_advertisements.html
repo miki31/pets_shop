@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<h2>All OWN ADVERTISEMENTS</h2>
+
+<div th:replace="fragments/list_advertisements_pages :: list_of_adverts_pages"></div>
+
+<nav th:replace="base-layout :: footer"></nav>
+
+</body>
+</html>

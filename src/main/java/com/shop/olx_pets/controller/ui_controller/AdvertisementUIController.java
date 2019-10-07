@@ -80,6 +80,41 @@ public class AdvertisementUIController {
         return "seller/seller_list_all_advertisements";
     }
 
+    @GetMapping("/allSellersAdvert")
+    public String findAllForSeller(Model model,
+                          @RequestParam Integer page,
+                          @RequestParam Integer sizeList
+    ) {
+        User seller = activeUser(SecurityContextHolder.getContext().getAuthentication());
+
+        List<Advertisement> advertisements = advertisementService.findAll(seller);
+        model.addAttribute("advertisements", advertisementService.bigList(page,sizeList, advertisements));
+
+        Integer pages = advertisements.size()%sizeList == 0 ?
+                advertisements.size()/sizeList :
+                advertisements.size()/sizeList + 1;
+
+        List<Integer> pagesList = new ArrayList<>();
+
+        // CODE for "Previous" page
+        pagesList.add(0);
+
+        for (int i = 1; i <= pages; i++) {
+            // # for page with some advertisements
+            pagesList.add(i);
+        }
+
+        // CODE for "Next" page
+        pagesList.add(-1);
+
+        model.addAttribute("pagesList", pagesList);
+        model.addAttribute("pages", pages);
+        model.addAttribute("sizeList", sizeList);
+        model.addAttribute("page", page);
+
+        return "seller/seller_list_all_own_advertisements";
+    }
+
     @GetMapping("/create")
     public String createAdvertisement(Model model) {
         Advertisement advertisement = new Advertisement();

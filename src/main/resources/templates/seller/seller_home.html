@@ -25,9 +25,12 @@
         </div>
         <h1></h1>
         <div class="row">
-            <div class="col">
-                <input type="button" class="btn btn-primary btn-lg btn-block"
-                       onclick="location.href='/advertisement/myAll';" value="View my advertisements"/>
+            <div style="margin: 5px">
+                <a class="btn btn-primary btn-lg btn-block"
+                   th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10)}"
+                   role="button">View all advertisements</a>
+                <!--                       onclick="location.href='/advertisement/all';" -->
+
             </div>
             <h1></h1>
             <div class="col">
