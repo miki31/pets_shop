@@ -74,8 +74,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownSeller">
                     <a class="dropdown-item" href="/advertisement/create">Create my advertisement</a>
-                    <a class="dropdown-item" href="/advertisement/myAll">View my advertisements</a>
-                    <a class="dropdown-item" href="/advertisement/all">View all advertisements</a>
+                    <a class="dropdown-item"
+                       th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10)}">View my advertisements</a>
+                    <a class="dropdown-item"
+                       th:href="@{/advertisement/all/(page=1,sizeList=10)}">View all advertisements</a>
                     <a class="dropdown-item" href="/seller/ordersFromUsers">View purchase requests</a>
                 </div>
             </li>
