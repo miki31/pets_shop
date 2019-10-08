@@ -11,37 +11,49 @@
 
 
 <div align="center">
-    <div id="header">
-        <h1>Ласкаво просимо!!!</h1>
-    </div>
-    <div id="button">
-        <p>Наразі тут немає що робити.</p>
+<!--    <div id="header">-->
+<!--        <h1>Ласкаво просимо!!!</h1>-->
+<!--    </div>-->
+<!--    <div id="button">-->
+<!--        <p>Наразі тут немає що робити.</p>-->
 
-        <div>
-            <p>Ви можете залогінитись, зареєструватись, або відвідати цей неймовірний сайт як гість</p>
-            <div sec:authorize="isAnonymous()">
-                <a th:href="@{/login}">Sign in</a> | <a th:href="@{/registration}">Sign up</a> | <a th:href="@{/guest}">Guest</a>
+<!--        <div>-->
+<!--            <p>Ви можете залогінитись, зареєструватись, або відвідати цей неймовірний сайт як гість</p>-->
+<!--            <div sec:authorize="isAnonymous()">-->
+<!--                <a th:href="@{/login}">Sign in</a> | <a th:href="@{/registration}">Sign up</a> | <a th:href="@{/guest}">Guest</a>-->
+<!--            </div>-->
+<!--            <div sec:authorize="isAuthenticated()">-->
+<!--                <a th:href="@{/logout}">Log out</a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div>-->
+
+<!--            <p>Ці кнопки скоро звідси зникнуть</p>-->
+
+<!--            <input type="button" onclick="location.href='/admin/user/all';" value="Глянути, а скільки ж нас?" />-->
+<!--            <input type="button" onclick="location.href='/category/all';" value="Тут можна глянути список тваринок" />-->
+<!--            <input type="button" onclick="location.href='/pet/all';" value="Ось такі тваринки в нас живуть" />-->
+
+<!--            <input type="button" onclick="location.href='/advertisement/card';" value="Тест фрагмента для оголошення" />-->
+
+<!--            <input sec:authorize="hasAuthority('SELLER')"-->
+<!--                    type="button" th:method="get" onclick="location.href='/advertisement/create';" value="Тест додавання оголошення" />-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+
+    <div class="container-wrapper">
+        <div class="container">
+            <div class=""page-header>
+                <h1>About Us</h1>
+
+                <p>We are a humble team who are passionate about helping our customers to get the best pets they can.
+                    We are determined to provide the best animals.</p>
             </div>
-            <div sec:authorize="isAuthenticated()">
-                <a th:href="@{/logout}">Log out</a>
-            </div>
-        </div>
 
-        <div>
-
-            <p>Ці кнопки скоро звідси зникнуть</p>
-
-            <input type="button" onclick="location.href='/admin/user/all';" value="Глянути, а скільки ж нас?" />
-            <input type="button" onclick="location.href='/category/all';" value="Тут можна глянути список тваринок" />
-            <input type="button" onclick="location.href='/pet/all';" value="Ось такі тваринки в нас живуть" />
-
-            <input type="button" onclick="location.href='/advertisement/card';" value="Тест фрагмента для оголошення" />
-
-            <input sec:authorize="hasAuthority('SELLER')"
-                    type="button" th:method="get" onclick="location.href='/advertisement/create';" value="Тест додавання оголошення" />
-        </div>
-
-    </div>
+            <img th:src="@{/images/homePage.jpg}" />
 
 </div>
 
