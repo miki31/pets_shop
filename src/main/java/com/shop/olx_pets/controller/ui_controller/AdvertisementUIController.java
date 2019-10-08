@@ -1,7 +1,9 @@
 package com.shop.olx_pets.controller.ui_controller;
 
 import com.shop.olx_pets.model.Advertisement;
+import com.shop.olx_pets.model.Category;
 import com.shop.olx_pets.model.User;
+import com.shop.olx_pets.model.dto.SearchDTO;
 import com.shop.olx_pets.service.AdvertisementService;
 import com.shop.olx_pets.service.CategoryService;
 import com.shop.olx_pets.service.UserService;
