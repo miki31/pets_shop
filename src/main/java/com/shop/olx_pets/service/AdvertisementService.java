@@ -1,6 +1,7 @@
 package com.shop.olx_pets.service;
 
 import com.shop.olx_pets.model.Advertisement;
+import com.shop.olx_pets.model.Category;
 import com.shop.olx_pets.model.Logadvertisement;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.AdvertisementRepository;
@@ -85,7 +86,10 @@ public class AdvertisementService {
         return returnAdvertisements;
     }
 
-
+    public List<Advertisement>  findAllByCategory(Category category){
+        List<Advertisement> advertisements = advertisementRepository.findByCategory(category);
+        return advertisements;
+    }
 
     public Advertisement getOne(Long id) {
         return advertisementRepository.findById(id).orElse(null);
@@ -117,6 +121,8 @@ public class AdvertisementService {
         return advertisements;
     }
 
+    // TODO: here can use method in repository
+    // findBySeller(User seller);
     public List<Advertisement> findSellerById(Long sellerId) {
         List<Advertisement> advertisements = advertisementRepository.findAll();
         List<Advertisement> advertisementsMy = new ArrayList<>();
