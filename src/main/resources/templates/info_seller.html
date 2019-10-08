@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<form
+        th:object="${user}" method="GET">
+    <div align="center">
+        <div class="card bg-light border-info mb-3" style="width: 50rem;">
+            <div th:if="${user.photo == null}"><img width="200" src="/images/220px-User_icon_2.svg.png"></div>
+            <div th:unless="${user.photo == null}"><img width="200"
+                                                          th:src="'/resources/uploads/user/' + ${user.photo}"></div>
+
+            <h1 class="h2" th:text="${user.firstName} + ' ' + ${user.surName}">First name</h1>
+
+          <p><td>Email : </td><td><span th:text="${user.email}">Email</span></td>
+                    <div class="text-left">
+
+                        </span></td></p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<nav th:replace="base-layout :: footer"></nav>
+
+</body>
+</html>

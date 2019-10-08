@@ -231,4 +231,10 @@ public class AdvertisementService {
             advertisementRepository.delete(toDelete.get());
         }
     }
+
+    public User getSellerInfo(Long id) {
+        return advertisementRepository.getOne(id).getSeller();
+
+    }
+
 }

@@ -212,4 +212,11 @@ public class AdvertisementUIController {
         return "description_card";
     }
 
+    @GetMapping("info/{id}")
+    public String getInfo(@PathVariable Long id, Model model) {
+        User user = advertisementService.getSellerInfo(id);
+        model.addAttribute("user", user);
+        return "info_seller";
+    }
+
 }
