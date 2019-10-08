@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="base-layout :: header">
 
 </head>
@@ -13,20 +13,29 @@
         <div class="card bg-light border-info mb-3" style="width: 50rem;">
             <div th:if="${user.photo == null}"><img width="200" src="/images/220px-User_icon_2.svg.png"></div>
             <div th:unless="${user.photo == null}"><img width="200"
-                                                          th:src="'/resources/uploads/user/' + ${user.photo}"></div>
+                                                        th:src="'/resources/uploads/user/' + ${user.photo}"></div>
 
             <h1 class="h2" th:text="${user.firstName} + ' ' + ${user.surName}">First name</h1>
 
-          <p><td>Email : </td><td><span th:text="${user.email}">Email</span></td>
-                    <div class="text-left">
+            <p>
+            <td>Email :</td>
+            <td><span th:text="${user.email}">Email</span></td>
+            <div class="text-left">
 
-                        </span></td></p>
+                </span></td></p>
 
-                    </div>
-
-                </div>
             </div>
+
         </div>
+
+
+            <td>
+                <a th:href="@{/advertisement/allSellersAdvertFromUser/__${user.id}__}"
+                   class="btn btn-danger">View advertisements</a>
+            </td>
+
+    </div>
+    </div>
     </div>
 </form>
 

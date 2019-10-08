@@ -16,7 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Id;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
@@ -51,13 +50,13 @@ public class AdvertisementUIController {
     public String findAll(Model model,
                           @RequestParam Integer page,
                           @RequestParam Integer sizeList
-                          ) {
+    ) {
         List<Advertisement> advertisements = advertisementService.findAll();
-        model.addAttribute("advertisements", advertisementService.bigList(page,sizeList, advertisements));
+        model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
 
-        Integer pages = advertisements.size()%sizeList == 0 ?
-                advertisements.size()/sizeList :
-                advertisements.size()/sizeList + 1;
+        Integer pages = advertisements.size() % sizeList == 0 ?
+                advertisements.size() / sizeList :
+                advertisements.size() / sizeList + 1;
 
         List<Integer> pagesList = new ArrayList<>();
 
@@ -82,17 +81,17 @@ public class AdvertisementUIController {
 
     @GetMapping("/allSellersAdvert")
     public String findAllForSeller(Model model,
-                          @RequestParam Integer page,
-                          @RequestParam Integer sizeList
+                                   @RequestParam Integer page,
+                                   @RequestParam Integer sizeList
     ) {
         User seller = activeUser(SecurityContextHolder.getContext().getAuthentication());
 
         List<Advertisement> advertisements = advertisementService.findAll(seller);
-        model.addAttribute("advertisements", advertisementService.bigList(page,sizeList, advertisements));
+        model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
 
-        Integer pages = advertisements.size()%sizeList == 0 ?
-                advertisements.size()/sizeList :
-                advertisements.size()/sizeList + 1;
+        Integer pages = advertisements.size() % sizeList == 0 ?
+                advertisements.size() / sizeList :
+                advertisements.size() / sizeList + 1;
 
         List<Integer> pagesList = new ArrayList<>();
 
@@ -105,6 +104,37 @@ public class AdvertisementUIController {
         }
 
         // CODE for "Next" page
+        pagesList.add(-1);
+
+        model.addAttribute("pagesList", pagesList);
+        model.addAttribute("pages", pages);
+        model.addAttribute("sizeList", sizeList);
+        model.addAttribute("page", page);
+
+        return "seller/seller_list_all_own_advertisements";
+    }
+
+    @GetMapping("/allSellersAdvertFromUser/{id}")
+    public String allSellersAdvertFromUser(@PathVariable Long id,
+                                           Model model) {
+        User seller = advertisementService.getSellerInfo(id);
+        Integer page=1;
+        Integer sizeList=10;
+        List<Advertisement> advertisements = advertisementService.findAll(seller);
+        model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
+
+        Integer pages = advertisements.size() % sizeList == 0 ?
+                advertisements.size() / sizeList :
+                advertisements.size() / sizeList + 1;
+
+        List<Integer> pagesList = new ArrayList<>();
+
+        pagesList.add(0);
+
+        for (int i = 1; i <= pages; i++) {
+            pagesList.add(i);
+        }
+
         pagesList.add(-1);
 
         model.addAttribute("pagesList", pagesList);
@@ -216,7 +246,7 @@ public class AdvertisementUIController {
     public String getInfo(@PathVariable Long id, Model model) {
         User user = advertisementService.getSellerInfo(id);
         model.addAttribute("user", user);
-        return "info_seller";
+        return "seller/info_seller";
     }
 
 }
