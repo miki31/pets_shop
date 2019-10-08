@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 <head th:replace="base-layout :: header">
 
 </head>
@@ -8,38 +8,40 @@
 <nav th:replace="base-layout :: top_navbar"></nav>
 
 <div align="center">
-    <form      th:action="@{/user/all_pet}"
-               th:object="${pets}" method="Get">
-        <table border="2" cellpadding="5">
-            <thead>
-            <th>Photo</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Posted On</th>
-            <th>Choose</th>
+<!--    <form      th:action="@{/user/all_pet}"-->
+<!--               th:object="${pets}" method="Get">-->
+<!--        <table border="2" cellpadding="5">-->
+<!--            <thead>-->
+<!--            <th>Photo</th>-->
+<!--            <th>Category</th>-->
+<!--            <th>Price</th>-->
+<!--            <th>Description</th>-->
+<!--            <th>Posted On</th>-->
+<!--            <th>Choose</th>-->
 
-            </thead>
-            <tbody>
-            <tr th:if="${pets.isEmpty()}">
-                <td colspan="2"> No pets </td>
-            </tr>
-            <tr th:each="p : ${pets}">
-                <td th:text="${p.photo}"></td>
-                <td th:text="${p.category.name}"></td>
-                <td th:text="${p.price}"></td>
-                <td th:text="${p.description}"></td>
-                <td th:text="${p.postedOn}"></td>
-                <td >
-                    <a th:href="@{/user/order/(adId=${p.id})}"
-                       class="btn btn-danger">Choose</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:if="${pets.isEmpty()}">-->
+<!--                <td colspan="2"> No pets </td>-->
+<!--            </tr>-->
+<!--            <tr th:each="p : ${pets}">-->
+<!--                <td th:text="${p.photo}"></td>-->
+<!--                <td th:text="${p.category.name}"></td>-->
+<!--                <td th:text="${p.price}"></td>-->
+<!--                <td th:text="${p.description}"></td>-->
+<!--                <td th:text="${p.postedOn}"></td>-->
+<!--                <td >-->
+<!--                    <a th:href="@{/user/order/(adId=${p.id})}"-->
+<!--                       class="btn btn-danger">Choose</a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
 
-    </form>
-
+<!--    </form>-->
+    <div th:with="advertisements=${pets}" style="margin: 5px">
+        <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
+    </div>
 
     <input type="button" onclick="location.href='/user/available';"
            th:value="PetsAvailable" value="The list available advertisements"/>
