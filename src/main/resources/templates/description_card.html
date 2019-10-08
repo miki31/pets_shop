@@ -21,6 +21,9 @@
             <div class="text-left">
 
                 <p th:text="${advertisement.description}">Description</p>
+                <p><td>Seller : </td><td><span th:text="${advertisement.seller.firstName}">Seller</span></td>
+                <a th:href="@{/seller/info}" role="button" aria-pressed="true">
+                    <i class="fas fa-info-circle"></i></a></p>
                 <p><td>Category : </td><td><span th:text="${advertisement.category.name}">Category</span></td></p>
                 <p><td>Price : </td><td><span th:if="${advertisement.price == null}"> free </span>
                 <span th:text="${advertisement.price}">Price</p></span></td></p>
