@@ -4,6 +4,7 @@
 
 </head>
 <body>
+
 <nav th:replace="base-layout :: top_navbar"></nav>
 
 <div align="center">
@@ -28,6 +29,15 @@
 
                     <input type="button" onclick="location.href='/user/myGoodShopping';" value="MY BUY"/>
 
+                    <input type="button" onclick="location.href='/advertisement/search';" value="Search"/>
+
+<!--    <div style="margin: 5px">-->
+<!--        <p>Search with filters from all advertisements</p>-->
+<!--        <a class="btn btn-primary btn-lg btn-block"-->
+<!--           th:href="@{/advertisement/search}"-->
+<!--           role="button">Search</a>-->
+<!--    </div>-->
+</div>
                 </div>
                 </p>
             </div>

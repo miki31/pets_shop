@@ -1,7 +1,9 @@
 package com.shop.olx_pets.controller.ui_controller;
 
 import com.shop.olx_pets.model.Advertisement;
+import com.shop.olx_pets.model.Category;
 import com.shop.olx_pets.model.User;
+import com.shop.olx_pets.model.dto.SearchDTO;
 import com.shop.olx_pets.service.AdvertisementService;
 import com.shop.olx_pets.service.CategoryService;
 import com.shop.olx_pets.service.UserService;
@@ -144,6 +146,56 @@ public class AdvertisementUIController {
 
         return "seller/seller_list_all_own_advertisements";
     }
+
+    @GetMapping("/search")
+    public String searchAdvertisement(Model model) {
+
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories", categories);
+
+        Category category = categories.get(0);
+        model.addAttribute("category", category);
+
+        SearchDTO searchDTO = new SearchDTO(category, 1, 10);
+        model.addAttribute("searchDTO", searchDTO);
+
+        return "user/search_advertisement";
+    }
+
+    @PostMapping("/search")
+    public String searchAdvertisementByCategory(
+            @Valid SearchDTO searchDTO, Model model){
+
+        List<Advertisement> advertisements =
+                advertisementService.findAllByCategory(searchDTO.getCategory());
+        model.addAttribute("advertisements", advertisements);
+        model.addAttribute("searchDTO", searchDTO);
+
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories", categories);
+
+        return "user/search_advertisement";
+    }
+
+//    @PostMapping("/search")
+//    public String searchAdvertisementByCategory(
+//            @Valid Category category,
+//            @RequestParam String categoryName,
+//            @RequestParam Integer page,
+//            @RequestParam Integer sizeList,
+//            Model model){
+////        Category category = categoryService.findByName(categoryName);
+//
+//        List<Advertisement> advertisements = advertisementService.findAllByCategory(category);
+//        model.addAttribute("advertisements", advertisements);
+//
+//        List<Category> categories = categoryService.findAll();
+//        model.addAttribute("categories", categories);
+//
+////        Category category = categories.get(1);
+//        model.addAttribute("category", category);
+//        return "user/search_advertisement";
+//    }
 
     @GetMapping("/create")
     public String createAdvertisement(Model model) {

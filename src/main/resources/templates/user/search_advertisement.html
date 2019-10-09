@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<h2>Search ADVERTISEMENTS</h2>
+
+<form id="search_advertisements"
+      th:object="${searchDTO}"
+         method="post"
+
+      th:href="@{/advertisement/search}">
+    <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+            <label class="my-1 mr-2" for="advertCategory">Category</label>
+            <select th:field="*{category}" class="custom-select mr-sm-2" id="advertCategory">
+<!--                <option selected>Choose...</option>-->
+                <option th:each="c : ${categories}"
+                        th:text="${c.name}"
+                        th:selected="${searchDTO.category.id == c.id}"
+                        th:value="${c.id}"
+
+                        ></option>
+            </select>
+        </div>
+
+<!--        <div style="margin: 5px">-->
+<!--            <a class="btn btn-primary btn-lg btn-block"-->
+<!--               th:href="@{/advertisement/searchAd/(categoryName=${category.name},page=1,sizeList=10)}"-->
+<!--               role="button">Search111</a>-->
+<!--            &lt;!&ndash;                       onclick="location.href='/advertisement/all';" &ndash;&gt;-->
+
+<!--        </div>-->
+
+        <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+
+
+    </div>
+</form>
+
+
+
+
+
+<!-- TODO: this fragment for view list of adverts-->
+<!--<div th:replace="fragments/list_advertisements_pages :: list_of_adverts_pages"></div>-->
+<!--th:with="advertisements=${adlogs}"-->
+<div style="margin: 5px">
+    <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
+</div>
+
+
+<nav th:replace="base-layout :: footer"></nav>
+
+</body>
+</html>
