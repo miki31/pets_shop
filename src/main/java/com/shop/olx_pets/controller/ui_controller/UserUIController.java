@@ -39,6 +39,7 @@ public class UserUIController {
         model.addAttribute("allAdvert", advertisementService.littleList(33));
         return "user/user_home";
     }
+
     @RequestMapping(value = {"/all_pet"}, method = RequestMethod.GET)
     public String availableProducts(Model model) {
         model.addAttribute("pets", advertisementService.findAll());

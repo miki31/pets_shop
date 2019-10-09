@@ -7,47 +7,102 @@
 
 <nav th:replace="base-layout :: top_navbar"></nav>
 
+<!--<div align="center">-->
+<!--    <div id="header">-->
+<!--        <h1>Hello ADMIN!!!</h1>-->
+<!--        <h1>You can edit the user list.</h1>-->
+<!--    </div>-->
+
+<!--    <form      th:action="@{/admin//admin_home}"-->
+<!--               th:object="${users}" method="DELETE">-->
+<!--        <table border="2" cellpadding="5">-->
+<!--            <thead>-->
+<!--            <th>FirsName</th>-->
+<!--            <th>SurName</th>-->
+<!--            <th>NickName</th>-->
+<!--            <th>Birthday</th>-->
+<!--            <th>Delete</th>-->
+<!--            <th>Edit</th>-->
+
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:if="${users.isEmpty()}">-->
+<!--                <td colspan="2"> No users </td>-->
+<!--            </tr>-->
+<!--            <tr th:each="u : ${users}">-->
+<!--                <td th:text="${u.firstName}"></td>-->
+<!--                <td th:text="${u.surName}"></td>-->
+<!--                <td th:text="${u.nickName}"></td>-->
+<!--                <td th:text="${u.birthday}"></td>-->
+<!--                <td >-->
+<!--                    <a th:href="@{deleteUser/__${u.id}__}" class="btn btn-danger">Delete</a>-->
+<!--                </td>-->
+<!--                <td >-->
+<!--                    <a th:href="@{changeUser/__${u.id}__}" class="btn btn-danger">Edit</a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+<!--    </form>-->
+
+<!--</div>-->
+
+<!--</div>-->
+
 <div align="center">
-    <div id="header">
+    <div>
         <h1>Hello ADMIN!!!</h1>
-        <h1>You can edit the user list.</h1>
+        <p>
+            You help everyone: sell the seller, buy the buyer!
+        </p>
     </div>
 
-    <form      th:action="@{/admin//admin_home}"
-               th:object="${users}" method="DELETE">
-        <table border="2" cellpadding="5">
-            <thead>
-            <th>FirsName</th>
-            <th>SurName</th>
-            <th>NickName</th>
-            <th>Birthday</th>
-            <th>Delete</th>
-            <th>Edit</th>
 
-            </thead>
-            <tbody>
-            <tr th:if="${users.isEmpty()}">
-                <td colspan="2"> No users </td>
-            </tr>
-            <tr th:each="u : ${users}">
-                <td th:text="${u.firstName}"></td>
-                <td th:text="${u.surName}"></td>
-                <td th:text="${u.nickName}"></td>
-                <td th:text="${u.birthday}"></td>
-                <td >
-                    <a th:href="@{deleteUser/__${u.id}__}" class="btn btn-danger">Delete</a>
-                </td>
-                <td >
-                    <a th:href="@{changeUser/__${u.id}__}" class="btn btn-danger">Edit</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div>
 
-    </form>
+        <div class="row">
+            <div class="col">
+                <p>
+                    <!--  TODO: create list complain              -->
+                    <div class="card bg-light border-info mb-3" style="width: 50rem;">
+                        <button type="button" class="btn btn-info btn-lg"
+                                onclick="location.href='/';">COMPLAINT LIST
+                        </button>
+                <p></p>
+                <!--  TODO: create list user              -->
+                <button type="button" class="btn btn-info btn-lg"
+                        onclick="location.href='/';">USERS LIST
+                </button>
+                <p></p>
+                <!--  TODO: create list seller              -->
+                <button type="button" class="btn btn-info btn-lg"
+                        onclick="location.href='/';">SELLERS LIST
+                </button>
+                <p></p>
+                <!--  TODO: create list admins              -->
+                <button type="button" class="btn btn-info btn-lg"
+                        onclick="location.href='/';">ADMINS LIST
+                </button>
 
-</div>
+                <!--    <div style="margin: 5px">-->
+                <!--        <p>Search with filters from all advertisements</p>-->
+                <!--        <a class="btn btn-primary btn-lg btn-block"-->
+                <!--           th:href="@{/advertisement/search}"-->
+                <!--           role="button">Search</a>-->
+                <!--    </div>-->
+            </div>
+        </div>
+        </p>
 
+        <div class="col-6">
+            <p>
+            <div th:with="advertisements=${allAdvert}" style="margin: 5px">
+                <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
+            </div>
+            </p>
+        </div>
+    </div>
 </div>
 
 <nav th:replace="base-layout :: footer"></nav>

@@ -1,6 +1,7 @@
 package com.shop.olx_pets.controller.ui_controller;
 
 import com.shop.olx_pets.model.User;
+import com.shop.olx_pets.service.AdvertisementService;
 import com.shop.olx_pets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class AdminUiController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AdvertisementService advertisementService;
+
     @RequestMapping(value = {"/admin_home"}, method = RequestMethod.GET)
     public String home(Model model) {
         List<User> allUsers = userService.findAll();
@@ -28,7 +32,7 @@ public class AdminUiController {
                 allUsers.remove(k);
             }
         }
-
+        model.addAttribute("allAdvert", advertisementService.littleList(33));
         model.addAttribute("users", allUsers);
         return "admin/admin_home";
     }
