@@ -4,32 +4,41 @@
 
 </head>
 <body>
-
 <nav th:replace="base-layout :: top_navbar"></nav>
 
 <div align="center">
-<div>
-    <h1>Hello BUYER!!!</h1>
-    <p>
-        Find your pet and don't be alone in the cold autumn evenings.
-    </p>
-</div>
-
-    
-<div>
-
-    <p>A list of available products:</p>
-    <input type="button" onclick="location.href='/user/all_pet';" value="AVAILABLE PRODUCTS" />
+    <div>
+        <h1>Hello BUYER!!!</h1>
+        <p>
+            Find your pet and don't be alone in the cold autumn evenings.
+        </p>
+    </div>
 
 
-    <p>Your products:</p>
-    <input type="button" onclick="location.href='/user/myOrders';" value="MY ORDERS" />
+    <div>
 
+        <div class="row">
+            <div class="col">
+                <p>
+                <div class="card bg-light border-info mb-3" style="width: 50rem;">
 
-    <p>Your good buy:</p>
-    <input type="button" onclick="location.href='/user/myGoodShopping';" value="MY BUY" />
+                    <input type="button" onclick="location.href='/user/all_pet';" value="AVAILABLE PRODUCTS"/>
 
-</div>
+                    <input type="button" onclick="location.href='/user/myOrders';" value="MY ORDERS"/>
+
+                    <input type="button" onclick="location.href='/user/myGoodShopping';" value="MY BUY"/>
+
+                </div>
+                </p>
+            </div>
+            <div class="col-6">
+                <p>
+                    <img th:src="@{/images/kitPes.jpg}" />
+                </p>
+            </div>
+        </div>
+
+    </div>
 </div>
 <nav th:replace="base-layout :: footer"></nav>
 
