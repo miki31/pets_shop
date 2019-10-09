@@ -34,21 +34,24 @@
             <div class="col">
                 <p>
                     <div class="card bg-light border-info mb-3" style="width: 50rem;">
-                        <button type="button" class="btn btn-info btn-lg"
-                                onclick="location.href='/advertisement/create';">CREATE MY ADVERTISEMENT
-                        </button>
+                        <a type="button" class="btn btn-info btn-lg text-white"
+                           onclick="location.href='/advertisement/create';">CREATE MY ADVERTISEMENT
+                        </a>
                 <p></p>
-                <button type="button" class="btn btn-info btn-lg"
-                        onclick="location.href='/seller/ordersFromUsers';">VIEW PURCHASE REQUESTS
-                </button>
+
+                <a type="button" class="btn btn-info btn-lg text-white"
+                   onclick="location.href='/seller/ordersFromUsers';">VIEW PURCHASE REQUESTS
+                </a>
                 <p></p>
-                <button type="button" class="btn btn-info btn-lg"
-                        th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10)}">VIEW OWN ADVERTISEMENTS
-                </button>
+
+                <a type="button" class="btn btn-info btn-lg"
+                   th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10)}">VIEW OWN ADVERTISEMENTS
+                </a>
                 <p></p>
-                <button type="button" class="btn btn-info btn-lg"
-                        th:href="@{/advertisement/all/(page=1,sizeList=10)}">VIEW ALL ADVERTISEMENTS
-                </button>
+
+                <a type="button" class="btn btn-info btn-lg"
+                   th:href="@{/advertisement/all/(page=1,sizeList=10)}">VIEW ALL ADVERTISEMENTS
+                </a>
 
                 <!--    <div style="margin: 5px">-->
                 <!--        <p>Search with filters from all advertisements</p>-->
