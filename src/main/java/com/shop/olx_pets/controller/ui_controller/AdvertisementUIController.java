@@ -119,7 +119,7 @@ public class AdvertisementUIController {
     @GetMapping("/allSellersAdvertFromUser/{id}")
     public String allSellersAdvertFromUser(@PathVariable Long id,
                                            Model model) {
-        User seller = advertisementService.getSellerInfo(id);
+        User seller = userService.getOne(id);
         Integer page=1;
         Integer sizeList=10;
         List<Advertisement> advertisements = advertisementService.findAll(seller);
