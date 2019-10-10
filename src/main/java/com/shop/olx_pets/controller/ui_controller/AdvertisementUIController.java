@@ -122,36 +122,37 @@ public class AdvertisementUIController {
         return "seller/seller_list_all_own_advertisements";
     }
 
-    @GetMapping("/allSellersAdvertFromUser/{id}")
-    public String allSellersAdvertFromUser(@PathVariable Long id,
-                                           Model model) {
-        User seller = userService.getOne(id);
-        Integer page=1;
-        Integer sizeList=10;
-        List<Advertisement> advertisements = advertisementService.findAll(seller);
-        model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
-
-        Integer pages = advertisements.size() % sizeList == 0 ?
-                advertisements.size() / sizeList :
-                advertisements.size() / sizeList + 1;
-
-        List<Integer> pagesList = new ArrayList<>();
-
-        pagesList.add(0);
-
-        for (int i = 1; i <= pages; i++) {
-            pagesList.add(i);
-        }
-
-        pagesList.add(-1);
-
-        model.addAttribute("pagesList", pagesList);
-        model.addAttribute("pages", pages);
-        model.addAttribute("sizeList", sizeList);
-        model.addAttribute("page", page);
-
-        return "seller/seller_list_all_own_advertisements";
-    }
+    // use method findAllForSeller()
+//    @GetMapping("/allSellersAdvertFromUser/{id}")
+//    public String allSellersAdvertFromUser(@PathVariable Long id,
+//                                           Model model) {
+//        User seller = userService.getOne(id);
+//        Integer page=1;
+//        Integer sizeList=10;
+//        List<Advertisement> advertisements = advertisementService.findAll(seller);
+//        model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
+//
+//        Integer pages = advertisements.size() % sizeList == 0 ?
+//                advertisements.size() / sizeList :
+//                advertisements.size() / sizeList + 1;
+//
+//        List<Integer> pagesList = new ArrayList<>();
+//
+//        pagesList.add(0);
+//
+//        for (int i = 1; i <= pages; i++) {
+//            pagesList.add(i);
+//        }
+//
+//        pagesList.add(-1);
+//
+//        model.addAttribute("pagesList", pagesList);
+//        model.addAttribute("pages", pages);
+//        model.addAttribute("sizeList", sizeList);
+//        model.addAttribute("page", page);
+//
+//        return "seller/seller_list_all_own_advertisements";
+//    }
 
     @GetMapping("/search")
     public String searchAdvertisement(Model model) {

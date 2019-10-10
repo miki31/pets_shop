@@ -30,7 +30,8 @@
 
 
             <td>
-                <a th:href="@{/advertisement/allSellersAdvertFromUser/__${user.id}__}"
+<!--                <a th:href="@{/advertisement/allSellersAdvertFromUser/__${user.id}__}"-->
+                <a th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10,userN=${user.email})}"
                    class="btn btn-danger">View advertisements</a>
             </td>
 
