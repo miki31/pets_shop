@@ -9,7 +9,7 @@
 <body>
 
 
-<div th:fragment="list_of_adverts_pages">
+<div th:fragment="list_of_all_adverts_pages">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <div th:each="p : ${pagesList}">
@@ -45,6 +45,55 @@
 
                     <li th:if="${page != pages}" class="page-item">
                         <a class="page-link" th:href="@{/advertisement/all/(page=${page} + 1,sizeList=${sizeList})}">Next</a>
+                    </li>
+
+                </div>
+
+
+            </div>
+        </ul>
+    </nav>
+
+    <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
+</div>
+
+
+<div th:fragment="list_of_all_own_adverts_pages">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <div th:each="p : ${pagesList}">
+                <div th:if="${p == 0}">
+                    <li th:if="${page == 1}" class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li th:if="${page != 1}" class="page-item">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+                           th:href="@{/advertisement/allSellersAdvert/(page=${page} - 1,sizeList=${sizeList})}">Previous</a>
+                    </li>
+
+                    <!--                    <a class="btn btn-primary btn-lg btn-block"-->
+                    <!--                       th:href="@{/advertisement/all/(page=1,sizeList=10)}"-->
+                    <!--                       role="button">View all advertisements</a>-->
+
+                </div>
+
+                <div th:if="${p != 0 && p != -1}"  >
+                    <li th:if="${page != p}" class="page-item ">
+                        <a class="page-link" th:href="@{/advertisement/allSellersAdvert/(page=${p},sizeList=${sizeList})}"
+                           th:text="${p}"></a></li>
+                    <li th:if="${page == p}" class="page-item disabled">
+                        <a class="page-link" style="background-color: #d2a955"
+                           th:text="${p}"></a></li>
+                </div>
+
+                <div th:if="${p == -1}" >
+
+                    <li th:if="${page == pages}" class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+
+                    <li th:if="${page != pages}" class="page-item">
+                        <a class="page-link" th:href="@{/advertisement/allSellersAdvert/(page=${page} + 1,sizeList=${sizeList})}">Next</a>
                     </li>
 
                 </div>
