@@ -68,7 +68,7 @@
                     </li>
                     <li th:if="${page != 1}" class="page-item">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-                           th:href="@{/advertisement/allSellersAdvert/(page=${page} - 1,sizeList=${sizeList})}">Previous</a>
+                           th:href="@{/advertisement/allSellersAdvert/(page=${page} - 1,sizeList=${sizeList},userN=${userName})}">Previous</a>
                     </li>
 
                     <!--                    <a class="btn btn-primary btn-lg btn-block"-->
@@ -79,7 +79,7 @@
 
                 <div th:if="${p != 0 && p != -1}"  >
                     <li th:if="${page != p}" class="page-item ">
-                        <a class="page-link" th:href="@{/advertisement/allSellersAdvert/(page=${p},sizeList=${sizeList})}"
+                        <a class="page-link" th:href="@{/advertisement/allSellersAdvert/(page=${p},sizeList=${sizeList},userN=${userName})}"
                            th:text="${p}"></a></li>
                     <li th:if="${page == p}" class="page-item disabled">
                         <a class="page-link" style="background-color: #d2a955"
@@ -93,7 +93,7 @@
                     </li>
 
                     <li th:if="${page != pages}" class="page-item">
-                        <a class="page-link" th:href="@{/advertisement/allSellersAdvert/(page=${page} + 1,sizeList=${sizeList})}">Next</a>
+                        <a class="page-link" th:href="@{/advertisement/allSellersAdvert/(page=${page} + 1,sizeList=${sizeList},userN=${userName})}">Next</a>
                     </li>
 
                 </div>

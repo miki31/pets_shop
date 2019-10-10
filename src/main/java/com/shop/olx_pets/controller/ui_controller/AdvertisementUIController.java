@@ -84,9 +84,14 @@ public class AdvertisementUIController {
     @GetMapping("/allSellersAdvert")
     public String findAllForSeller(Model model,
                                    @RequestParam Integer page,
-                                   @RequestParam Integer sizeList
+                                   @RequestParam Integer sizeList,
+                                   @RequestParam String userN
     ) {
-        User seller = activeUser(SecurityContextHolder.getContext().getAuthentication());
+        // get user from Authentication
+//        User seller = activeUser(SecurityContextHolder.getContext().getAuthentication());
+
+        // get user from *.html by name
+        User seller = userService.findUserByEmail(userN).get();
 
         List<Advertisement> advertisements = advertisementService.findAll(seller);
         model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
@@ -112,6 +117,7 @@ public class AdvertisementUIController {
         model.addAttribute("pages", pages);
         model.addAttribute("sizeList", sizeList);
         model.addAttribute("page", page);
+        model.addAttribute("userName", userN);
 
         return "seller/seller_list_all_own_advertisements";
     }
