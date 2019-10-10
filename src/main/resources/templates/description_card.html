@@ -41,8 +41,14 @@
 
             <div sec:authorize="hasAuthority('USER')">
                 <td >
+                    <span th:if="${logadvertisements == null}">
                     <a th:href="@{/user/order/(adId=${advertisement.id})}"
-                       class="btn btn-danger">Order</a>
+                       class="btn btn-danger">Order</a></span>
+                </td>
+                <td >
+                    <span th:if="${logadvertisements != null}">
+                    <a th:href="@{/user/canselOrder/(adId=${advertisement.id})}"
+                       class="btn btn-danger">Cancel the order</a></span>
                 </td>
                 <td >
                     <a th:href="@{/advertisement/response/__${advertisement.id}__}"

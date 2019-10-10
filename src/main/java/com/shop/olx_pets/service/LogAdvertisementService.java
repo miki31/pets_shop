@@ -6,12 +6,10 @@ import com.shop.olx_pets.model.Logadvertisement;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.LogAdvertisementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class LogAdvertisementService {
@@ -33,7 +31,11 @@ public class LogAdvertisementService {
         return logAdvertisementRepository.save(logAdvertisement);
     }
 
-    public List<Logadvertisement> findByBuyerId(Long id) {
+    public Set<Logadvertisement> findByBuyerId(Long id) {
         return logAdvertisementRepository.findByBuyer(id);
+    }
+
+    public Logadvertisement findOrder(User buyer, Advertisement advertisement) {
+        return logAdvertisementRepository.findByBuyerAndAdvertisement(buyer, advertisement);
     }
 }

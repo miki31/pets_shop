@@ -2,10 +2,12 @@ package com.shop.olx_pets.controller.ui_controller;
 
 import com.shop.olx_pets.model.Advertisement;
 import com.shop.olx_pets.model.Category;
+import com.shop.olx_pets.model.Logadvertisement;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.model.dto.SearchDTO;
 import com.shop.olx_pets.service.AdvertisementService;
 import com.shop.olx_pets.service.CategoryService;
+import com.shop.olx_pets.service.LogAdvertisementService;
 import com.shop.olx_pets.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/advertisement")
@@ -38,6 +41,9 @@ public class AdvertisementUIController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private LogAdvertisementService logAdvertisementService;
 
     @Autowired
     @Qualifier("advertisementPhotoPath")
@@ -295,9 +301,18 @@ public class AdvertisementUIController {
 
 
     @GetMapping("description/{id}")
-    public String getDescription(@PathVariable Long id, Model model) {
+    public String getDescription(@PathVariable Long id,
+                                 @ModelAttribute("buyer") User buyer,
+                                 Model model) {
+        buyer = activeUser(SecurityContextHolder.getContext().getAuthentication());
+
         Advertisement advertisement = advertisementService.getOne(id);
         model.addAttribute("advertisement", advertisement);
+
+        Logadvertisement logadvertisement = logAdvertisementService.findOrder(buyer, advertisement);
+
+        model.addAttribute("logadvertisements", logadvertisement);
+
         return "description_card";
     }
 

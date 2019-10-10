@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class AdvertisementService {
@@ -110,8 +107,8 @@ public class AdvertisementService {
         return advertisementList;
     }
 
-    public List<Advertisement> getOrderByUser(Long buyerId) {
-        List<Advertisement> advertisements = logAdvertisementRepository.findOrderByUser(buyerId);
+    public Set<Advertisement> getOrderByUser(Long buyerId) {
+        Set<Advertisement> advertisements = logAdvertisementRepository.findOrderByUser(buyerId);
         return advertisements;
     }
 
