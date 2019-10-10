@@ -68,6 +68,14 @@ public class UserUIController {
         return "redirect:/user/user_home";
     }
 
+
+    @GetMapping("/canselOrder")
+    public String canselOrder(@RequestParam Long adId,
+                              @ModelAttribute("buyer") User buyer) {
+        logAdvertisementService.canselOrder(buyer, advertisementService.getOne(adId));
+        return "redirect:/user/user_home";
+    }
+
     @GetMapping("/myOrders")
     public String getTaken(@ModelAttribute("buyer") User buyer,
                            Model model
