@@ -32,7 +32,6 @@ public class LogAdvertisementService {
     }
 
     public void canselOrder(User buyer, Advertisement advertisement) {
-        List<Logadvertisement> logAdvertisement = logAdvertisementRepository.findAll();
         Logadvertisement logadvertisementFind = logAdvertisementRepository.findByBuyerAndAdvertisement(buyer, advertisement);
         logAdvertisementRepository.delete(logadvertisementFind);
     }
