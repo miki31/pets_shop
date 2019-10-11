@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/advertisement")
@@ -177,7 +176,7 @@ public class AdvertisementUIController {
 
     @PostMapping("/search")
     public String searchAdvertisementByCategory(
-            @Valid SearchDTO searchDTO, Model model){
+            @Valid SearchDTO searchDTO, Model model) {
 
         List<Advertisement> advertisements =
                 advertisementService.findAllByCategory(searchDTO.getCategory());
