@@ -29,6 +29,8 @@ public class Advertisement {
     private User buyer;
 
     private String title;   // name
+
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Long price;
     private String photo;

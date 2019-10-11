@@ -142,6 +142,22 @@ CREATE TABLE advertisement_user
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
+
+CREATE TABLE response
+(
+    id               BIGINT AUTO_INCREMENT,
+    reviewer_id      BIGINT,
+    author_id        BIGINT,
+    response         TEXT,
+    posted           DATETIME,
+    good             BOOLEAN,
+    PRIMARY KEY (id),
+    FOREIGN KEY (reviewer_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (author_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = INNODB
+  CHARACTER SET = utf8;
+
+
 CREATE TABLE hibernate_sequence
 (
     next_val INT

@@ -30,8 +30,11 @@ public class Response {
                 referencedColumnName = "id")
     private User author;
 
+    @Column(columnDefinition = "TEXT")
     private String response;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime posted;
+
+    boolean good;
 }
