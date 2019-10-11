@@ -30,7 +30,7 @@ public class Advertisement {
 
     private String title;   // name
     private String description;
-    private Double price;
+    private Long price;
     private String photo;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

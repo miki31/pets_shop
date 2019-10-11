@@ -89,6 +89,11 @@ public class AdvertisementService {
         return advertisements;
     }
 
+    public List<Advertisement> findAllByPriceIsBetween(long minPrice, long maxPrice){
+        List<Advertisement> advertisements = advertisementRepository.findByPriceIsBetween(minPrice, maxPrice);
+        return advertisements;
+    }
+
     public Advertisement getOne(Long id) {
         return advertisementRepository.findById(id).orElse(null);
     }
@@ -159,6 +164,12 @@ public class AdvertisementService {
 //    }
 
     public Advertisement createUpdate(Advertisement advertisement) {
+
+        // price not null
+        if (advertisement.getPrice() == null){
+            advertisement.setPrice((long) 0);
+        }
+
         Advertisement toSave =
                 advertisement.getId() == null ?
                         createAdvertisement(advertisement) :

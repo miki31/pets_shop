@@ -32,8 +32,8 @@
                 </p>
                 <p>
                 <td>Price :</td>
-                <td><span th:if="${advertisement.price == null}"> free </span>
-                    <span th:text="${advertisement.price}">Price</p></span></td>
+                <td><span th:if="${advertisement.price == 0}"> free </span>
+                    <span th:unless="${advertisement.price == 0}" th:text="${advertisement.price}">Price</p></span></td>
                 </p>
                 <p>
                 <td>Posted on :</td>

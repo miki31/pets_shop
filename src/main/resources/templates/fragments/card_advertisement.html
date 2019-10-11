@@ -37,8 +37,8 @@
     </div>
     <div class="card-footer bg-transparent border-success">
         <p class="card-text">Price :
-            <span th:if="${advert.price == null}" style="color: #273bff; font-size: 2em"> free </span>
-            <span th:unless="${advert.price == null}" th:text="' ' + ${advert.price} + ' '" style="color: red; font-size: 2em"></span>
+            <span th:if="${advert.price == 0}" style="color: #273bff; font-size: 2em"> free </span>
+            <span th:unless="${advert.price == 0}" th:text="' ' + ${advert.price} + ' '" style="color: red; font-size: 2em"></span>
             $</p>
         <div class="d-flex align-items-end"
                 style="max-height: 20rem;

@@ -159,7 +159,15 @@ public class AdvertisementUIController {
     @GetMapping("/search")
     public String searchAdvertisement(Model model) {
 
-        List<Category> categories = categoryService.findAll();
+        Category allCategories = new Category();
+        allCategories.setId((long) 0);
+        allCategories.setName("Всі категорії");
+
+        List<Category> categories = new ArrayList<>();
+        categories.add(allCategories);
+
+        categories.addAll(categoryService.findAll());
+
         model.addAttribute("categories", categories);
 
         Category category = categories.get(0);
@@ -167,7 +175,7 @@ public class AdvertisementUIController {
 
 
         //TODO: change pageSize
-        SearchDTO searchDTO = new SearchDTO(category, 1, 10, 0, 0, null);
+        SearchDTO searchDTO = new SearchDTO(category, 1, 10, (long) 0, (long) 0, null);
         model.addAttribute("searchDTO", searchDTO);
         model.addAttribute("page", searchDTO.getPage());
         model.addAttribute("sizeList", searchDTO.getSizeList());
@@ -182,10 +190,29 @@ public class AdvertisementUIController {
             @RequestParam Integer page,
             @RequestParam Integer sizeList
 //            @RequestParam String userN
-    ){
+    ) {
 
-        List<Advertisement> advertisements =
-                advertisementService.findAllByCategory(searchDTO.getCategory());
+        Category category = searchDTO.getCategory();
+
+        Category allCategories = new Category();
+        allCategories.setId((long) 0);
+        allCategories.setName("Всі категорії");
+
+        List<Category> categories = new ArrayList<>();
+        categories.add(allCategories);
+
+        List<Advertisement> advertisements;
+        if (category == null) {
+            long min = searchDTO.getMinPrice();
+            long max = searchDTO.getMaxPrice();
+            advertisements = advertisementService.findAllByPriceIsBetween(min, max);
+
+            category = allCategories;
+            searchDTO.setCategory(category);
+        } else {
+            advertisements =
+                    advertisementService.findAllByCategory(category);
+        }
 //        model.addAttribute("advertisements", advertisements);
         model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
 
@@ -206,6 +233,8 @@ public class AdvertisementUIController {
         // CODE for "Next" page
         pagesList.add(-1);
 
+        model.addAttribute("category", category);
+
         model.addAttribute("page", page);
 
         model.addAttribute("pagesList", pagesList);
@@ -214,11 +243,11 @@ public class AdvertisementUIController {
 
         model.addAttribute("searchDTO", searchDTO);
 
-        List<Category> categories = categoryService.findAll();
+
+
+        categories.addAll(categoryService.findAll());
+
         model.addAttribute("categories", categories);
-
-
-
 
 
         return "user/search_advertisement";

@@ -8,15 +8,15 @@ public class SearchDTO {
     private Integer page;
     private Integer sizeList;
 
-    private Integer minPrice;
-    private Integer maxPrice;
+    private Long minPrice;
+    private Long maxPrice;
 
     private String userName;
 
     public SearchDTO() {
     }
 
-    public SearchDTO(Category category, Integer page, Integer sizeList, Integer minPrice, Integer maxPrice, String userName) {
+    public SearchDTO(Category category, Integer page, Integer sizeList, Long minPrice, Long maxPrice, String userName) {
         this.category = category;
         this.page = page;
         this.sizeList = sizeList;
@@ -51,19 +51,19 @@ public class SearchDTO {
         this.sizeList = sizeList;
     }
 
-    public Integer getMinPrice() {
+    public Long getMinPrice() {
         return minPrice;
     }
 
-    public void setMinPrice(Integer minPrice) {
+    public void setMinPrice(Long minPrice) {
         this.minPrice = minPrice;
     }
 
-    public Integer getMaxPrice() {
+    public Long getMaxPrice() {
         return maxPrice;
     }
 
-    public void setMaxPrice(Integer maxPrice) {
+    public void setMaxPrice(Long maxPrice) {
         this.maxPrice = maxPrice;
     }
 

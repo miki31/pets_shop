@@ -81,7 +81,7 @@ CREATE TABLE advertisement
     category_id BIGINT,
     description TEXT,
     photo       VARCHAR(255),
-    price       DOUBLE,
+    price       BIGINT,
     posted_on   DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (seller_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
