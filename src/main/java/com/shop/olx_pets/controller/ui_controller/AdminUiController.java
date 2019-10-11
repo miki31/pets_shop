@@ -53,6 +53,7 @@ public class AdminUiController {
         Role role = roleRepository.findByName("USER");
 
         model.addAttribute("users", userService.findAllUsers(role));
+        model.addAttribute("role", role);
         return "users_list";
     }
 
@@ -61,6 +62,16 @@ public class AdminUiController {
         Role role = roleRepository.findByName("SELLER");
 
         model.addAttribute("users", userService.findAllUsers(role));
+        model.addAttribute("role", role);
+        return "users_list";
+    }
+
+    @GetMapping("/user/allAdmins")
+    public String findAllAdmins(Model model) {
+        Role role = roleRepository.findByName("ADMIN");
+
+        model.addAttribute("users", userService.findAllUsers(role));
+        model.addAttribute("role", role);
         return "users_list";
     }
 

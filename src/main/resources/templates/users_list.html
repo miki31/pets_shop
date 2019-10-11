@@ -16,7 +16,9 @@
         <th>Nick name</th>
         <th>Birthday</th>
         <th>Email</th>
+        <span th:if="${role.name != 'ADMIN'}">
         <th>Delete</th>
+        </span>
         </thead>
 
         <tbody>
@@ -26,9 +28,12 @@
             <td th:text="${user.getNickName()}"></td>
             <td th:text="${user.getBirthday()}"></td>
             <td th:text="${user.getEmail()}"></td>
+
+            <span th:if="${role.name != 'ADMIN'}">
             <td>
                 <a th:href="@{/admin/deleteUser/__${user.id}__}" class="btn btn-danger">Delete</a>
             </td>
+            </span>
         </tr>
         </tbody>
     </table>
