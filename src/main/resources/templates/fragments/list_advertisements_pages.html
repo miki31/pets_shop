@@ -112,7 +112,8 @@
 
 
 <div th:fragment="list_of_all_search_adverts_pages">
-    <nav aria-label="Page navigation example">
+    <nav th:hidden="${#lists.isEmpty(advertisements)}"
+            aria-label="Page navigation example">
         <form id="search_advertisements_pages"
         th:object="${searchDTO}"
         method="post">
