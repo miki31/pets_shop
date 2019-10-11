@@ -1,6 +1,8 @@
 package com.shop.olx_pets.controller.ui_controller;
 
+import com.shop.olx_pets.model.Role;
 import com.shop.olx_pets.model.User;
+import com.shop.olx_pets.repository.RoleRepository;
 import com.shop.olx_pets.service.AdvertisementService;
 import com.shop.olx_pets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class AdminUiController {
     @Autowired
     private AdvertisementService advertisementService;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @RequestMapping(value = {"/admin_home"}, method = RequestMethod.GET)
     public String home(Model model) {
         List<User> allUsers = userService.findAll();
@@ -45,7 +50,17 @@ public class AdminUiController {
 
     @GetMapping("/user/allUsers")
     public String findAllUsers(Model model) {
-        model.addAttribute("users", userService.findAllUsers());
+        Role role = roleRepository.findByName("USER");
+
+        model.addAttribute("users", userService.findAllUsers(role));
+        return "users_list";
+    }
+
+    @GetMapping("/user/allSellers")
+    public String findAllSellers(Model model) {
+        Role role = roleRepository.findByName("SELLER");
+
+        model.addAttribute("users", userService.findAllUsers(role));
         return "users_list";
     }
 

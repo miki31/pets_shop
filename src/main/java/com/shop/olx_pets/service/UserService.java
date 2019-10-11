@@ -24,20 +24,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    private PetRepository petRepository;
-
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
 
     public User getOne(Long id) {
         return userRepository.findById(id).orElse(null);
@@ -150,10 +137,7 @@ public class UserService {
         return localDate.plusDays(1);
     }
 
-    public List<User> findAllUsers() {
-        List<User> users = userRepository.findAll();
-
-        Role role = roleRepository.findByName("USER");
+    public List<User> findAllUsers(Role role) {
 
         List<User> usersBuyers = userRepository.findByRoles(role);
 
