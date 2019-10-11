@@ -165,23 +165,61 @@ public class AdvertisementUIController {
         Category category = categories.get(0);
         model.addAttribute("category", category);
 
-        SearchDTO searchDTO = new SearchDTO(category, 1, 10);
+
+        //TODO: change pageSize
+        SearchDTO searchDTO = new SearchDTO(category, 1, 10, 0, 0, null);
         model.addAttribute("searchDTO", searchDTO);
+        model.addAttribute("page", searchDTO.getPage());
+        model.addAttribute("sizeList", searchDTO.getSizeList());
 
         return "user/search_advertisement";
     }
 
     @PostMapping("/search")
     public String searchAdvertisementByCategory(
-            @Valid SearchDTO searchDTO, Model model) {
+            @Valid SearchDTO searchDTO,
+            Model model,
+            @RequestParam Integer page,
+            @RequestParam Integer sizeList
+//            @RequestParam String userN
+    ){
 
         List<Advertisement> advertisements =
                 advertisementService.findAllByCategory(searchDTO.getCategory());
-        model.addAttribute("advertisements", advertisements);
+//        model.addAttribute("advertisements", advertisements);
+        model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
+
+        Integer pages = advertisements.size() % sizeList == 0 ?
+                advertisements.size() / sizeList :
+                advertisements.size() / sizeList + 1;
+
+        List<Integer> pagesList = new ArrayList<>();
+
+        // CODE for "Previous" page
+        pagesList.add(0);
+
+        for (int i = 1; i <= pages; i++) {
+            // # for page with some advertisements
+            pagesList.add(i);
+        }
+
+        // CODE for "Next" page
+        pagesList.add(-1);
+
+        model.addAttribute("page", page);
+
+        model.addAttribute("pagesList", pagesList);
+
+        model.addAttribute("pages", pages);
+
         model.addAttribute("searchDTO", searchDTO);
 
         List<Category> categories = categoryService.findAll();
         model.addAttribute("categories", categories);
+
+
+
+
 
         return "user/search_advertisement";
     }
