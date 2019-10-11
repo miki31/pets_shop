@@ -38,4 +38,9 @@ public class GoodShoppingService {
         List<Advertisement> advertisements = goodShoppingRepository.findOrderByBuyer(id);
         return advertisements;
     }
+
+    public GoodShopping findByAd(Advertisement advertisement) {
+        GoodShopping goodShopping = goodShoppingRepository.findByAdvertisement(advertisement);
+        return goodShopping;
+    }
 }

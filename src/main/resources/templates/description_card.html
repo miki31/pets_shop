@@ -8,7 +8,7 @@
 <nav th:replace="base-layout :: top_navbar"></nav>
 
 <form
-      th:object="${advertisement}" method="GET">
+        th:object="${advertisement}" method="GET">
     <div align="center">
         <div class="card bg-light border-info mb-3" style="width: 50rem;">
             <img style="height: 15rem;" th:if="${advertisement.photo == null}" th:src="@{/images/default_cat.jpg}"
@@ -21,48 +21,68 @@
             <div class="text-left">
 
                 <p th:text="${advertisement.description}">Description</p>
-                <p><td>Seller : </td><td><span th:text="${advertisement.seller.firstName}">Seller</span></td>
+                <p>
+                <td>Seller :</td>
+                <td><span th:text="${advertisement.seller.firstName}">Seller</span></td>
                 <a th:href="@{/advertisement/info/__${advertisement.id}__}" role="button" aria-pressed="true">
                     <i class="fas fa-info-circle"></i></a></p>
-                <p><td>Category : </td><td><span th:text="${advertisement.category.name}">Category</span></td></p>
-                <p><td>Price : </td><td><span th:if="${advertisement.price == null}"> free </span>
-                <span th:text="${advertisement.price}">Price</p></span></td></p>
-                <p><td>Posted on : </td><td><span th:text="${advertisement.postedOn}">Posted On</p>
-            </span></td></p>
+                <p>
+                <td>Category :</td>
+                <td><span th:text="${advertisement.category.name}">Category</span></td>
+                </p>
+                <p>
+                <td>Price :</td>
+                <td><span th:if="${advertisement.price == null}"> free </span>
+                    <span th:text="${advertisement.price}">Price</p></span></td>
+                </p>
+                <p>
+                <td>Posted on :</td>
+                <td><span th:text="${advertisement.postedOn}">Posted On</p>
+            </span></td>
+                </p>
 
             </div>
 
             <div sec:authorize="hasAuthority('ADMIN')">
-                <td >
+                <span th:if="${goodShopping != null}"><p class="font-weight-bold">
+                    This pet has already found its owner</p></span>
+                <td>
                     <a th:href="@{/advertisement/deleteAdvert/__${advertisement.id}__}"
                        class="btn btn-danger">Delete</a>
                 </td>
             </div>
 
             <div sec:authorize="hasAuthority('USER')">
-                <td >
+                <span th:if="${goodShopping == null}">
+                <td>
                     <span th:if="${logadvertisements == null}">
                     <a th:href="@{/user/order/(adId=${advertisement.id})}"
                        class="btn btn-danger">Order</a></span>
                 </td>
-                <td >
+                <td>
                     <span th:if="${logadvertisements != null}">
                     <a th:href="@{/user/canselOrder/(adId=${advertisement.id})}"
                        class="btn btn-danger">Cancel the order</a></span>
                 </td>
-                <td >
+                 <td>
                     <a th:href="@{/advertisement/response/__${advertisement.id}__}"
                        class="btn btn-danger">Response</a>
                 </td>
+                </span>
+                <span th:if="${goodShopping != null}"><p class="font-weight-bold">
+                    This pet has already found its owner</p></span>
+
             </div>
 
             <div sec:authorize="hasAuthority('SELLER')">
-                <td >
+                <span th:if="${goodShopping != null}"><p class="font-weight-bold">
+                    This pet has already found its owner</p></span>
+                <td>
                     <span th:if="${advertisement.seller.id == seller.id}">
                     <a th:href="@{/advertisement/deleteAdvert/(adId=${advertisement.id})}"
                        class="btn btn-danger">Delete</a></span>
                 </td>
-                <td >
+                <td>
                     <span th:if="${advertisement.seller.id == seller.id}">
                           <a th:href="@{/advertisement/editAdvert/(adId=${advertisement.id})}"
                              class="btn btn-danger">Edit</a></span>

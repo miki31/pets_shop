@@ -1,14 +1,8 @@
 package com.shop.olx_pets.controller.ui_controller;
 
-import com.shop.olx_pets.model.Advertisement;
-import com.shop.olx_pets.model.Category;
-import com.shop.olx_pets.model.Logadvertisement;
-import com.shop.olx_pets.model.User;
+import com.shop.olx_pets.model.*;
 import com.shop.olx_pets.model.dto.SearchDTO;
-import com.shop.olx_pets.service.AdvertisementService;
-import com.shop.olx_pets.service.CategoryService;
-import com.shop.olx_pets.service.LogAdvertisementService;
-import com.shop.olx_pets.service.UserService;
+import com.shop.olx_pets.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -43,6 +37,9 @@ public class AdvertisementUIController {
 
     @Autowired
     private LogAdvertisementService logAdvertisementService;
+
+    @Autowired
+    private GoodShoppingService goodShoppingService;
 
     @Autowired
     @Qualifier("advertisementPhotoPath")
@@ -309,8 +306,10 @@ public class AdvertisementUIController {
         model.addAttribute("advertisement", advertisement);
 
         Logadvertisement logadvertisement = logAdvertisementService.findOrder(buyer, advertisement);
-
         model.addAttribute("logadvertisements", logadvertisement);
+
+        GoodShopping goodShopping = goodShoppingService.findByAd(advertisement);
+        model.addAttribute("goodShopping", goodShopping);
 
         return "description_card";
     }

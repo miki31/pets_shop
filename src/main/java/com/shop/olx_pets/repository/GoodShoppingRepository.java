@@ -16,4 +16,6 @@ public interface GoodShoppingRepository extends JpaRepository<GoodShopping, Long
 
     @Query("SELECT l.advertisement from GoodShopping l where l.buyer.id = :buyerId")
     List<Advertisement> findOrderByBuyer(Long buyerId);
+
+    GoodShopping findByAdvertisement(Advertisement advertisement);
 }

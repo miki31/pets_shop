@@ -15,6 +15,7 @@ import java.util.*;
 
 @Service
 public class AdvertisementService {
+
     @Autowired
     private AdvertisementRepository advertisementRepository;
 
