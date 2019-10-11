@@ -43,6 +43,12 @@ public class AdminUiController {
         return "users_list";
     }
 
+    @GetMapping("/user/allUsers")
+    public String findAllUsers(Model model) {
+        model.addAttribute("users", userService.findAllUsers());
+        return "users_list";
+    }
+
 //    @RequestMapping(value = {"/deleteUser"}, method = RequestMethod.GET)
 //    public String pageAdminDeleteUser(Model model) {
 //        List<User> allUsers = userService.findAll();

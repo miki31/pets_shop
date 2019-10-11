@@ -7,48 +7,34 @@
 
 <nav th:replace="base-layout :: top_navbar"></nav>
 
-    <div id="button">
-        <p>Наразі все. Повернутись?</p>
-        <input type="button" onclick="location.href='/';" value="Звісно повернутись, тут скучно..." />
-
-    </div>
+<div align="center">
+    <h1>This is a letter to buyers!</h1>
     <table border="2" cellpadding="5">
         <thead>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Second name</th>
-            <th>Nick name</th>
-            <th>Birthday</th>
-            <th>Password</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Pets</th>
-            <th>Change</th>
+        <th>First name</th>
+        <th>Second name</th>
+        <th>Nick name</th>
+        <th>Birthday</th>
+        <th>Email</th>
+        <th>Delete</th>
         </thead>
 
         <tbody>
-            <tr th:each="user:${users}">
-                <td th:text="${user.getId()}"></td>
-                <td th:text="${user.getFirstName()}"></td>
-                <td th:text="${user.getSurName()}"></td>
-                <td th:text="${user.getNickName()}"></td>
-                <td th:text="${user.getBirthday()}"></td>
-                <td th:text="${user.getPassword()}"></td>
-                <td th:text="${user.getEmail()}"></td>
-
-                <!--  TODO: mistake. User can has mane roles!!!              -->
-                <td th:text="${user.getRole()}"></td>
-                <td>Вухасті пухнастики</td>
-                <td>
-                    <input type="button" value="пізніше мінятимемо" />
-                </td>
-            </tr>
+        <tr th:each="user:${users}">
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getSurName()}"></td>
+            <td th:text="${user.getNickName()}"></td>
+            <td th:text="${user.getBirthday()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td>
+                <a th:href="@{/admin/deleteUser/__${user.id}__}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
         </tbody>
     </table>
 
 
-
-<nav th:replace="base-layout :: footer"></nav>
-
+    <nav th:replace="base-layout :: footer"></nav>
+</div>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.shop.olx_pets.model.Role;
 import com.shop.olx_pets.model.User;
 import com.shop.olx_pets.repository.CategoryRepository;
 import com.shop.olx_pets.repository.PetRepository;
+import com.shop.olx_pets.repository.RoleRepository;
 import com.shop.olx_pets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -30,6 +34,9 @@ public class UserService {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
 
     public User getOne(Long id) {
@@ -52,13 +59,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findUserByEmail(String email){
+    public Optional<User> findUserByEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
 
         return user;
     }
 
-    public Optional<User> findUserByNickName(String nickName){
+    public Optional<User> findUserByNickName(String nickName) {
         Optional<User> user = userRepository.findByNickName(nickName);
 
         return user;
@@ -112,7 +119,7 @@ public class UserService {
         }
 
 
-        if (!StringUtils.isEmpty(user.getPassword())){
+        if (!StringUtils.isEmpty(user.getPassword())) {
             origin.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         }
 
@@ -123,7 +130,7 @@ public class UserService {
         if (!StringUtils.isEmpty(user.getPhoto())) {
             origin.setPhoto(user.getPhoto());
         }
-        if (!StringUtils.isEmpty(user.getRoles())){
+        if (!StringUtils.isEmpty(user.getRoles())) {
             origin.setRoles(user.getRoles());
         }
 
@@ -138,9 +145,18 @@ public class UserService {
     }
 
     //TODO: WHY???  I can't find another solution to fix this problem
-    private LocalDate updateBirthday(User user){
+    private LocalDate updateBirthday(User user) {
         LocalDate localDate = user.getBirthday();
         return localDate.plusDays(1);
     }
 
+    public List<User> findAllUsers() {
+        List<User> users = userRepository.findAll();
+
+        Role role = roleRepository.findByName("USER");
+
+        List<User> usersBuyers = userRepository.findByRoles(role);
+
+        return usersBuyers;
+    }
 }
