@@ -213,6 +213,10 @@ public class AdvertisementUIController {
         } else if (searchDTO.getMinPrice() == 0 && searchDTO.getMaxPrice() == 0) {
             advertisements =
                     advertisementService.findAllByCategory(category);
+        } else if ((category == null || category.getId() == 0)
+                && searchDTO.getMinPrice() == 0
+                && searchDTO.getMaxPrice() == 0) {
+            advertisements = advertisementService.findAll();
         } else {
             long min = searchDTO.getMinPrice();
             long max = searchDTO.getMaxPrice();
