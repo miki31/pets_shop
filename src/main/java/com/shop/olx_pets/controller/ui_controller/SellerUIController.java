@@ -57,7 +57,7 @@ public class SellerUIController {
     public String getTaken(@ModelAttribute("seller") User seller,
                            Model model
     ) {
-        model.addAttribute("adlogs", advertisementService.ordersFromUsers(seller.getId()));
+        model.addAttribute("adlogs", advertisementService.ordersFromUsers(seller));
 
         return "seller/order";
     }

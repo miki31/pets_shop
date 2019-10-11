@@ -26,24 +26,24 @@ public class AdvertisementService {
         return advertisementRepository.findAll();
     }
 
-    public List<Advertisement> findAll(User seller){
+    public List<Advertisement> findAll(User seller) {
         return advertisementRepository.findBySeller(seller);
     }
 
-    public List<Advertisement> littleList(int sizeList){
+    public List<Advertisement> littleList(int sizeList) {
         List<Advertisement> advertisements = findAll();
         return littleList(sizeList, advertisements);
     }
 
-    public List<Advertisement> littleList(int sizeList, User seller){
+    public List<Advertisement> littleList(int sizeList, User seller) {
         List<Advertisement> advertisements = findAll(seller);
         return littleList(sizeList, advertisements);
     }
 
-    private List<Advertisement> littleList(int sizeList, List<Advertisement> advertisements){
+    private List<Advertisement> littleList(int sizeList, List<Advertisement> advertisements) {
         List<Advertisement> returnAdvertisements = new ArrayList<>();
 
-        if (advertisements.size() == 0){
+        if (advertisements.size() == 0) {
             return returnAdvertisements;
         }
 
@@ -53,30 +53,30 @@ public class AdvertisementService {
             Advertisement advertisement = advertisements.get(j);
             advertisements.remove(j);
             returnAdvertisements.add(advertisement);
-            if (advertisements.size() == 0){
+            if (advertisements.size() == 0) {
                 break;
             }
         }
         return returnAdvertisements;
     }
 
-    public List<Advertisement> bigList(int page, int sizeList, List<Advertisement> advertisements){
+    public List<Advertisement> bigList(int page, int sizeList, List<Advertisement> advertisements) {
         return partOfBigList(page, sizeList, advertisements);
     }
 
-    public List<Advertisement> bigList(int page, int sizeList, User seller, List<Advertisement> advertisements){
+    public List<Advertisement> bigList(int page, int sizeList, User seller, List<Advertisement> advertisements) {
         return bigList(page, sizeList, advertisements);
     }
 
-    private List<Advertisement> partOfBigList(int page, int sizeList, List<Advertisement> advertisements){
+    private List<Advertisement> partOfBigList(int page, int sizeList, List<Advertisement> advertisements) {
         List<Advertisement> returnAdvertisements = new ArrayList<>();
 
-        if (advertisements.size() == 0){
+        if (advertisements.size() == 0) {
             return returnAdvertisements;
         }
 
-        for (int i = (page - 1)*sizeList; i < page * sizeList; i++) {
-            if (i >= advertisements.size()){
+        for (int i = (page - 1) * sizeList; i < page * sizeList; i++) {
+            if (i >= advertisements.size()) {
                 break;
             }
             returnAdvertisements.add(advertisements.get(i));
@@ -84,7 +84,7 @@ public class AdvertisementService {
         return returnAdvertisements;
     }
 
-    public List<Advertisement>  findAllByCategory(Category category){
+    public List<Advertisement> findAllByCategory(Category category) {
         List<Advertisement> advertisements = advertisementRepository.findByCategory(category);
         return advertisements;
     }
@@ -119,35 +119,26 @@ public class AdvertisementService {
         return advertisements;
     }
 
-    // TODO: here can use method in repository
-    // findBySeller(User seller);
-    public List<Advertisement> findSellerById(Long sellerId) {
-        List<Advertisement> advertisements = advertisementRepository.findAll();
-        List<Advertisement> advertisementsMy = new ArrayList<>();
-        for (int i = 0; i < advertisements.size(); i++) {
-            if (advertisements.get(i).getSeller().getId() == sellerId) {
-                advertisementsMy.add(advertisements.get(i));
-            }
-        }
-        return advertisementsMy;
-    }
+    public Set<Logadvertisement> ordersFromUsers(User seller) {
 
-    public List<Logadvertisement> ordersFromUsers(Long sellerId) {
-       List<Advertisement> advertisements = findSellerById(sellerId);
+        List<Advertisement> advertisements = advertisementRepository.findBySeller(seller);
+
+        List<Logadvertisement> logadvertisements = logAdvertisementRepository.findAll();
 
         List<Advertisement> advertisements1 = new ArrayList<>();
-        List<Logadvertisement> logadvertisements = logAdvertisementRepository.findAll();
+
         for (int y = 0; y < logadvertisements.size(); y++) {
             advertisements1.add(logadvertisements.get(y).getAdvertisement());
         }
-        List<Advertisement> last = new ArrayList<>(advertisements1);
-        last.retainAll(advertisements);
 
-        List<Logadvertisement> orderMy = new ArrayList<>();
+        List<Advertisement> advertisementsMy = new ArrayList<>(advertisements1);
+        advertisementsMy.retainAll(advertisements);
 
-        for (int p = 0; p < last.size(); p++) {
+        Set<Logadvertisement> orderMy = new HashSet<>();
+
+        for (int p = 0; p < advertisementsMy.size(); p++) {
             for (int j = 0; j < logadvertisements.size(); j++) {
-                if (logadvertisements.get(j).getAdvertisement() == last.get(p)) {
+                if (logadvertisements.get(j).getAdvertisement() == advertisementsMy.get(p)) {
                     orderMy.add(logadvertisements.get(j));
                 }
             }
