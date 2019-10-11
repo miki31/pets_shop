@@ -94,6 +94,12 @@ public class AdvertisementService {
         return advertisements;
     }
 
+    public List<Advertisement> findAllByCategoryAndPrice(Category category, long minPrice, long maxPrice){
+        List<Advertisement> advertisements =
+                advertisementRepository.findByCategoryAndPriceIsBetween(category, minPrice, maxPrice);
+        return advertisements;
+    }
+
     public Advertisement getOne(Long id) {
         return advertisementRepository.findById(id).orElse(null);
     }

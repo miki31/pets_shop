@@ -202,6 +202,7 @@ public class AdvertisementUIController {
         categories.add(allCategories);
 
         List<Advertisement> advertisements;
+
         if (category == null) {
             long min = searchDTO.getMinPrice();
             long max = searchDTO.getMaxPrice();
@@ -209,9 +210,13 @@ public class AdvertisementUIController {
 
             category = allCategories;
             searchDTO.setCategory(category);
-        } else {
+        } else if (searchDTO.getMinPrice() == 0 && searchDTO.getMaxPrice() == 0) {
             advertisements =
                     advertisementService.findAllByCategory(category);
+        } else {
+            long min = searchDTO.getMinPrice();
+            long max = searchDTO.getMaxPrice();
+            advertisements = advertisementService.findAllByCategoryAndPrice(category, min, max);
         }
 //        model.addAttribute("advertisements", advertisements);
         model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));

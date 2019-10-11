@@ -22,8 +22,13 @@ public interface AdvertisementRepository extends JpaRepository <Advertisement, L
 
     List<Advertisement> findByCategory(Category category);
 
-    @Query("SELECT ad FROM Advertisement ad WHERE ad.price BETWEEN :minPrice AND :maxPrice ORDER BY ad.price")
+//    @Query("SELECT ad FROM Advertisement ad WHERE ad.price BETWEEN :minPrice AND :maxPrice ORDER BY ad.price")
     List<Advertisement> findByPriceIsBetween(long minPrice, long maxPrice);
+
+//    @Query("SELECT ad FROM Advertisement ad WHERE ad.price BETWEEN :minPrice AND :maxPrice ORDER BY ad.price")
+    List<Advertisement> findByCategoryAndPriceIsBetween(Category category, long minPrice, long maxPrice);
+
+
 
 //    List<Advertisement> findByCategoryAndPriceIsBetween
 
