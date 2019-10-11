@@ -25,7 +25,13 @@ public class GoodShoppingService {
         goodShopping.setAdvertisement(logadvertisement.getAdvertisement());
         goodShopping.setBuyer(logadvertisement.getBuyer());
         goodShopping.setSeller(seller);
-        logAdvertisementRepository.delete(logadvertisement);
+        Advertisement advertisement = logadvertisement.getAdvertisement();
+        List<Logadvertisement> logadvertisements = logAdvertisementRepository.findByAdvertisement(advertisement);
+        for (int i = 0; i < logadvertisements.size(); i++) {
+            if (logadvertisements.get(i).getAdvertisement().getId() == advertisement.getId()) {
+                logAdvertisementRepository.delete(logadvertisements.get(i));
+            }
+        }
         return goodShoppingRepository.save(goodShopping);
     }
 

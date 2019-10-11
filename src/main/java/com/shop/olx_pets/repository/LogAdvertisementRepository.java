@@ -5,6 +5,7 @@ import com.shop.olx_pets.model.Logadvertisement;
 import com.shop.olx_pets.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,4 +27,5 @@ public interface LogAdvertisementRepository extends JpaRepository<Logadvertiseme
     @Query("SELECT l.advertisement from Logadvertisement l where l.advertisement.id = :advertisementId")
     List<Advertisement> findOrderByAdvertisement();
 
+    List<Logadvertisement> findByAdvertisement(Advertisement advertisement);
 }
