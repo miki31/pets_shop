@@ -31,8 +31,8 @@ CREATE TABLE user_role
 (
     user_id BIGINT NOT NULL,
     role_id BIGINT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB;
 
 CREATE TABLE demo_user
@@ -59,7 +59,7 @@ CREATE TABLE pet
     price       DOUBLE,
     category_id BIGINT,
     PRIMARY KEY (id),
-    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
@@ -67,8 +67,8 @@ CREATE TABLE pet_user
 (
     user_id BIGINT,
     pet_id  BIGINT,
-    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (pet_id) REFERENCES role (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (pet_id) REFERENCES role (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
@@ -86,7 +86,7 @@ CREATE TABLE advertisement
     PRIMARY KEY (id),
     FOREIGN KEY (seller_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
@@ -96,8 +96,8 @@ CREATE TABLE logadvertisement
     buyer_id         BIGINT,
     advertisement_id BIGINT,
     PRIMARY KEY (id),
-    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
@@ -108,9 +108,9 @@ CREATE TABLE goodshopping
     advertisement_id BIGINT,
     seller_id        BIGINT,
     PRIMARY KEY (id),
-    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (seller_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (seller_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
@@ -118,8 +118,8 @@ CREATE TABLE logadvertisement_buyer
 (
     buyer_id            BIGINT,
     logadvertisement_id BIGINT,
-    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (logadvertisement_id) REFERENCES logadvertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (logadvertisement_id) REFERENCES logadvertisement (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
@@ -127,8 +127,8 @@ CREATE TABLE logadvertisement_advertisement
 (
     advertisement_id    BIGINT,
     logadvertisement_id BIGINT,
-    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (logadvertisement_id) REFERENCES logadvertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (logadvertisement_id) REFERENCES logadvertisement (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
@@ -137,8 +137,8 @@ CREATE TABLE advertisement_user
 (
     user_id          BIGINT,
     advertisement_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
