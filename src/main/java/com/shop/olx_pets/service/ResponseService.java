@@ -19,4 +19,8 @@ public class ResponseService {
         return responses;
     }
 
+    public Response findById(Long id){
+        return responseRepository.findById(id).get();
+    }
+
 }
