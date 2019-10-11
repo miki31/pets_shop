@@ -13,20 +13,37 @@
       th:object="${searchDTO}"
          method="post"
 
-      th:href="@{/advertisement/search}">
+      th:href="@{/advertisement/search/(page=1,sizeList=1)}">
     <div class="form-row align-items-center">
-        <div class="col-auto my-1">
+        <div class="col-auto my-1 mr-2">
             <label class="my-1 mr-2" for="advertCategory">Category</label>
             <select th:field="*{category}" class="custom-select mr-sm-2" id="advertCategory">
 <!--                <option selected>Choose...</option>-->
                 <option th:each="c : ${categories}"
                         th:text="${c.name}"
-                        th:selected="${searchDTO.category.id == c.id}"
+                        th:selected="(${c.id} == *{category.id})"
                         th:value="${c.id}"
-
                         ></option>
             </select>
         </div>
+
+        <div class="col-auto my-1 mr-2">
+            <label class="my-1 mr-2" for="minPrice">The minimum price</label>
+            <input th:field="*{minPrice}" type="number" class="form-control" id="minPrice" placeholder="minPrice">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+        <div class="col-auto my-1 mr-2">
+            <label class="my-1 mr-2" for="maxPrice">The maximum price</label>
+            <input th:field="*{maxPrice}" type="number" class="form-control" id="maxPrice" placeholder="maxPrice">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+
 
 <!--        <div style="margin: 5px">-->
 <!--            <a class="btn btn-primary btn-lg btn-block"-->
@@ -51,8 +68,12 @@
 <!-- TODO: this fragment for view list of adverts-->
 <!--<div th:replace="fragments/list_advertisements_pages :: list_of_adverts_pages"></div>-->
 <!--th:with="advertisements=${adlogs}"-->
+<!--<div style="margin: 5px">-->
+<!--    <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>-->
+<!--</div>-->
+
 <div style="margin: 5px">
-    <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
+    <div th:replace="fragments/list_advertisements_pages :: list_of_all_search_adverts_pages"></div>
 </div>
 
 
