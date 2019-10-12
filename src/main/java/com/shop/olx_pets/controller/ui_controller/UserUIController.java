@@ -1,16 +1,16 @@
 package com.shop.olx_pets.controller.ui_controller;
 
+import com.shop.olx_pets.model.Response;
 import com.shop.olx_pets.model.User;
-import com.shop.olx_pets.service.AdvertisementService;
-import com.shop.olx_pets.service.GoodShoppingService;
-import com.shop.olx_pets.service.LogAdvertisementService;
-import com.shop.olx_pets.service.UserService;
+import com.shop.olx_pets.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")

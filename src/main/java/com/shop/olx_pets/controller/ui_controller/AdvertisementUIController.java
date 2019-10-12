@@ -393,18 +393,6 @@ public class AdvertisementUIController {
         return "description_card";
     }
 
-    //TODO: move to seller (or user) controller
-    @GetMapping("info/{id}")
-    public String getInfo(@PathVariable Long id, Model model) {
-        User seller = advertisementService.getSellerInfo(id);
-        model.addAttribute("user", seller);
 
-        List<Response> responses = responseService.findAllByAuthor(seller);
-        model.addAttribute("responses", responses);
-
-        return "seller/info_seller";
-
-
-    }
 
 }

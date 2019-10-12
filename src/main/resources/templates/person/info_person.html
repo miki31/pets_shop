@@ -20,27 +20,27 @@
             <p>
             <td>Email :</td>
             <td><span th:text="${user.email}">Email</span></td>
-            <div class="text-left">
-
-                </span></td></p>
-
-            </div>
 
         </div>
 
 
-            <td>
+<!--        TODO: this button only for seller-->
+        <td>
 <!--                <a th:href="@{/advertisement/allSellersAdvertFromUser/__${user.id}__}"-->
-                <a th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10,userN=${user.email})}"
-                   class="btn btn-danger">View advertisements</a>
-            </td>
+            <a th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10,userN=${user.email})}"
+               class="btn btn-danger">View advertisements</a>
+        </td>
+
+        <p></p>
+
+        <div>
+            <div th:replace="fragments/form_response :: form_response"></div>
+        </div>
 
         <div>
             <div th:replace="fragments/list_responses :: list_responses"></div>
         </div>
 
-    </div>
-    </div>
     </div>
 </form>
 
