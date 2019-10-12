@@ -15,7 +15,8 @@
          style="max-width: 25%;">
         <div class="card-header">NO REVIEWS</div>
         <div class="card-body">
-            <p class="card-text">You can write some review...</p>
+            <p th:if="${user.email != #authentication.name}" class="card-text">You can write some review...</p>
+            <p th:if="${user.email == #authentication.name}" class="card-text">You can NOT write review about oneself...</p>
         </div>
     </div>
     <div th:each="response : ${responses}">

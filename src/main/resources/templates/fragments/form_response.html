@@ -34,7 +34,7 @@
         class="card border-success mb-3">
 
             <div>
-                <div class="card-header" align="right">New response about "seller"</div>
+                <div class="card-header" align="right" th:text="'New response about : ' + ${user.firstName} + ' ' + ${user.surName}"></div>
             </div>
 
             <div id="textResponse" class="form-group text-success">

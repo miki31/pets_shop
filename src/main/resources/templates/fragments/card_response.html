@@ -30,7 +30,13 @@
                  class="mx-auto d-block" alt="this is a photo of the post">
                 </div>
                 <div class="col-md-auto">
-            <button type="button" class="btn btn-link" style="color: #b0b1ae" th:text="${response.reviewer.firstName} + ' '  + ${response.reviewer.surName}"></button>
+            <a role="button" class="btn btn-link" style="color: #b0b1ae"
+               th:href="@{/person/info/(idUser=__${response.reviewer.id}__)}"
+               th:text="${response.reviewer.firstName} + ' '  + ${response.reviewer.surName}"></a>
+<!--
+<a th:href="@{/person/info/(idUser=__${advertisement.getSeller().id}__)}" role="button" aria-pressed="true">
+                    <i class="fas fa-info-circle"></i></a></p>
+-->
                 </div>
             </div>
         </div>
