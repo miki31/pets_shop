@@ -12,4 +12,6 @@ public interface ResponseRepository extends JpaRepository<Response, Long> {
 
     List<Response> findByReviewer(User reviewer);
 
+    List<Response> findByAuthor(User author);
+
 }
