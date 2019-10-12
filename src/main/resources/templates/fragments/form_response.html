@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+
+<head th:replace="base-layout :: header">
+
+<body>
+
+<div th:fragment="form_response">
+
+    <style>
+        .textarea-success {
+            background-color: #bcffa6;
+            color: #008717;
+        }
+
+        .textarea-danger {
+            background-color: #ffc3bc;
+            color: #ff0008;
+        }
+    </style>
+
+    <form>
+        <div id="div_wrapper" style="width: 50%;"
+        class="card border-success mb-3">
+
+            <div>
+                <div class="card-header" align="right">New response about "seller"</div>
+            </div>
+
+            <div id="textResponse" class="form-group text-success">
+                <label class="card-title" for="textareaResponse" align="center">RESPONSE</label>
+                <textarea class="form-control textarea-success"
+                          id="textareaResponse" rows="5"></textarea>
+            </div>
+
+<!--            <div id="textResponse" class="card-body text-success">-->
+<!--                <h5 class="card-title" align="center">RESPONSE</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.-->
+<!--                </p>-->
+<!--            </div>-->
+
+            <div align="center">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="goodOrBadResponse"
+                           id="goodResponse"
+                           value="true"
+                           checked>
+                    <label class="form-check-label text-success"
+                           for="goodResponse"
+                           onclick="changeStyle('goodResponse')">Good</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="goodOrBadResponse"
+                           id="badResponse"
+                           value="false">
+                    <label class="form-check-label text-danger"
+                           for="badResponse"
+                           onclick="changeStyle('badResponse')">Bad</label>
+                </div>
+            </div>
+
+            <button id="btnSubmit" type="submit" class="btn btn-outline-success">WRITE A REVIEW</button>
+
+        </div>
+    </form>
+
+    <script type="application/javascript">
+        var div_wrapper = document.getElementById("div_wrapper");
+        var textResponse = document.getElementById("textResponse");
+        var btnSubmit = document.getElementById("btnSubmit");
+        var textareaResponse = document.getElementById("textareaResponse");
+
+        // document.getElementById("MyElement").classList.add('MyClass');
+        //
+        // document.getElementById("MyElement").classList.remove('MyClass');
+        function changeStyle(elementID) {
+            element = document.getElementById(elementID);
+            if (element.value == "true"){
+                div_wrapper.classList.remove("border-danger");
+                div_wrapper.classList.add("border-success");
+
+                textResponse.classList.remove("text-danger");
+                textResponse.classList.add("text-success");
+
+                btnSubmit.classList.remove("btn-outline-danger");
+                btnSubmit.classList.add("btn-outline-success");
+
+                textareaResponse.classList.remove("textarea-danger");
+                textareaResponse.classList.add("textarea-success");
+                // div_wrapper.class = "card border-success mb-3";
+            } else {
+                // div_wrapper.class = "card border-danger mb-3";
+                div_wrapper.classList.remove("border-success");
+                div_wrapper.classList.add("border-danger");
+
+                textResponse.classList.remove("text-success");
+                textResponse.classList.add("text-danger");
+
+                btnSubmit.classList.remove("btn-outline-success");
+                btnSubmit.classList.add("btn-outline-danger");
+
+                textareaResponse.classList.remove("textarea-success");
+                textareaResponse.classList.add("textarea-danger");
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>
+
+

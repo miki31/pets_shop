@@ -28,4 +28,12 @@ public class ResponseUiController {
         return "fragments/card_response";
     }
 
+    // TODO: for testing
+    @GetMapping("/write")
+    public String writeResponse(Model model){
+        Response response = new Response();
+        model.addAttribute("response", response);
+        return "fragments/form_response";
+    }
+
 }

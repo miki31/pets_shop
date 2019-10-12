@@ -91,8 +91,13 @@
                         <legend class="col-form-label col-sm-2 pt-0">Role</legend>
                         <div class="col-sm-10" >
                             <div class="form-check" th:each="r : ${rolesList}">
-                                <input class="form-check-input" type="radio" name="roles"
-                                       id="gridRadios1" th:value="${r.id}" value="option1" th:checked="${r.id==user.roles[0].id}">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="roles"
+                                       id="gridRadios1"
+                                       th:value="${r.id}"
+                                       value="option1"
+                                       th:checked="${r.id==user.roles[0].id}">
                                 <label class="form-check-label" for="gridRadios1" th:text="${r.name}" >
                                 </label>
                             </div>
