@@ -6,10 +6,10 @@
 <body>
 
 <nav th:replace="base-layout :: top_navbar"></nav>
+<div align="center">
+    <form
+            th:object="${user}" method="GET">
 
-<form
-        th:object="${user}" method="GET">
-    <div align="center">
         <div class="card bg-light border-info mb-3" style="width: 50rem;">
             <div th:if="${user.photo == null}"><img width="200" src="/images/220px-User_icon_2.svg.png"></div>
             <div th:unless="${user.photo == null}"><img width="200"
@@ -24,14 +24,19 @@
         </div>
 
 
-<!--        TODO: this button only for seller-->
+    <!--        TODO: this button only for seller-->
         <td>
-<!--                <a th:href="@{/advertisement/allSellersAdvertFromUser/__${user.id}__}"-->
+    <!--                <a th:href="@{/advertisement/allSellersAdvertFromUser/__${user.id}__}"-->
             <a th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10,userN=${user.email})}"
                class="btn btn-danger">View advertisements</a>
         </td>
 
-        <p></p>
+
+
+
+    </form>
+    <div>
+        <!--    <p></p>-->
 
         <div>
             <div th:replace="fragments/form_response :: form_response"></div>
@@ -40,11 +45,8 @@
         <div>
             <div th:replace="fragments/list_responses :: list_responses"></div>
         </div>
-
     </div>
-</form>
-
-
+</div>
 <nav th:replace="base-layout :: footer"></nav>
 
 </body>

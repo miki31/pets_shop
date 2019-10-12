@@ -6,6 +6,7 @@ import com.shop.olx_pets.repository.ResponseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,6 +27,25 @@ public class ResponseService {
 
     public Response findById(Long id){
         return responseRepository.findById(id).get();
+    }
+
+    public Response createUpdate(Response response){
+        Response toSave =
+                response.getId() == null ?
+                        createResponse(response) :
+                        updateResponse(response);
+
+        return responseRepository.save(toSave);
+    }
+
+    private Response createResponse(Response response){
+        response.setPosted(LocalDateTime.now());
+
+        return response;
+    }
+
+    private Response updateResponse(Response response){
+        return response;
     }
 
 }

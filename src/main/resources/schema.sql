@@ -148,7 +148,7 @@ CREATE TABLE response
     id               BIGINT AUTO_INCREMENT,
     reviewer_id      BIGINT,
     author_id        BIGINT,
-    response         TEXT,
+    response_text    TEXT,
     posted           DATETIME,
     good             BOOLEAN,
     PRIMARY KEY (id),

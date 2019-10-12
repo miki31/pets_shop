@@ -31,7 +31,7 @@ public class Response {
     private User author;
 
     @Column(columnDefinition = "TEXT")
-    private String response;
+    private String responseText;
 
     // TODO: problem with TIME_ZONE
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

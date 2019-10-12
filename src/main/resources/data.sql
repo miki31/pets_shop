@@ -55,7 +55,7 @@ INSERT INTO advertisement (id, seller_id, title, category_id, description, photo
 (6, 10, null, 1, 'Продається черепаха, червоновуха. Вік 3 місяці, кличка Флеш', null, 255, '2019-09-01');
 
 
-INSERT INTO response (id, reviewer_id, author_id, response, posted, good) VALUES
+INSERT INTO response (id, reviewer_id, author_id, response_text, posted, good) VALUES
 (1, 4, 3, "Якийсь хороший коментар )))", '2019-06-16 11:11:11.354', true),
 (2, 5, 3, "Якийсь дуже поганий коментар (((", '2019-07-18 23:59:55.432', false),
 (3, 4, 3, "Якийсь інший ще кращий коментар :-D", '2019-09-09 15:35:08.354', true);

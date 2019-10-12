@@ -22,7 +22,14 @@
         }
     </style>
 
-    <form>
+    <form id="writeResponseForm"
+          autocomplete="off"
+          action="#"
+          th:action="@{/response/write/(idUser=${user.id})}"
+          th:object="${response}"
+          method="post"
+          role="form"
+    >
         <div id="div_wrapper" style="width: 50%;"
         class="card border-success mb-3">
 
@@ -32,13 +39,26 @@
 
             <div id="textResponse" class="form-group text-success">
                 <label class="card-title" for="textareaResponse" align="center">RESPONSE</label>
-                <textarea class="form-control textarea-success"
+                <textarea th:field="*{responseText}" class="form-control textarea-success"
                           id="textareaResponse" rows="5"></textarea>
             </div>
 
 <!--            <div id="textResponse" class="card-body text-success">-->
 <!--                <h5 class="card-title" align="center">RESPONSE</h5>-->
-<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.-->
+<!--                <p class="card-text">
+Some quick example text to build on the card title and make up the bulk
+of the card's content.Some quick example text to build on the card title
+and make up the bulk of the card's content.Some quick example text to build
+on the card title and make up the bulk of the card's content.Some quick
+example text to build on the card title and make up the bulk of the card's
+content.Some quick example text to build on the card title and make up the
+bulk of the card's content.Some quick example text to build on the card
+title and make up the bulk of the card's content.Some quick example text
+to build on the card title and make up the bulk of the card's content.Some
+ quick example text to build on the card title and make up the bulk of the
+  card's content.Some quick example text to build on the card title and
+  make up the bulk of the card's content.Some quick example text to build
+  on the card title and make up the bulk of the card's content.-->
 <!--                </p>-->
 <!--            </div>-->
 
@@ -49,7 +69,10 @@
                            name="goodOrBadResponse"
                            id="goodResponse"
                            value="true"
-                           checked>
+                           checked
+                           onclick="changeStyle('goodResponse')"
+                           th:field="*{good}"
+                           >
                     <label class="form-check-label text-success"
                            for="goodResponse"
                            onclick="changeStyle('goodResponse')">Good</label>
@@ -59,12 +82,15 @@
                            type="radio"
                            name="goodOrBadResponse"
                            id="badResponse"
-                           value="false">
+                           value="false"
+                           onclick="changeStyle('badResponse')"
+                           th:field="*{good}">
                     <label class="form-check-label text-danger"
                            for="badResponse"
                            onclick="changeStyle('badResponse')">Bad</label>
                 </div>
             </div>
+
 
             <button id="btnSubmit" type="submit" class="btn btn-outline-success">WRITE A REVIEW</button>
 
