@@ -33,6 +33,7 @@ public class Response {
     @Column(columnDefinition = "TEXT")
     private String response;
 
+    // TODO: problem with TIME_ZONE
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime posted;
 

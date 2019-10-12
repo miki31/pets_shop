@@ -10,21 +10,36 @@
 <!--TODO put all cards in next teg-->
 <!--<div class="row">-->
 
-<div class="card bg-light border-info mb-3" style="width: 18rem;" th:fragment="card_response">
+<div th:fragment="card_response">
 
-    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h5 class="card-title">Success card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+<!--    th:text="${teacher.active} ? 'ACTIVE' : 'RETIRED'"-->
+    <div th:class="${response.isGood()} ?
+                            'card text-white bg-success mb-3' :
+                            'card text-white bg-danger mb-3'"
+             style="width: 50%;">
+        <div class="card-header">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-auto">
+            <img style="height: 3rem;" th:if="${response.author.photo == null}" th:src="@{/images/220px-User_icon_2.svg.png}"
+                 class="mx-auto d-block" alt="this is a photo of the post">
+            <img style="height: 3rem;" th:unless="${response.author.photo == null}"
+                 th:src="'/resources/uploads/user/' + ${response.author.photo}"
+                 class="mx-auto d-block" alt="this is a photo of the post">
+                </div>
+                <div class="col-md-auto">
+            <button type="button" class="btn btn-link" style="color: #b0b1ae" th:text="${response.author.firstName} + ' '  + ${response.author.surName}"></button>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
+        </div>
         <div class="card-body">
-            <h5 class="card-title">Danger card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text" th:text="${response.response}"></p>
+        </div>
+        <div class="card-footer ">
+            <small class="text-muted" th:text="'Posted on:  '+${response.posted}"></small>
         </div>
     </div>
 

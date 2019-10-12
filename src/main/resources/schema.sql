@@ -3,7 +3,7 @@ create database olx_pets_db character set utf8;
 
 use olx_pets_db;
 
-SET GLOBAL time_zone = '+3:00';
+SET GLOBAL time_zone = '+00:00';
 
 CREATE TABLE user
 (

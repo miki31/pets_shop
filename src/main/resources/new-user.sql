@@ -4,3 +4,8 @@ FLUSH PRIVILEGES;
 
 
 CREATE DATABASE olx_pets_db CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+SELECT @@global.time_zone;
+
+select now();
