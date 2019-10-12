@@ -29,6 +29,11 @@ public class ResponseService {
         return responseRepository.findById(id).get();
     }
 
+    public List<Response> findByAuthorIdAndSortByPosted(Long authorId){
+        List<Response> responses = responseRepository.findByAuthorIdAndSortByPosted(authorId);
+        return responses;
+    }
+
     public Response createUpdate(Response response){
         Response toSave =
                 response.getId() == null ?

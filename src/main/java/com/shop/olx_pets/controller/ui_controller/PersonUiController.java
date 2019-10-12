@@ -41,7 +41,7 @@ public class PersonUiController {
         response.setGood(true);
         model.addAttribute("response", response);
 
-        List<Response> responses = responseService.findAllByAuthor(seller);
+        List<Response> responses = responseService.findByAuthorIdAndSortByPosted(idUser);
         model.addAttribute("responses", responses);
 
 //        Response response = new Response();
