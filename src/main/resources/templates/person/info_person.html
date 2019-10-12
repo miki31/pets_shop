@@ -36,9 +36,9 @@
 
     </form>
     <div>
-        <!--    <p></p>-->
+        <p></p>
 
-        <div>
+        <div th:if="${user.email != #authentication.name}">
             <div th:replace="fragments/form_response :: form_response"></div>
         </div>
 
