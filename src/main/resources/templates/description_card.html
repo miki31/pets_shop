@@ -24,7 +24,7 @@
                 <p>
                 <td>Seller :</td>
                 <td><span th:text="${advertisement.seller.firstName}">Seller</span></td>
-                <a th:href="@{/person/info/(idUser=__${advertisement.getSeller().id}__)}" role="button" aria-pressed="true">
+                <a th:href="@{/person/info/(idUser=#authentication.name)}" role="button" aria-pressed="true">
                     <i class="fas fa-info-circle"></i></a></p>
                 <p>
                 <td>Category :</td>

@@ -48,6 +48,11 @@
                 <a class="nav-link" href="/profile" th:href="@{/profile}"><i class="fas fa-id-card"></i>Profile</a>
             </li>
 
+            <li class="nav-item active" th:if="${#authorization.expression('isAuthenticated()')}">
+                <a class="nav-link" href="/person/info/me" th:href="@{/person/info/me}">
+                    <i class="fas fa-clipboard" style="color: #a224c3"></i>Board</a>
+            </li>
+
             <li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')">
                 <a class="nav-link dropdown-toggle"
                    href="#" id="navbarDropdownAdmin" role="button"
