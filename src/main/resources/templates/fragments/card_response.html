@@ -30,7 +30,7 @@
 
 
 <!--    th:text="${teacher.active} ? 'ACTIVE' : 'RETIRED'"-->
-    <div th:class="${response.isGood()} ?
+    <div th:class="${responseDTO.isGood()} ?
                             'card text-white bg-success mb-3' :
                             'card text-white bg-danger mb-3'"
              style="width: 50%;">
@@ -39,16 +39,16 @@
             <div class="row">
 
                 <div class="col-md-auto">
-            <img style="height: 3rem;" th:if="${response.reviewer.photo == null}" th:src="@{/images/220px-User_icon_2.svg.png}"
+            <img style="height: 3rem;" th:if="${responseDTO.reviewer.photo == null}" th:src="@{/images/220px-User_icon_2.svg.png}"
                  class="mx-auto d-block" alt="this is a photo of the post">
-            <img style="height: 3rem;" th:unless="${response.reviewer.photo == null}"
-                 th:src="'/resources/uploads/user/' + ${response.reviewer.photo}"
+            <img style="height: 3rem;" th:unless="${responseDTO.reviewer.photo == null}"
+                 th:src="'/resources/uploads/user/' + ${responseDTO.reviewer.photo}"
                  class="mx-auto d-block" alt="this is a photo of the post">
                 </div>
                 <div class="col-md-auto">
             <a role="button" class="btn btn-link" style="color: #b0b1ae"
-               th:href="@{/person/info/(idUser=__${response.reviewer.id}__)}"
-               th:text="${response.reviewer.firstName} + ' '  + ${response.reviewer.surName}"></a>
+               th:href="@{/person/info/(idUser=__${responseDTO.reviewer.id}__)}"
+               th:text="${responseDTO.reviewer.firstName} + ' '  + ${responseDTO.reviewer.surName}"></a>
 <!--
 <a th:href="@{/person/info/(idUser=__${advertisement.getSeller().id}__)}" role="button" aria-pressed="true">
                     <i class="fas fa-info-circle"></i></a></p>
@@ -58,29 +58,35 @@
         </div>
         </div>
         <div class="card-body">
-            <p class="card-text text-justify" th:text="${response.responseText}"></p>
+            <p class="card-text text-justify" th:text="${responseDTO.responseText}"></p>
 
 
         </div>
         <div class="card-footer container" style="height: 3rem;">
             <div class="row align-items-center">
                 <div class="col">
-                    <small style="background-color: rgba(255,249,255,0.27)" class="text-muted" th:text="'Posted on:  '+${response.posted}"></small>
+                    <small style="background-color: rgba(255,249,255,0.27)" class="text-muted" th:text="'Posted on:  '+${responseDTO.posted}"></small>
                 </div>
 
                 <div align="right" class="col-md-auto">
-                    <span class="badge badge-primary">1</span>
+                    <span class="badge badge-primary" th:text="${responseDTO.likes}"></span>
                     <!--            <a th:href="@{/advertisement/description/__${advert.id}__}"-->
-                    <a class="btn btn-outline-warning heart-like"
-                       role="button" aria-pressed="true"
+                    <a th:class="${responseDTO.choiceLike} ?
+                    'btn btn-outline-warning heart-like disabled' :
+                    'btn btn-outline-warning heart-like'"
+                       role="button" aria-pressed="true">
+                        <i onmouseout="this.style.fontSize = '1rem';"
+                        onmouseover="this.style.fontSize = '2rem';" style="color: #f05453;" class="fas fa-heart"></i>
+                    </a>
+                    <!--            <a th:href="@{/advertisement/description/__${advert.id}__}"-->
+                    <a th:class="${responseDTO.choiceDislike} ?
+                    'btn btn-outline-warning heart-dislike disabled' :
+                    'btn btn-outline-warning heart-dislike'"
 
-                    ><i onmouseout="this.style.fontSize = '1rem';"
-                        onmouseover="this.style.fontSize = '2rem';" style="color: #f05453;" class="fas fa-heart"></i></a>
-                    <!--            <a th:href="@{/advertisement/description/__${advert.id}__}"-->
-                    <a class="btn btn-outline-warning heart-dislike"
+
                        role="button" aria-pressed="true"><i onmouseout="this.style.fontSize = '1rem';"
                                                             onmouseover="this.style.fontSize = '2rem';" style="color: #a224c3;" class="fas fa-heart-broken"></i></i></a>
-                    <span class="badge badge-primary">25</span>
+                    <span class="badge badge-primary" th:text="${responseDTO.dislikes}"></span>
                 </div>
             </div>
         </div>

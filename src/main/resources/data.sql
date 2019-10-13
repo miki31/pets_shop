@@ -62,12 +62,12 @@ INSERT INTO response (id, reviewer_id, author_id, response_text, posted, good) V
 
 INSERT INTO like_the_response (id, good, appraiser_id, response_id) VALUES
 (1, true, 6, 1),
-(1, false, 7, 1),
-(1, true, 8, 1),
-(1, true, 9, 1),
-(2, true, 6, 1),
-(3, false, 6, 1),
-(3, true, 8, 1);
+(2, false, 7, 1),
+(3, true, 8, 1),
+(4, true, 9, 1),
+(5, true, 6, 2),
+(6, false, 6, 3),
+(7, true, 8, 3);
 
 
 INSERT INTO hibernate_sequence (next_val) VALUE (1000000);
