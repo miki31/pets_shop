@@ -12,6 +12,22 @@
 
 <div th:fragment="card_response">
 
+    <style>
+        .heart-like {
+            /*background-color: #bcffa6;*/
+            color: #008717;
+            font-size: 1rem;
+            padding: 0;
+        }
+
+        .heart-dislike {
+            /*background-color: #ffc3bc;*/
+            color: #ff0008;
+            font-size: 1rem;
+            padding: 0;
+        }
+    </style>
+
 
 <!--    th:text="${teacher.active} ? 'ACTIVE' : 'RETIRED'"-->
     <div th:class="${response.isGood()} ?
@@ -43,9 +59,30 @@
         </div>
         <div class="card-body">
             <p class="card-text text-justify" th:text="${response.responseText}"></p>
+
+
         </div>
-        <div class="card-footer ">
-            <small class="text-muted" th:text="'Posted on:  '+${response.posted}"></small>
+        <div class="card-footer container" style="height: 3rem;">
+            <div class="row align-items-center">
+                <div class="col">
+                    <small style="background-color: rgba(255,249,255,0.27)" class="text-muted" th:text="'Posted on:  '+${response.posted}"></small>
+                </div>
+
+                <div align="right" class="col-md-auto">
+                    <span class="badge badge-primary">1</span>
+                    <!--            <a th:href="@{/advertisement/description/__${advert.id}__}"-->
+                    <a class="btn btn-outline-warning heart-like"
+                       role="button" aria-pressed="true"
+
+                    ><i onmouseout="this.style.fontSize = '1rem';"
+                        onmouseover="this.style.fontSize = '2rem';" style="color: #f05453;" class="fas fa-heart"></i></a>
+                    <!--            <a th:href="@{/advertisement/description/__${advert.id}__}"-->
+                    <a class="btn btn-outline-warning heart-dislike"
+                       role="button" aria-pressed="true"><i onmouseout="this.style.fontSize = '1rem';"
+                                                            onmouseover="this.style.fontSize = '2rem';" style="color: #a224c3;" class="fas fa-heart-broken"></i></i></a>
+                    <span class="badge badge-primary">25</span>
+                </div>
+            </div>
         </div>
     </div>
 
