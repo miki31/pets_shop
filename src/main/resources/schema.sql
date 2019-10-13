@@ -157,6 +157,18 @@ CREATE TABLE response
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
+CREATE TABLE like_the_response
+(
+    id BIGINT AUTO_INCREMENT,
+    good BOOLEAN,
+    appraiser_id BIGINT,
+    response_id BIGINT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (appraiser_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (response_id) REFERENCES response (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = INNODB
+  CHARACTER SET = utf8;
+
 
 CREATE TABLE hibernate_sequence
 (

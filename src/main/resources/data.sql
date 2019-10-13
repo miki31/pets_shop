@@ -60,4 +60,14 @@ INSERT INTO response (id, reviewer_id, author_id, response_text, posted, good) V
 (2, 5, 3, "Якийсь дуже поганий коментар (((", '2019-07-18 23:59:55.432', false),
 (3, 4, 3, "Якийсь інший ще кращий коментар :-D", '2019-09-09 15:35:08.354', true);
 
+INSERT INTO like_the_response (id, good, appraiser_id, response_id) VALUES
+(1, true, 6, 1),
+(1, false, 7, 1),
+(1, true, 8, 1),
+(1, true, 9, 1),
+(2, true, 6, 1),
+(3, false, 6, 1),
+(3, true, 8, 1);
+
+
 INSERT INTO hibernate_sequence (next_val) VALUE (1000000);
