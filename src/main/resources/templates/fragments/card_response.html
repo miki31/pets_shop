@@ -74,6 +74,9 @@
                     <a th:class="${responseDTO.choiceLike} ?
                     'btn btn-outline-warning heart-like disabled' :
                     'btn btn-outline-warning heart-like'"
+                       th:href="@{/like-dislike/put/(idUser=__${responseDTO.author.id}__,
+                                                     idResponse=__${responseDTO.id}__,
+                                                     good='true')}"
                        role="button" aria-pressed="true">
                         <i onmouseout="this.style.fontSize = '1rem';"
                         onmouseover="this.style.fontSize = '2rem';" style="color: #f05453;" class="fas fa-heart"></i>
@@ -82,8 +85,9 @@
                     <a th:class="${responseDTO.choiceDislike} ?
                     'btn btn-outline-warning heart-dislike disabled' :
                     'btn btn-outline-warning heart-dislike'"
-
-
+                       th:href="@{/like-dislike/put/(idUser=__${responseDTO.author.id}__,
+                                                     idResponse=__${responseDTO.id}__,
+                                                     good='false')}"
                        role="button" aria-pressed="true"><i onmouseout="this.style.fontSize = '1rem';"
                                                             onmouseover="this.style.fontSize = '2rem';" style="color: #a224c3;" class="fas fa-heart-broken"></i></i></a>
                     <span class="badge badge-primary" th:text="${responseDTO.dislikes}"></span>
