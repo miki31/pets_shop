@@ -62,4 +62,24 @@ public class LikeTheResponseUiController {
         return "redirect:/person/info/?idUser=" + idUser;
     }
 
+
+    // create delete likes
+    @GetMapping("/delete")
+    public String deleteLike(@RequestParam Long idUser,
+                          @RequestParam Long idResponse,
+                          Model model
+    ){
+        User user = userService.getOne(idUser);
+        model.addAttribute("user", user);
+
+
+        User appraiser = activeUser(
+                SecurityContextHolder.getContext().getAuthentication()
+        );
+
+        likeTheResponseService.deleteLikeDislike(idResponse, appraiser);
+
+        return "redirect:/person/info/?idUser=" + idUser;
+    }
+
 }

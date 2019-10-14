@@ -15,6 +15,9 @@ public class LikeTheResponseService {
     @Autowired
     private LikeTheResponseRepository likeTheResponseRepository;
 
+    @Autowired
+    private ResponseService responseService;
+
     public List<LikeTheResponse> findByResponse(Response response){
         List<LikeTheResponse> likeTheResponses =
                 likeTheResponseRepository.findByResponse(response);
@@ -56,5 +59,14 @@ public class LikeTheResponseService {
 
     private LikeTheResponse updateLikeDislike(LikeTheResponse likeTheResponse) {
         return likeTheResponse;
+    }
+
+    public void deleteLikeDislike(Long idResponse, User appraiser){
+        Response response = responseService.findById(idResponse);
+
+        LikeTheResponse toDelete =
+                findByResponseAndAppraiser(response, appraiser);
+
+        likeTheResponseRepository.delete(toDelete);
     }
 }

@@ -70,26 +70,62 @@
 
                 <div align="right" class="col-md-auto">
                     <span class="badge badge-primary" th:text="${responseDTO.likes}"></span>
-                    <!--            <a th:href="@{/advertisement/description/__${advert.id}__}"-->
-                    <a th:class="${responseDTO.choiceLike} ?
+
+                    <!-- if open as oneself or remove like from post -->
+                    <a th:if="${responseDTO.choiceLike}"
+                            th:class="${responseDTO.choiceDislike} ?
                     'btn btn-outline-warning heart-like disabled' :
                     'btn btn-outline-warning heart-like'"
+                       th:href="@{/like-dislike/delete/(idUser=__${responseDTO.author.id}__,
+                                                     idResponse=__${responseDTO.id}__)}"
+                       role="button"
+                       aria-pressed="true">
+                        <i onmouseout="this.style.fontSize = '1rem';"
+                        onmouseover="this.style.fontSize = '0.7rem';"
+                           style="color: #f05453;"
+                           class="fas fa-heart"></i>
+                    </a>
+
+                    <!-- if normal put like for post -->
+                    <a th:unless="${responseDTO.choiceLike}"
+                            class="btn btn-outline-warning heart-like"
                        th:href="@{/like-dislike/put/(idUser=__${responseDTO.author.id}__,
                                                      idResponse=__${responseDTO.id}__,
                                                      good='true')}"
                        role="button" aria-pressed="true">
                         <i onmouseout="this.style.fontSize = '1rem';"
-                        onmouseover="this.style.fontSize = '2rem';" style="color: #f05453;" class="fas fa-heart"></i>
+                           onmouseover="this.style.fontSize = '2rem';"
+                           style="color: #f05453;"
+                           class="fas fa-heart"></i>
                     </a>
-                    <!--            <a th:href="@{/advertisement/description/__${advert.id}__}"-->
-                    <a th:class="${responseDTO.choiceDislike} ?
+
+                    <!-- if open as oneself or remove dislike from post -->
+                    <a th:if="${responseDTO.choiceDislike}"
+                       th:class="${responseDTO.choiceLike} ?
                     'btn btn-outline-warning heart-dislike disabled' :
                     'btn btn-outline-warning heart-dislike'"
+                       th:href="@{/like-dislike/delete/(idUser=__${responseDTO.author.id}__,
+                                                     idResponse=__${responseDTO.id}__)}"
+                       role="button" aria-pressed="true">
+                        <i onmouseout="this.style.fontSize = '1rem';"
+                           onmouseover="this.style.fontSize = '0.7rem';"
+                           style="color: #a224c3;"
+                           class="fas fa-heart-broken"></i>
+                    </a>
+
+                    <!-- if normal put dislike for post -->
+                    <a th:unless="${responseDTO.choiceDislike}"
+                       class="btn btn-outline-warning heart-dislike"
                        th:href="@{/like-dislike/put/(idUser=__${responseDTO.author.id}__,
                                                      idResponse=__${responseDTO.id}__,
                                                      good='false')}"
-                       role="button" aria-pressed="true"><i onmouseout="this.style.fontSize = '1rem';"
-                                                            onmouseover="this.style.fontSize = '2rem';" style="color: #a224c3;" class="fas fa-heart-broken"></i></i></a>
+                       role="button" aria-pressed="true">
+                        <i onmouseout="this.style.fontSize = '1rem';"
+                           onmouseover="this.style.fontSize = '2rem';"
+                           style="color: #a224c3;"
+                           class="fas fa-heart-broken"></i>
+                    </a>
+
                     <span class="badge badge-primary" th:text="${responseDTO.dislikes}"></span>
                 </div>
             </div>
