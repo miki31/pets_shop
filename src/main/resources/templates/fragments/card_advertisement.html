@@ -23,7 +23,6 @@
             <div class="d-flex align-items-end"
                      style="
                      /*max-height: 20rem;*/
-                     background: red;
                      background: rgba(255, 0, 0, 0.5);
                      position: absolute; /* Абсолютное позиционирование */
                      bottom: 1rem; /* Положение от нижнего края */
@@ -32,8 +31,29 @@
                 <p th:if="${advert.description == null}" class="card-text text-truncate">Some description</p>
                 <p th:unless="${advert.description == null}" class="card-text text-truncate" th:text="${advert.description}"></p>
             </div>
-
         </div>
+        <div th:unless="${advert.buyer == null}" class="card-img-overlay">
+            <div class="d-flex align-items-end"
+                 style="
+                     /*max-height: 20rem;*/
+                     background: rgba(124,255,24,0.5);
+                     color: rgba(255,28,25,0.51);
+                     font-size: 4rem;
+                     border-radius: 25px;
+                     border: 2px solid #ff2c2c;
+                     position: absolute; /* Абсолютное позиционирование */
+                     bottom: 3rem; /* Положение от нижнего края */
+                     right: 0rem;
+                     width: 18rem;
+                    -moz-transform: rotate(-35deg); /* Для Firefox */
+                    -ms-transform: rotate(-35deg); /* Для IE */
+                    -webkit-transform: rotate(-35deg); /* Для Safari, Chrome, iOS */
+                    -o-transform: rotate(-35deg); /* Для Opera */
+                    transform: rotate(-35deg);">
+                <p class="card-text text-truncate">Sold Out!</p>
+            </div>
+        </div>
+
     </div>
     <div class="card-footer bg-transparent border-success">
         <p class="card-text">Price :

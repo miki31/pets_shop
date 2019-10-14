@@ -20,18 +20,26 @@ public class GoodShoppingService {
     @Autowired
     private LogAdvertisementRepository logAdvertisementRepository;
 
+    @Autowired
+    private AdvertisementService advertisementService;
+
     public GoodShopping listBuyers(User seller, Logadvertisement logadvertisement) {
         GoodShopping goodShopping = new GoodShopping();
-        goodShopping.setAdvertisement(logadvertisement.getAdvertisement());
+        Advertisement advertisement = logadvertisement.getAdvertisement();
+        goodShopping.setAdvertisement(advertisement);
         goodShopping.setBuyer(logadvertisement.getBuyer());
         goodShopping.setSeller(seller);
-        Advertisement advertisement = logadvertisement.getAdvertisement();
+
         List<Logadvertisement> logadvertisements = logAdvertisementRepository.findByAdvertisement(advertisement);
         for (int i = 0; i < logadvertisements.size(); i++) {
             if (logadvertisements.get(i).getAdvertisement().getId() == advertisement.getId()) {
                 logAdvertisementRepository.delete(logadvertisements.get(i));
             }
         }
+
+        advertisement.setBuyer(logadvertisement.getBuyer());
+        advertisementService.createUpdate(advertisement);
+
         return goodShoppingRepository.save(goodShopping);
     }
 
