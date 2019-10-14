@@ -20,7 +20,7 @@ public class ResponseDTOService {
     private LikeTheResponseService likeTheResponseService;
 
     public List<ResponseDTO> findAllByAuthor(User author, User appraiser){
-        List<Response> responses = responseService.findAllByAuthor(author);
+        List<Response> responses = responseService.findByAuthorIdAndSortByPosted(author.getId());
 
         List<ResponseDTO> responseDTOS = new ArrayList<>();
         for (Response r :
