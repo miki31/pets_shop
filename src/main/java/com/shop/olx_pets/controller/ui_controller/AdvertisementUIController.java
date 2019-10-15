@@ -178,7 +178,9 @@ public class AdvertisementUIController {
 
 
         //TODO: change pageSize
-        SearchDTO searchDTO = new SearchDTO(category, 1, 10, (long) 0, (long) 0, null);
+        SearchDTO searchDTO = new SearchDTO(category, 1, 10, (long) 0,
+                advertisementService.maxPrice(advertisementService.findAll()), null);
+        searchDTO.setMaxPriceInGroup(searchDTO.getMaxPrice());
         model.addAttribute("searchDTO", searchDTO);
         model.addAttribute("page", searchDTO.getPage());
         model.addAttribute("sizeList", searchDTO.getSizeList());
@@ -204,29 +206,50 @@ public class AdvertisementUIController {
         List<Category> categories = new ArrayList<>();
         categories.add(allCategories);
 
+        if (!searchDTO.getSortByPrice()){
+            searchDTO.setSortByPriceFromCheap(false);
+        }
+
         List<Advertisement> advertisements;
 
         if (category == null) {
             long min = searchDTO.getMinPrice();
             long max = searchDTO.getMaxPrice();
-            advertisements = advertisementService.findAllByPriceIsBetween(min, max);
+            advertisements = advertisementService.
+                    findAllByPriceIsBetween(min,
+                            max,
+                            searchDTO.getSortByPostedDate(),
+                            searchDTO.getSortByPrice(),
+                            searchDTO.getSortByPriceFromCheap()
+                    );
 
             category = allCategories;
             searchDTO.setCategory(category);
-        } else if (searchDTO.getMinPrice() == 0 && searchDTO.getMaxPrice() == 0) {
-            advertisements =
-                    advertisementService.findAllByCategory(category);
-        } else if ((category == null || category.getId() == 0)
-                && searchDTO.getMinPrice() == 0
-                && searchDTO.getMaxPrice() == 0) {
-            advertisements = advertisementService.findAll();
+            searchDTO.setMaxPriceInGroup(
+                    advertisementService.maxPrice(
+                            advertisementService.findAll()
+                    )
+            );
         } else {
             long min = searchDTO.getMinPrice();
             long max = searchDTO.getMaxPrice();
-            advertisements = advertisementService.findAllByCategoryAndPrice(category, min, max);
+            advertisements = advertisementService.
+                    findAllByCategoryAndPrice(category,
+                            min,
+                            max,
+                            searchDTO.getSortByPostedDate(),
+                            searchDTO.getSortByPrice(),
+                            searchDTO.getSortByPriceFromCheap());
+            searchDTO.setMaxPriceInGroup(
+                    advertisementService.maxPrice(
+                            advertisementService.findAllByCategory(category, false)
+                    )
+            );
         }
 //        model.addAttribute("advertisements", advertisements);
         model.addAttribute("advertisements", advertisementService.bigList(page, sizeList, advertisements));
+
+        searchDTO.setMaxPrice(advertisementService.maxPrice(advertisements));
 
         Integer pages = advertisements.size() % sizeList == 0 ?
                 advertisements.size() / sizeList :

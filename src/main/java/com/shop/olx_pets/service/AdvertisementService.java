@@ -26,6 +26,27 @@ public class AdvertisementService {
         return advertisementRepository.findAll();
     }
 
+    public Long maxPrice(List<Advertisement> advertisements){
+        if (advertisements.isEmpty()){
+            return (long)0;
+        }
+
+        Advertisement max = Collections.max(advertisements, new Comparator<Advertisement>() {
+            @Override
+            public int compare(Advertisement o1, Advertisement o2) {
+                if (o1.getPrice() == o2.getPrice()){
+                    return 0;
+                } else if (o1.getPrice() > o2.getPrice()){
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        });
+
+        return max.getPrice();
+    }
+
     public List<Advertisement> findAll(User seller) {
         return advertisementRepository.findBySeller(seller);
     }
@@ -84,19 +105,72 @@ public class AdvertisementService {
         return returnAdvertisements;
     }
 
-    public List<Advertisement> findAllByCategory(Category category) {
-        List<Advertisement> advertisements = advertisementRepository.findByCategory(category);
+    public List<Advertisement> findAllByCategory(Category category, Boolean sortByPostedDate) {
+        List<Advertisement> advertisements = sortByPostedDate ?
+                advertisementRepository.findByCategoryAndSortByPosted(category):
+                advertisementRepository.findByCategory(category);
         return advertisements;
     }
 
-    public List<Advertisement> findAllByPriceIsBetween(long minPrice, long maxPrice){
-        List<Advertisement> advertisements = advertisementRepository.findByPriceIsBetween(minPrice, maxPrice);
+    public List<Advertisement> findAllByPriceIsBetween(long minPrice,
+                                                       long maxPrice,
+                                                       Boolean sortByPostedDate,
+                                                       Boolean sortByPrice,
+                                                       Boolean sortByPriceFromCheap){
+        List<Advertisement> advertisements;
+
+        if (!sortByPrice) {
+            advertisements = sortByPostedDate ?
+                    advertisementRepository.findByPriceIsBetweenOrderByPostedOnDesc(minPrice, maxPrice) :
+                    advertisementRepository.findByPriceIsBetween(minPrice, maxPrice);
+        } else {
+            if (sortByPostedDate){
+                advertisements = sortByPriceFromCheap ?
+                        advertisementRepository.findByPriceIsBetweenOrderByPostedOnDescPriceAsc(minPrice, maxPrice) :
+                        advertisementRepository.findByPriceIsBetweenOrderByPostedOnDescPriceDesc(minPrice, maxPrice);
+            } else {
+                advertisements = sortByPriceFromCheap ?
+                        advertisementRepository.findByPriceIsBetweenOrderByPriceAsc(minPrice, maxPrice) :
+                        advertisementRepository.findByPriceIsBetweenOrderByPriceDesc(minPrice, maxPrice);
+            }
+        }
         return advertisements;
     }
 
-    public List<Advertisement> findAllByCategoryAndPrice(Category category, long minPrice, long maxPrice){
-        List<Advertisement> advertisements =
-                advertisementRepository.findByCategoryAndPriceIsBetween(category, minPrice, maxPrice);
+    public List<Advertisement> findAllByCategoryAndPrice(Category category,
+                                                         long minPrice,
+                                                         long maxPrice,
+                                                         Boolean sortByPostedDate,
+                                                         Boolean sortByPrice,
+                                                         Boolean sortByPriceFromCheap){
+        List<Advertisement> advertisements;
+
+        if (!sortByPrice) {
+            advertisements = sortByPostedDate ?
+                    advertisementRepository.
+                            findByCategoryAndPriceIsBetweenOrderByPostedOnDesc(category, minPrice, maxPrice):
+                    advertisementRepository.findByCategoryAndPriceIsBetween(category, minPrice, maxPrice);
+        } else {
+            if (sortByPostedDate){
+                advertisements = sortByPriceFromCheap ?
+                        advertisementRepository.
+                                findByCategoryAndPriceIsBetweenOrderByPostedOnDescPriceAsc(category, minPrice, maxPrice):
+                        advertisementRepository.
+                                findByCategoryAndPriceIsBetweenOrderByPostedOnDescPriceDesc(category, minPrice, maxPrice);
+            } else {
+                advertisements = sortByPriceFromCheap ?
+                        advertisementRepository.
+                                findByCategoryAndPriceIsBetweenOrderByPriceAsc(category, minPrice, maxPrice):
+                        advertisementRepository.
+                                findByCategoryAndPriceIsBetweenOrderByPriceDesc(category, minPrice, maxPrice);
+            }
+        }
+
+
+//        List<Advertisement> advertisements = sortByPostedDate ?
+//                advertisementRepository.
+//                        findByCategoryAndPriceIsBetweenOrderByPostedOnDesc(category, minPrice, maxPrice) :
+//                advertisementRepository.findByCategoryAndPriceIsBetween(category, minPrice, maxPrice);
         return advertisements;
     }
 

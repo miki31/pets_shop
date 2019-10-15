@@ -13,7 +13,7 @@
       th:object="${searchDTO}"
          method="post"
 
-      th:href="@{/advertisement/search/(page=1,sizeList=1)}">
+      th:href="@{/advertisement/search/(page=1,sizeList=10)}">
     <div class="form-row align-items-center">
         <div class="col-auto my-1 mr-2">
             <label class="my-1 mr-2" for="advertCategory">Category</label>
@@ -29,17 +29,40 @@
 
         <div class="col-auto my-1 mr-2">
             <label class="my-1 mr-2" for="minPrice">The minimum price</label>
-            <input th:field="*{minPrice}" type="number" class="form-control" id="minPrice" placeholder="minPrice">
+            <input th:field="*{minPrice}" type="number" min="0" class="form-control" id="minPrice" placeholder="minPrice">
             <div class="valid-feedback">
                 Looks good!
             </div>
         </div>
 
         <div class="col-auto my-1 mr-2">
-            <label class="my-1 mr-2" for="maxPrice">The maximum price</label>
-            <input th:field="*{maxPrice}" type="number" class="form-control" id="maxPrice" placeholder="maxPrice">
+            <label class="my-1 mr-2" for="maxPrice" th:text="'The maximum price (' + *{maxPriceInGroup} + ')'"></label>
+            <input th:field="*{maxPrice}" th:value="*{maxPrice}" type="number" min="0" class="form-control" id="maxPrice" placeholder="maxPrice">
             <div class="valid-feedback">
                 Looks good!
+            </div>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+            <input onchange="f(this)" th:field="*{sortByPrice}" type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">Sort by price</label>
+
+
+                <div th:field="*{sortByPriceFromCheap}" class="custom-control custom-radio">
+                    <input th:disabled="*{not sortByPrice}" th:field="*{sortByPriceFromCheap}" value=true th:checked="*{sortByPriceFromCheap}" type="radio" id="sortByPriceFromCheap" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="sortByPriceFromCheap">From cheap to expensive</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input th:disabled="*{not sortByPrice}" th:field="*{sortByPriceFromCheap}" value=false th:checked="*{sortByPriceFromCheap == false}" type="radio" id="sortByPriceFromExpensive" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="sortByPriceFromExpensive">From expensive to cheap</label>
+                </div>
+
+        </div>
+
+        <div class="col-auto my-1 mr-2">
+            <div class="custom-control custom-checkbox">
+                <input th:field="*{sortByPostedDate}" type="checkbox" class="custom-control-input" id="sortByPostedDate">
+                <label class="custom-control-label" for="sortByPostedDate">Sort by posted date</label>
             </div>
         </div>
 
@@ -59,6 +82,25 @@
 
 
     </div>
+
+    <script type="application/javascript">
+        var radio = document.getElementsByName('customRadio');
+
+        var sortByPriceFromCheap = document.getElementById("sortByPriceFromCheap");
+        var sortByPriceFromExpensive = document.getElementById("sortByPriceFromExpensive");
+        function f(e) {
+            // for (var i = 0; i < radio.length; i++) {
+            //     radio[i].disabled = false;
+            // }
+            if (e.checked){
+                sortByPriceFromCheap.disabled = false;
+                sortByPriceFromExpensive.disabled = false;
+            } else {
+                sortByPriceFromCheap.disabled = true;
+                sortByPriceFromExpensive.disabled = true;
+            }
+        }
+    </script>
 </form>
 
 

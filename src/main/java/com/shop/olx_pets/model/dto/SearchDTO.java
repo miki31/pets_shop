@@ -10,6 +10,28 @@ public class SearchDTO {
 
     private Long minPrice;
     private Long maxPrice;
+    private Long maxPriceInGroup;
+
+    private Boolean sortByPostedDate;
+
+    private Boolean sortByPrice;
+    private Boolean sortByPriceFromCheap;
+
+    public Boolean getSortByPrice() {
+        return sortByPrice;
+    }
+
+    public void setSortByPrice(Boolean sortByPrice) {
+        this.sortByPrice = sortByPrice;
+    }
+
+    public Boolean getSortByPriceFromCheap() {
+        return sortByPriceFromCheap;
+    }
+
+    public void setSortByPriceFromCheap(Boolean sortByPriceFromCheap) {
+        this.sortByPriceFromCheap = sortByPriceFromCheap;
+    }
 
     private String userName;
 
@@ -25,6 +47,10 @@ public class SearchDTO {
         this.maxPrice = maxPrice;
 
         this.userName = userName;
+
+        this.sortByPostedDate = false;
+        this.sortByPrice = false;
+        this.sortByPriceFromCheap = false;
     }
 
     public Category getCategory() {
@@ -73,5 +99,21 @@ public class SearchDTO {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Boolean getSortByPostedDate() {
+        return sortByPostedDate;
+    }
+
+    public void setSortByPostedDate(Boolean sortByPostedDate) {
+        this.sortByPostedDate = sortByPostedDate;
+    }
+
+    public Long getMaxPriceInGroup() {
+        return maxPriceInGroup;
+    }
+
+    public void setMaxPriceInGroup(Long maxPriceInGroup) {
+        this.maxPriceInGroup = maxPriceInGroup;
     }
 }
