@@ -32,7 +32,13 @@ public class OlxPetsApplication {
     @Bean
     public CommandLineRunner demo(UserRepository userRepository, RoleRepository roleRepository) {
         return (args) -> {
-            Role role = new Role();
+            Role role;
+            role = roleRepository.findByName("ADMIN");
+            if (role != null){
+                return;
+            }
+
+            role = new Role();
             role.setName("ADMIN");
             roleRepository.save(role);
 
