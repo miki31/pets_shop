@@ -42,10 +42,10 @@ public class LoginUiController implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
     }
 
-    @ModelAttribute("user")
-    public User activeUser(Authentication authentication) {
-        return new User();
-    }
+//    @ModelAttribute("user")
+//    public User activeUser(Authentication authentication) {
+//        return new User();
+//    }
 
 //    @GetMapping("/login")
 //    public String login() {

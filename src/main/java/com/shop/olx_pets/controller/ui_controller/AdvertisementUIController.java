@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -352,6 +354,15 @@ public class AdvertisementUIController {
 
         //TODO: create a unique name for advert photo
         String uploadPhotoName = file.getOriginalFilename();
+//
+//        /////
+//        //Create custom filename
+//        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+//            //remove spaces and make lowercase
+//        filename = filename + LocalDateTime.now().toString();
+//
+//
+//        /////
 
         try {
             File transferFile = new File(advertPhotoPath + "/" + uploadPhotoName);

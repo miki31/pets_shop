@@ -63,6 +63,12 @@ public class UserService {
 
         System.out.println(user.getBirthday());
 
+        User u = userRepository.findByEmail(user.getEmail()).orElse(null);
+        if (u != null){
+            System.out.println("ERROR ==> user try save second time !!!");
+            return u;
+        }
+
         return userRepository.save(toSave);
     }
 
