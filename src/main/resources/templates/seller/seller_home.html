@@ -20,60 +20,62 @@
 
 <!--            </div>-->
 
-<div align="center">
-    <div>
-        <h1>Hello SELLER!!!</h1>
-        <p>
-            Create your ad. Sell ​​ads. Make the world a better place.
-        </p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12"  align="center">
+            <h1>Hello SELLER!!!</h1>
+            <p>
+                Create your ad. Sell ​​ads. Make the world a better place.
+            </p>
+        </div>
     </div>
-
 
     <div>
 
         <div class="row">
-            <div class="col">
-                <p>
-                    <div class="card bg-light border-info mb-3" style="width: 50rem;">
+            <div class="col-4" align="center">
+
+                <div class="card bg-light border-info mb-3" style="width: 100%;">
                         <a type="button" class="btn btn-info btn-lg text-white"
                            th:href="@{/advertisement/create}">CREATE MY ADVERTISEMENT
                         </a>
-                <p></p>
+                    <p></p>
 
-                <a type="button" class="btn btn-info btn-lg text-white"
-                   th:href="@{/seller/ordersFromUsers}">VIEW PURCHASE REQUESTS
-                </a>
-                <p></p>
+                    <a type="button" class="btn btn-info btn-lg text-white"
+                       th:href="@{/seller/ordersFromUsers}">VIEW PURCHASE REQUESTS
+                    </a>
+                    <p></p>
 
-                <a type="button" class="btn btn-info btn-lg"
-                   th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10,userN=${#authentication.name})}">VIEW OWN ADVERTISEMENTS
-                </a>
-                <p></p>
+                    <a type="button" class="btn btn-info btn-lg"
+                       th:href="@{/advertisement/allSellersAdvert/(page=1,sizeList=10,userN=${#authentication.name})}">VIEW OWN ADVERTISEMENTS
+                    </a>
+                    <p></p>
 
-                <a type="button" class="btn btn-info btn-lg"
-                   th:href="@{/advertisement/all/(page=1,sizeList=10)}">VIEW ALL ADVERTISEMENTS
-                </a>
-                <p></p>
+                    <a type="button" class="btn btn-info btn-lg"
+                       th:href="@{/advertisement/all/(page=1,sizeList=10)}">VIEW ALL ADVERTISEMENTS
+                    </a>
+                    <p></p>
 
-                <a type="button" class="btn btn-info btn-lg"
-                   th:href="@{/seller/myGoodShopping}">VIEW ALL SOLD
-                </a>
-                <!--    <div style="margin: 5px">-->
-                <!--        <p>Search with filters from all advertisements</p>-->
-                <!--        <a class="btn btn-primary btn-lg btn-block"-->
-                <!--           th:href="@{/advertisement/search}"-->
-                <!--           role="button">Search</a>-->
-                <!--    </div>-->
+                    <a type="button" class="btn btn-info btn-lg"
+                       th:href="@{/seller/myGoodShopping}">VIEW ALL SOLD
+                    </a>
+                    <!--    <div style="margin: 5px">-->
+                    <!--        <p>Search with filters from all advertisements</p>-->
+                    <!--        <a class="btn btn-primary btn-lg btn-block"-->
+                    <!--           th:href="@{/advertisement/search}"-->
+                    <!--           role="button">Search</a>-->
+                    <!--    </div>-->
+                </div>
             </div>
-        </div>
-        </p>
 
-        <div class="col-6">
-            <p>
-            <div th:with="advertisements=${allAdvert}" style="margin: 5px">
-                <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
+
+            <div class="col-8">
+
+                <div th:with="advertisements=${allAdvert}" style="margin: 5px">
+                    <div th:replace="fragments/list_advertisements :: list_of_adverts"></div>
+                </div>
+
             </div>
-            </p>
         </div>
     </div>
 </div>
