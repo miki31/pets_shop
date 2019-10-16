@@ -114,6 +114,21 @@ CREATE TABLE goodshopping
 ) ENGINE = INNODB
   CHARACTER SET = utf8;
 
+
+CREATE TABLE bedshopping
+(
+    id               BIGINT AUTO_INCREMENT,
+    buyer_id         BIGINT,
+    advertisement_id BIGINT,
+    seller_id        BIGINT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (buyer_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (advertisement_id) REFERENCES advertisement (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (seller_id) REFERENCES user (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = INNODB
+  CHARACTER SET = utf8;
+
+
 CREATE TABLE logadvertisement_buyer
 (
     buyer_id            BIGINT,

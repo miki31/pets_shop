@@ -29,6 +29,9 @@ public class UserUIController {
     @Autowired
     private GoodShoppingService goodShoppingService;
 
+    @Autowired
+    private BedShoppingService bedShoppingService;
+
     @ModelAttribute("buyer")
     public User activeUser(Authentication authentication) {
         return userService.findUserByEmail(authentication.getName()).get();
@@ -92,6 +95,15 @@ public class UserUIController {
                                Model model
     ) {
         model.addAttribute("adlogs", goodShoppingService.getOrderByBuyer(buyer.getId()));
+
+        return "user/my_orders";
+    }
+
+    @GetMapping(value = "/myBedShopping")
+    public String bedShopping(@ModelAttribute("buyer") User buyer,
+                               Model model
+    ) {
+        model.addAttribute("adlogs", bedShoppingService.getOrderByBuyer(buyer.getId()));
 
         return "user/my_orders";
     }
