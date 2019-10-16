@@ -1,102 +1,142 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base-layout :: header">
 
 </head>
+
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
 <body>
 <div align="center">
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/profile/updateUser}"
-                  th:object="${user}" method="post" class="form-horizontal"
-                  role="form">
-                <h2>Make your changes</h2>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
-                               class="validation-message"></label>
-                        <input type="text" th:field="*{firstName}" placeholder="firstName"
-                               class="form-control" />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form autocomplete="off" action="#" th:action="@{/profile/updateUser}"
+                      th:object="${user}" method="post" class="form-horizontal"
+                      role="form">
+                    <h2>Make your changes</h2>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                   class="validation-message"></label>
+                            <input type="text" th:field="*{firstName}" placeholder="firstName"
+                                   class="form-control"/>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{surName}"
-                               placeholder="surName" class="form-control" />
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}"
+                                   class="validation-message"></label>
+                            <input type="text" th:field="*{surName}"
+                                   placeholder="surName" class="form-control"/>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{nickName}"
-                               placeholder="nickName" class="form-control" />
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}"
+                                   class="validation-message"></label>
+                            <input type="text" th:field="*{nickName}"
+                                   placeholder="nickName" class="form-control"/>
+                        </div>
                     </div>
-                </div>
 
-                <!--    TODO: add in form field to put Date Birthday               -->
+                    <!--    TODO: add in form field to put Date Birthday               -->
 
-<!--                <div class="form-group">-->
-<!--                    <div class="col-sm-9">-->
-<!--                        <input type="text" th:field="*{email}" placeholder="Email"-->
-<!--                               class="form-control" /> <label-->
-<!--                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"-->
-<!--                            class="validation-message"></label>-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" />
-                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                               class="validation-message">
-                        </label>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label	th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"
+                                      class="validation-message"></label>
+                            <input type="date" th:field="*{birthday}" class="form-control"/>
+                        </div>
                     </div>
-                </div>
 
-
-                <!--                <div class="form-group">-->
-                <!--                    <select size="1"  th:field="*{role}"">-->
-                <!--                        <option disabled>Виберіть роль</option>-->
-
-                <!--                        <option th:each="role:${roles}"value="${role}" th:text="${role}"></option>-->
-
-                <!--                    </select>-->
-                <!--                </div>-->
-
-
-
-                <!--                <div class="form-group">-->
-                <!--                    <ul>-->
-                <!--                        <li th:each="role: ${roles}">-->
-                <!--                            <input type="radio" th:field="*{role}" th:value="${role}" />-->
-                <!--                            <label  th:text="${role}"></label>-->
-                <!--                        </li>-->
-                <!--                    </ul>-->
-                <!--                </div>-->
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                    <!--                <div class="form-group">-->
+                    <!--                    <div class="col-sm-9">-->
+                    <!--                        <input type="text" th:field="*{email}" placeholder="Email"-->
+                    <!--                               class="form-control" /> <label-->
+                    <!--                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"-->
+                    <!--                            class="validation-message"></label>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input id="pass" type="password" th:field="*{password}"
+                                   placeholder="Password" class="form-control"/>
+                            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                   class="validation-message">
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <input type="hidden" id="id" th:field="*{id}">
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input id="pass_confirmation" type="password"
+                                   placeholder="Confirmation Password " class="form-control"/>
+                            <label id="mess_pass" hidden class="validation-message">The password is incorrect</label>
+                        </div>
+                    </div>
 
-                <span th:utext="${successMessage}"></span>
 
-            </form>
+                    <!--                <div class="form-group">-->
+                    <!--                    <select size="1"  th:field="*{role}"">-->
+                    <!--                        <option disabled>Виберіть роль</option>-->
+
+                    <!--                        <option th:each="role:${roles}"value="${role}" th:text="${role}"></option>-->
+
+                    <!--                    </select>-->
+                    <!--                </div>-->
+
+
+                    <!--                <div class="form-group">-->
+                    <!--                    <ul>-->
+                    <!--                        <li th:each="role: ${roles}">-->
+                    <!--                            <input type="radio" th:field="*{role}" th:value="${role}" />-->
+                    <!--                            <label  th:text="${role}"></label>-->
+                    <!--                        </li>-->
+                    <!--                    </ul>-->
+                    <!--                </div>-->
+
+
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <button id="btn_submit"
+                                    type="button"
+                                    class="btn btn-primary btn-block"
+                                    onclick="confirmationPass();">Edit User
+                            </button>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="id" th:field="*{id}">
+
+                    <span th:utext="${successMessage}"></span>
+
+                </form>
+            </div>
         </div>
     </div>
 </div>
-</div>
 
 <nav th:replace="base-layout :: footer"></nav>
+
+<script type="application/javascript">
+    var btn_submit = document.getElementById("btn_submit");
+    var password = document.getElementById("pass");
+    var password_confirmation = document.getElementById("pass_confirmation");
+    var mess_pass = document.getElementById("mess_pass");
+
+    function confirmationPass() {
+        if (password.value == password_confirmation.value) {
+            btn_submit.type = "submit";
+            btn_submit.click();
+        } else {
+            mess_pass.hidden = false;
+        }
+    }
+</script>
 
 
 </body>
