@@ -96,7 +96,7 @@ public class AdminUiController {
         } else {
             model.addAttribute("user", new User());
         }
-        return "edit_user";
+        return "admin/edit_user";
     }
 
     @RequestMapping(path = "/updateUser", method = RequestMethod.POST)

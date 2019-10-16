@@ -24,6 +24,13 @@
         <tr><td>Email :  </td><td><span th:text="${user.email}"></span></td></tr>
         <tr><td>Birthday :  </td><td>
         <span th:text="${user.birthday}"></span></td></tr>
+        <p>
+
+        </p>
+        <td  align="center">
+            <a th:href="@{/profile/changeUser/__${user.id}__}" class="btn btn-warning">Edit your profile</a>
+        </td>
+
         </tr>
     </table>
 

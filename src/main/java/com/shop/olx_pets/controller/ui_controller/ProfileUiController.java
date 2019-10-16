@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/profile")
@@ -58,6 +59,21 @@ public class ProfileUiController {
         return "redirect:/profile";
     }
 
+    @RequestMapping(path = {"/changeUser/{id}"})
+    public String editUserById(Model model, @PathVariable("id") Optional<Long> id) {
+        if (id.isPresent()) {
+            User user = userService.getOne(id.get());
+            model.addAttribute("user", user);
+        } else {
+            model.addAttribute("user", new User());
+        }
+        return "admin/edit_user";
+    }
 
+    @RequestMapping(path = "/updateUser", method = RequestMethod.POST)
+    public String UpdateUser(User user) {
+        userService.createUpdate(user);
+        return "redirect:/profile";
+    }
 
 }
