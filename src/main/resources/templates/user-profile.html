@@ -7,7 +7,10 @@
 
 <nav th:replace="base-layout :: top_navbar"></nav>
 
+<div align="center">
 <h1>Hello!</h1>
+</div>
+
     <table>
         <tr>
             <td rowspan="3">
@@ -24,9 +27,9 @@
         <tr><td>Email :  </td><td><span th:text="${user.email}"></span></td></tr>
         <tr><td>Birthday :  </td><td>
         <span th:text="${user.birthday}"></span></td></tr>
-        <p>
+        <a>
 
-        </p>
+        </a>
         <td  align="center">
             <a th:href="@{/profile/changeUser/__${user.id}__}" class="btn btn-warning">Edit your profile</a>
         </td>
@@ -35,6 +38,7 @@
     </table>
 
 <nav th:replace="base-layout :: footer"></nav>
+
 
 </body>
 </html>

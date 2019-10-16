@@ -31,8 +31,9 @@
                 <td th:text="${a.getAdvertisement().title}"></td>
                 <td th:text="${a.getBuyer().firstName}"></td>
                 <td th:text="${a.getBuyer().email}"></td>
-                <td align="center"><a th:href="@{/person/info/(idUser=__${a.getBuyer().id}__)}" role="button" aria-pressed="true">
-                    <i class="fas fa-info-circle"></i></a></p>
+                <td align="center">
+                    <a th:href="@{/person/info/(idUser=__${a.getBuyer().id}__)}" class="btn btn-danger">
+                    Info</a>
                 </td>
                 <p>
                 <td >
