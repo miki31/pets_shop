@@ -17,6 +17,7 @@
             <th>Title</th>
             <th>Buyer</th>
             <th>Buyer`s email</th>
+            <th>Info about buyer</th>
             <th>YES</th>
 <!--            <th>NO</th>-->
 
@@ -30,6 +31,10 @@
                 <td th:text="${a.getAdvertisement().title}"></td>
                 <td th:text="${a.getBuyer().firstName}"></td>
                 <td th:text="${a.getBuyer().email}"></td>
+                <td align="center"><a th:href="@{/person/info/(idUser=__${a.getBuyer().id}__)}" role="button" aria-pressed="true">
+                    <i class="fas fa-info-circle"></i></a></p>
+                </td>
+                <p>
                 <td >
                     <a th:href="@{/seller/request/(id=${a.id})}" class="btn btn-danger">Yes</a>
                 </td>
