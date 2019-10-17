@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Configuration
 @Slf4j
@@ -56,7 +58,12 @@ public class FileStarageConfiguration {
             }
             baseDir = new File(s);
             if (!baseDir.exists()){
-                log.info("dir is created: {}", baseDir.mkdir());
+
+                if (Files.isDirectory(Paths.get(s))) {
+                    log.info("dir is created: {}", baseDir.mkdir());
+                }
+
+
             }
         }
 
