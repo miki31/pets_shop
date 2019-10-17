@@ -59,9 +59,9 @@ public class FileStarageConfiguration {
             baseDir = new File(s);
             if (!baseDir.exists()){
 
-                if (Files.isDirectory(Paths.get(s))) {
-//                    log.info("dir is created: {}", baseDir.mkdir());
-                }
+//                if (Files.isDirectory(Paths.get(s))) {
+                    log.info("dir is created: {}", baseDir.mkdir());
+//                }
 
 
             }
