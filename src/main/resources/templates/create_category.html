@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base-layout :: header">
+
+</head>
+<body>
+
+<nav th:replace="base-layout :: top_navbar"></nav>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <form id="create_cat_form"
+              autocomplete="off"
+              action="#"
+              th:action="@{/category/create}"
+              th:object="${category}"
+              method="post"
+              class="form-horizontal"
+              role="form">
+
+            <h2>Create CATEGORY Form</h2>
+
+            <p></p>
+
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{name}" placeholder="First name"
+                           class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <button id="btn_submit"
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                    >CREATE</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>

@@ -25,7 +25,7 @@ public class Advertisement {
     private User seller;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "buyer_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "buyer_id",  referencedColumnName = "id")
     private User buyer;
 
     private String title;   // name

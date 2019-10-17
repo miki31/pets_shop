@@ -24,4 +24,12 @@ public class CategoryService {
         return category.get();
     }
 
+    public Category save(Category category){
+        Category c  = categoryRepository.findByName(category.getName()).orElse(null);
+        if (c != null){
+            return c;
+        }
+        return categoryRepository.save(category);
+    }
+
 }
