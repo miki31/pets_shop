@@ -52,7 +52,7 @@ public class GoodShoppingService {
         }
 
         advertisement.setBuyer(logadvertisement.getBuyer());
-        advertisementService.createUpdate(advertisement);
+        advertisementService.createUpdate(advertisement, false);
 
 
         return goodShoppingRepository.save(goodShopping);
