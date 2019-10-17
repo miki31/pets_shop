@@ -334,7 +334,7 @@ public class AdvertisementUIController {
             return "seller/create_advertisement";
         }
 
-        advertisement = advertisementService.createUpdate(advertisement);
+        advertisement = advertisementService.createUpdate(advertisement, false);
 
         model.addAttribute("advertisement", advertisement);
 
@@ -369,7 +369,7 @@ public class AdvertisementUIController {
             file.transferTo(transferFile);
             log.info("Saved advertisement photo into {}", transferFile.getPath());
             advertisement.setPhoto(uploadPhotoName);
-            advertisement = advertisementService.createUpdate(advertisement);
+            advertisement = advertisementService.createUpdate(advertisement, true);
         } catch (IOException e) {
             log.error("Error saving file", e);
         }

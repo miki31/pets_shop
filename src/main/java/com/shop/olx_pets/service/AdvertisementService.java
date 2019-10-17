@@ -243,10 +243,11 @@ public class AdvertisementService {
 //        return advertisementRepository.findByUsersIdAndReturnedIsNull(id);
 //    }
 
-    public Advertisement createUpdate(Advertisement advertisement) {
+    public Advertisement createUpdate(Advertisement advertisement,
+            boolean uploadPhoto) {
 
         // price not null
-        if (advertisement.getPrice() == null){
+        if (advertisement.getPrice() == null && !uploadPhoto){
             advertisement.setPrice((long) 0);
         }
 
